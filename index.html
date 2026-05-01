@@ -185,58 +185,47 @@
       justify-content: center;
     }
 
-    .hero-video-card {
-      position: relative;
-      z-index: 1;
-      width: 240px;
-      border-radius: 28px;
-      overflow: hidden;
-      box-shadow: 0 20px 60px rgba(232,64,154,0.2), 0 4px 16px rgba(0,0,0,0.08);
-      aspect-ratio: 3/4;
+    .hero-video-list {
+      display: flex;
+      gap: 16px;
+      align-items: center;
     }
 
-    .hero-video-card video {
-      width: 100%;
-      height: 100%;
+    .hero-video-item {
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 16px 48px rgba(232,64,154,0.18), 0 4px 12px rgba(0,0,0,0.08);
+      aspect-ratio: 9/16;
+      flex-shrink: 0;
+      position: relative;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .hero-video-item:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 24px 64px rgba(232,64,154,0.28); }
+
+    /* El del centro más grande */
+    .hero-video-item.main { width: 180px; }
+    .hero-video-item.side { width: 140px; opacity: 0.85; }
+
+    .hero-video-item video {
+      width: 100%; height: 100%;
       object-fit: cover;
       display: block;
     }
 
-    .hero-emoji {
+    .hero-video-label {
       position: absolute;
-      font-size: 1.6rem;
-      z-index: 2;
-      animation: floatBounce 3s ease-in-out infinite;
-      user-select: none;
-    }
-    .hero-emoji:nth-child(1) { top: 8%; right: -14%; animation-delay: 0s; }
-    .hero-emoji:nth-child(2) { bottom: 10%; left: -14%; animation-delay: 0.8s; }
-    .hero-emoji:nth-child(3) { top: 52%; right: -16%; animation-delay: 1.5s; }
-
-    @keyframes floatBounce {
-      0%, 100% { transform: translateY(0) rotate(-5deg); }
-      50% { transform: translateY(-10px) rotate(5deg); }
-    }
-
-    .hero-floats {
-      position: absolute;
-      bottom: 24px;
-      right: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      z-index: 3;
-    }
-
-    .hero-float-pill {
-      background: white;
-      border-radius: var(--radius-pill);
-      padding: 8px 14px;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(6px);
+      color: white;
       font-family: 'Nunito', sans-serif;
       font-weight: 800;
-      font-size: 0.75rem;
-      color: var(--black);
-      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      font-size: 0.68rem;
+      padding: 4px 10px;
+      border-radius: 20px;
       white-space: nowrap;
     }
 
@@ -618,9 +607,9 @@
 
       #inicio { grid-template-columns: 1fr; min-height: auto; }
       .hero-text { padding: 40px 24px 32px; order: 2; }
-      .hero-visual { order: 1; padding: 32px 24px; }
-      .hero-video-card { max-width: 280px; aspect-ratio: 9/13; }
-      .hero-floats { display: none; }
+      .hero-visual { order: 1; padding: 28px 16px; }
+      .hero-video-item.main { width: 130px; }
+      .hero-video-item.side { width: 100px; }
       .demo-inner { grid-template-columns: 1fr; gap: 40px; }
       .demo-videos { grid-template-columns: 1fr 1fr; }
       .demo-video-wrap:first-child { margin-top: 0; }
@@ -692,19 +681,25 @@
   </div>
 
   <div class="hero-visual">
-    <div class="hero-video-frame">
-      <span class="hero-emoji">🧀</span>
-      <span class="hero-emoji">✨</span>
-      <span class="hero-emoji">🐙</span>
-      <div class="hero-video-card">
+    <div class="hero-video-list">
+      <div class="hero-video-item side">
+        <video autoplay muted loop playsinline>
+          <source src="pulpo-video.mp4" type="video/mp4">
+        </video>
+        <div class="hero-video-label">✨ Pulpo Galaxy</div>
+      </div>
+      <div class="hero-video-item main">
         <video autoplay muted loop playsinline>
           <source src="queso-video.mp4" type="video/mp4">
         </video>
+        <div class="hero-video-label">🧀 Queso Squishy</div>
       </div>
-    </div>
-    <div class="hero-floats">
-      <div class="hero-float-pill">🔒 Pago seguro</div>
-      <div class="hero-float-pill">⭐ +500 clientes</div>
+      <div class="hero-video-item side">
+        <video autoplay muted loop playsinline>
+          <source src="pulpo-video.mp4" type="video/mp4">
+        </video>
+        <div class="hero-video-label">🐙 Más squishys</div>
+      </div>
     </div>
   </div>
 </section>
