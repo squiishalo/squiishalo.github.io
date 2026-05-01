@@ -168,14 +168,14 @@
     .hero-trust-item { display: flex; align-items: center; gap: 7px; font-size: 0.82rem; font-weight: 700; color: var(--text-light); }
     .hero-trust-icon { width: 26px; height: 26px; background: var(--pink-soft); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; }
 
-    /* HERO VISUAL — vídeo flotante */
+    /* HERO VISUAL */
     .hero-visual {
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(160deg, var(--pink-soft) 0%, var(--coral-soft) 100%);
-      padding: 32px 28px;
+      background: var(--bg);
+      padding: 40px 32px;
     }
 
     .hero-video-frame {
@@ -185,34 +185,14 @@
       justify-content: center;
     }
 
-    /* Marco bubbly con gradiente */
-    .hero-video-frame::before {
-      content: '';
-      position: absolute;
-      inset: -10px;
-      border-radius: 44px;
-      background: linear-gradient(135deg, var(--pink), var(--coral), #FFD166, var(--pink));
-      background-size: 300% 300%;
-      animation: gradientShift 4s ease infinite;
-      z-index: 0;
-    }
-
-    @keyframes gradientShift {
-      0%   { background-position: 0% 50%; }
-      50%  { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
     .hero-video-card {
       position: relative;
       z-index: 1;
-      width: 220px;
-      border-radius: 36px;
+      width: 240px;
+      border-radius: 28px;
       overflow: hidden;
-      box-shadow: 0 12px 40px rgba(232,64,154,0.25);
+      box-shadow: 0 20px 60px rgba(232,64,154,0.2), 0 4px 16px rgba(0,0,0,0.08);
       aspect-ratio: 3/4;
-      background: white;
-      padding: 5px;
     }
 
     .hero-video-card video {
@@ -220,10 +200,8 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      border-radius: 32px;
     }
 
-    /* Emojis decorativos flotantes */
     .hero-emoji {
       position: absolute;
       font-size: 1.6rem;
@@ -231,9 +209,9 @@
       animation: floatBounce 3s ease-in-out infinite;
       user-select: none;
     }
-    .hero-emoji:nth-child(1) { top: 10%; right: -8%; animation-delay: 0s; }
-    .hero-emoji:nth-child(2) { bottom: 12%; left: -8%; animation-delay: 0.8s; }
-    .hero-emoji:nth-child(3) { top: 55%; right: -10%; animation-delay: 1.5s; }
+    .hero-emoji:nth-child(1) { top: 8%; right: -14%; animation-delay: 0s; }
+    .hero-emoji:nth-child(2) { bottom: 10%; left: -14%; animation-delay: 0.8s; }
+    .hero-emoji:nth-child(3) { top: 52%; right: -16%; animation-delay: 1.5s; }
 
     @keyframes floatBounce {
       0%, 100% { transform: translateY(0) rotate(-5deg); }
@@ -258,7 +236,7 @@
       font-weight: 800;
       font-size: 0.75rem;
       color: var(--black);
-      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
       white-space: nowrap;
     }
 

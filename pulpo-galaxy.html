@@ -262,6 +262,21 @@
 
     .stripe-dot { width: 6px; height: 6px; background: #22c55e; border-radius: 50%; }
 
+    /* DEMO SECTION */
+    .demo-section { max-width: 1040px; margin: 0 auto; padding: 56px 40px 96px; text-align: center; }
+    .demo-label { display: inline-block; background: var(--pink-soft); color: var(--pink); font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; padding: 5px 14px; border-radius: var(--radius-pill); margin-bottom: 12px; }
+    .demo-title { font-family: 'Nunito', sans-serif; font-size: 1.8rem; font-weight: 900; letter-spacing: -0.5px; margin-bottom: 40px; }
+    .demo-section { max-width: 1040px; margin: 0 auto; padding: 56px 40px 96px; text-align: center; }
+    .demo-label { display: inline-block; background: var(--pink-soft); color: var(--pink); font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; padding: 5px 14px; border-radius: var(--radius-pill); margin-bottom: 12px; }
+    .demo-title { font-family: 'Nunito', sans-serif; font-size: 1.8rem; font-weight: 900; letter-spacing: -0.5px; margin-bottom: 40px; }
+    .demo-video-frame { position: relative; display: inline-flex; align-items: center; justify-content: center; }
+    .demo-video-card { position: relative; z-index: 1; width: 280px; border-radius: 28px; overflow: hidden; box-shadow: 0 20px 60px rgba(232,64,154,0.2), 0 4px 16px rgba(0,0,0,0.08); aspect-ratio: 3/4; }
+    .demo-video-card video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .demo-emoji { position: absolute; font-size: 1.8rem; z-index: 2; animation: floatBounce 3s ease-in-out infinite; user-select: none; }
+    .demo-emoji:nth-child(1) { top: 5%; right: -10%; animation-delay: 0s; }
+    .demo-emoji:nth-child(2) { bottom: 8%; left: -10%; animation-delay: 1s; }
+    @keyframes floatBounce { 0%,100%{transform:translateY(0) rotate(-5deg);} 50%{transform:translateY(-10px) rotate(5deg);} }
+
     /* RESPONSIVE */
     @media (max-width: 768px) {
       header { padding: 0 24px; }
@@ -286,9 +301,7 @@
     <!-- IMAGEN -->
     <div class="product-image-wrap">
       <div class="product-image">
-        <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;display:block;">
-          <source src="pulpo-video.mp4" type="video/mp4">
-        </video>
+        <img src="pulpo-galaxy.png" alt="Pulpo Galaxy Squishy" />
       </div>
       <div class="image-tags">
         <span class="image-tag"><span class="tag-dot"></span>Material TPR certificado</span>
@@ -358,6 +371,21 @@
     </div>
   </div>
 </main>
+
+<!-- DEMO -->
+<div class="demo-section">
+  <div class="demo-label">Demostración</div>
+  <h2 class="demo-title">Así se siente el Pulpo Galaxy ✨</h2>
+  <div class="demo-video-frame">
+    <span class="demo-emoji">🐙</span>
+    <span class="demo-emoji">✨</span>
+    <div class="demo-video-card">
+      <video autoplay muted loop playsinline>
+        <source src="pulpo-video.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
