@@ -168,19 +168,72 @@
     .hero-trust-item { display: flex; align-items: center; gap: 7px; font-size: 0.82rem; font-weight: 700; color: var(--text-light); }
     .hero-trust-icon { width: 26px; height: 26px; background: var(--pink-soft); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; }
 
-    /* HERO VISUAL — imagen a sangre */
+    /* HERO VISUAL — vídeo flotante */
     .hero-visual {
       position: relative;
-      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       background: linear-gradient(160deg, var(--pink-soft) 0%, var(--coral-soft) 100%);
+      padding: 48px 40px;
     }
 
-    .hero-visual img {
+    .hero-video-card {
+      position: relative;
+      width: 100%;
+      max-width: 300px;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 24px 80px rgba(232,64,154,0.28), 0 4px 20px rgba(0,0,0,0.12);
+      aspect-ratio: 3/4;
+    }
+
+    .hero-video-card video {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center;
       display: block;
+    }
+
+    .hero-video-badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px);
+      border-radius: var(--radius-pill);
+      padding: 6px 14px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 0.75rem;
+      color: var(--black);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-video-badge-dot { width: 6px; height: 6px; background: #22c55e; border-radius: 50%; animation: pulse-green 1.5s infinite; }
+    @keyframes pulse-green { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.5;transform:scale(0.8);} }
+
+    .hero-floats {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .hero-float-pill {
+      background: white;
+      border-radius: var(--radius-pill);
+      padding: 10px 16px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 0.78rem;
+      color: var(--black);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      white-space: nowrap;
     }
 
     .hero-visual-overlay {
@@ -208,6 +261,75 @@
     }
 
     .hero-tag-dot { width: 6px; height: 6px; background: #22c55e; border-radius: 50%; }
+
+    /* DEMO SECTION */
+    #demo { background: var(--black); overflow: hidden; }
+
+    .demo-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .demo-text .section-pill { background: rgba(232,64,154,0.2); color: var(--pink); }
+    .demo-text .section-title { color: white; margin-top: 12px; }
+    .demo-text .section-sub { color: rgba(255,255,255,0.45); margin-top: 12px; }
+
+    .demo-features { display: flex; flex-direction: column; gap: 14px; margin-top: 28px; }
+    .demo-feature { display: flex; align-items: center; gap: 12px; color: rgba(255,255,255,0.7); font-size: 0.9rem; font-weight: 600; }
+    .demo-feature-icon { width: 36px; height: 36px; background: rgba(232,64,154,0.15); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+
+    .demo-videos {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .demo-video-wrap {
+      border-radius: 20px;
+      overflow: hidden;
+      aspect-ratio: 9/14;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+      position: relative;
+    }
+
+    .demo-video-wrap:first-child { margin-top: 32px; }
+
+    .demo-video-wrap video {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .demo-video-label {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      right: 12px;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(8px);
+      border-radius: var(--radius-pill);
+      padding: 6px 12px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 0.72rem;
+      color: white;
+      text-align: center;
+    }
+
+    /* CARD HOVER VIDEO */
+    .product-img { position: relative; }
+    .product-img video.card-video {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+    .product-card:hover .card-video { opacity: 1; }
+    .product-card:hover .card-video { }
 
     /* TRUST BAR */
     .trust-bar { background: linear-gradient(135deg, var(--pink), var(--coral)); padding: 13px 0; overflow: hidden; }
@@ -491,8 +613,13 @@
       header { padding: 0 24px; }
 
       #inicio { grid-template-columns: 1fr; min-height: auto; }
-      .hero-text { padding: 100px 24px 40px; order: 2; }
-      .hero-visual { order: 1; height: 60vw; min-height: 280px; }
+      .hero-text { padding: 40px 24px 32px; order: 2; }
+      .hero-visual { order: 1; padding: 32px 24px; }
+      .hero-video-card { max-width: 280px; aspect-ratio: 9/13; }
+      .hero-floats { display: none; }
+      .demo-inner { grid-template-columns: 1fr; gap: 40px; }
+      .demo-videos { grid-template-columns: 1fr 1fr; }
+      .demo-video-wrap:first-child { margin-top: 0; }
 
       section { padding: 60px 24px; }
       .stripe-bar { padding: 14px 24px; gap: 14px; }
@@ -561,12 +688,15 @@
   </div>
 
   <div class="hero-visual">
-    <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;display:block;">
-      <source src="queso-video.mp4" type="video/mp4">
-    </video>
-    <div class="hero-visual-overlay">
-      <div class="hero-tag"><span class="hero-tag-dot"></span>Material TPR certificado</div>
-      <div class="hero-tag"><span class="hero-tag-dot"></span>Pago seguro con Stripe</div>
+    <div class="hero-video-card">
+      <video autoplay muted loop playsinline>
+        <source src="queso-video.mp4" type="video/mp4">
+      </video>
+      <div class="hero-video-badge"><span class="hero-video-badge-dot"></span>En vivo ahora</div>
+    </div>
+    <div class="hero-floats">
+      <div class="hero-float-pill">🔒 Pago seguro</div>
+      <div class="hero-float-pill">⭐ +500 clientes</div>
     </div>
   </div>
 </section>
@@ -609,6 +739,9 @@
       <div class="product-img">
         <div class="product-badge">El más viral</div>
         <img src="queso-squishy.png" alt="Queso Squishy" />
+        <video class="card-video" muted loop playsinline>
+          <source src="queso-video.mp4" type="video/mp4">
+        </video>
       </div>
       <div class="product-body">
         <div class="product-name">Queso Squishy 🧀</div>
@@ -660,6 +793,9 @@
       <div class="product-img">
         <div class="product-badge">Más vendido</div>
         <img src="pulpo-galaxy.png" alt="Pulpo Galaxy Squishy" />
+        <video class="card-video" muted loop playsinline>
+          <source src="pulpo-video.mp4" type="video/mp4">
+        </video>
       </div>
       <div class="product-body">
         <div class="product-name">Pulpo Galaxy ✨</div>
@@ -670,6 +806,38 @@
           <span class="product-price">12,95€</span>
           <a href="pulpo-galaxy.html" target="_blank" class="btn-buy" onclick="event.stopPropagation()">Comprar</a>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO -->
+<section id="demo">
+  <div class="demo-inner">
+    <div class="demo-text">
+      <span class="section-pill">La experiencia</span>
+      <h2 class="section-title">Así se siente<br>un Squishalo</h2>
+      <p class="section-sub">No es solo un juguete. Es la textura más satisfactoria que has tenido en la mano.</p>
+      <div class="demo-features">
+        <div class="demo-feature"><div class="demo-feature-icon">🐌</div>Slow rise que vuelve lentamente a su forma</div>
+        <div class="demo-feature"><div class="demo-feature-icon">✨</div>Materiales TPR de alta calidad, sin olor</div>
+        <div class="demo-feature"><div class="demo-feature-icon">🧘</div>Antiestrés demostrado — apriétalo cuantas veces quieras</div>
+        <div class="demo-feature"><div class="demo-feature-icon">📱</div>Los más virales de TikTok España</div>
+      </div>
+      <a href="#productos" class="btn-pink" style="margin-top:32px;display:inline-block;">Ver todos los squishys</a>
+    </div>
+    <div class="demo-videos">
+      <div class="demo-video-wrap">
+        <video autoplay muted loop playsinline>
+          <source src="queso-video.mp4" type="video/mp4">
+        </video>
+        <div class="demo-video-label">🧀 Queso Squishy</div>
+      </div>
+      <div class="demo-video-wrap">
+        <video autoplay muted loop playsinline>
+          <source src="pulpo-video.mp4" type="video/mp4">
+        </video>
+        <div class="demo-video-label">✨ Pulpo Galaxy</div>
       </div>
     </div>
   </div>
@@ -910,6 +1078,14 @@
   }
 
   setTimeout(() => { showToast(); setInterval(showToast, 12000); }, 5000);
+
+  // Card hover videos
+  document.querySelectorAll('.product-card').forEach(card => {
+    const vid = card.querySelector('.card-video');
+    if (!vid) return;
+    card.addEventListener('mouseenter', () => vid.play());
+    card.addEventListener('mouseleave', () => { vid.pause(); vid.currentTime = 0; });
+  });
 
   const trackBtn = document.getElementById('trackBtn');
   const trackingInput = document.getElementById('trackingInput');
