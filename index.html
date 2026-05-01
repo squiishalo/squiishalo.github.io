@@ -3,98 +3,103 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Squishalo – Squishys de calidad</title>
+  <title>Squishalo – Tócalo. Apriétalo. Squíshalo.</title>
   <meta name="description" content="Squishys virales de calidad. Pago seguro con Stripe." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --pink: #D4307A;
-      --pink-light: #f7e8f1;
-      --coral: #E8553E;
-      --black: #0e0e0e;
+      --pink: #E8409A;
+      --pink-soft: #F9D0EA;
+      --coral: #F0654A;
+      --coral-soft: #FCE0D9;
+      --yellow: #FFD166;
+      --mint: #A8E6CF;
+      --bg: #FFFAF8;
       --white: #ffffff;
-      --gray-50: #fafafa;
-      --gray-100: #f4f4f4;
-      --gray-300: #d4d4d4;
-      --gray-500: #737373;
-      --text: #0e0e0e;
-      --radius-sm: 8px;
-      --radius: 16px;
-      --radius-lg: 24px;
+      --black: #1C1C1E;
+      --gray: #F2F2F7;
+      --text: #1C1C1E;
+      --text-mid: #555;
+      --text-light: #999;
+      --radius-pill: 50px;
+      --radius-lg: 28px;
+      --radius: 20px;
+      --radius-sm: 12px;
+      --shadow: 0 4px 28px rgba(232,64,154,0.10);
+      --shadow-lg: 0 12px 48px rgba(232,64,154,0.18);
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Nunito Sans', sans-serif;
       color: var(--text);
-      background: var(--white);
+      background: var(--bg);
       overflow-x: hidden;
       font-size: 15px;
-      line-height: 1.6;
     }
 
-    h1, h2, h3, h4 { font-family: 'Playfair Display', serif; line-height: 1.15; }
+    h1, h2, h3, .logo { font-family: 'Nunito', sans-serif; }
 
-    a { text-decoration: none; color: inherit; }
-
-    /* HEADER */
+    /* ── HEADER ── */
     header {
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
-      padding: 0 48px;
-      height: 68px;
+      height: 70px;
+      padding: 0 40px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      transition: background 0.4s, border-color 0.4s;
-      border-bottom: 1px solid transparent;
+      transition: background 0.3s, box-shadow 0.3s;
     }
 
     header.scrolled {
-      background: rgba(255,255,255,0.97);
-      border-bottom-color: var(--gray-100);
+      background: rgba(255,250,248,0.95);
       backdrop-filter: blur(12px);
+      box-shadow: 0 2px 20px rgba(232,64,154,0.08);
     }
 
     .logo {
-      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem;
       font-weight: 900;
-      font-size: 1.5rem;
-      letter-spacing: -0.5px;
       color: var(--black);
+      letter-spacing: -0.5px;
     }
 
-    .logo span { color: var(--pink); }
+    .logo span {
+      background: linear-gradient(135deg, var(--pink), var(--coral));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
 
     nav { display: flex; align-items: center; gap: 4px; }
 
     nav a {
-      font-size: 0.88rem;
-      font-weight: 500;
-      color: var(--gray-500);
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--text-mid);
       padding: 8px 16px;
-      border-radius: 6px;
-      transition: color 0.2s, background 0.2s;
-      letter-spacing: 0.01em;
+      border-radius: var(--radius-pill);
+      transition: background 0.2s, color 0.2s;
+      text-decoration: none;
     }
 
-    nav a:hover { color: var(--black); background: var(--gray-100); }
+    nav a:hover { background: var(--pink-soft); color: var(--pink); }
 
     .nav-cta {
       background: var(--black) !important;
       color: white !important;
-      padding: 8px 20px !important;
-      border-radius: 6px;
-      font-weight: 600 !important;
+      padding: 9px 22px !important;
     }
 
-    .nav-cta:hover { background: var(--pink) !important; }
+    .nav-cta:hover { background: var(--pink) !important; color: white !important; }
 
     .hamburger {
       display: none;
@@ -103,13 +108,12 @@
       cursor: pointer;
       background: none;
       border: none;
-      padding: 4px;
     }
 
     .hamburger span {
       display: block;
-      width: 22px;
-      height: 2px;
+      width: 24px;
+      height: 2.5px;
       background: var(--black);
       border-radius: 2px;
       transition: all 0.3s;
@@ -119,21 +123,22 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: white;
+      background: var(--bg);
       z-index: 99;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 32px;
+      gap: 28px;
     }
 
     .mobile-menu.open { display: flex; }
 
     .mobile-menu a {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
-      font-weight: 700;
+      font-family: 'Nunito', sans-serif;
+      font-size: 2rem;
+      font-weight: 900;
       color: var(--black);
+      text-decoration: none;
       transition: color 0.2s;
     }
 
@@ -146,132 +151,174 @@
       background: none;
       border: none;
       cursor: pointer;
-      color: var(--gray-500);
-      line-height: 1;
+      color: var(--text-light);
     }
 
-    /* HERO */
+    /* ── HERO ── */
     #inicio {
       min-height: 100vh;
       display: grid;
       grid-template-columns: 1fr 1fr;
       align-items: center;
-      padding: 0 80px;
-      gap: 60px;
-      background: var(--gray-50);
-      padding-top: 68px;
+      gap: 40px;
+      padding: 100px 64px 60px;
     }
 
-    .hero-text { max-width: 520px; }
+    .hero-text {}
 
-    .hero-eyebrow {
-      display: inline-block;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--pink-soft);
       color: var(--pink);
-      margin-bottom: 20px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 0.82rem;
+      padding: 6px 16px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 24px;
+      letter-spacing: 0.3px;
     }
+
+    .hero-pill-dot { width: 6px; height: 6px; background: var(--pink); border-radius: 50%; }
 
     .hero-title {
-      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      font-size: clamp(2.8rem, 5.5vw, 5rem);
       font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -1.5px;
       color: var(--black);
       margin-bottom: 20px;
-      letter-spacing: -1px;
     }
 
-    .hero-title em { color: var(--pink); font-style: normal; }
+    .hero-title .grad {
+      background: linear-gradient(135deg, var(--pink), var(--coral));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
 
     .hero-sub {
       font-size: 1.05rem;
-      color: var(--gray-500);
+      color: var(--text-mid);
+      line-height: 1.7;
       margin-bottom: 36px;
-      font-weight: 400;
       max-width: 400px;
     }
 
-    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 44px; }
 
-    .btn-primary {
+    .btn-pink {
       display: inline-block;
-      background: var(--black);
+      background: linear-gradient(135deg, var(--pink), var(--coral));
       color: white;
-      font-size: 0.9rem;
-      font-weight: 600;
-      padding: 14px 28px;
-      border-radius: var(--radius-sm);
-      transition: background 0.2s, transform 0.2s;
-      letter-spacing: 0.02em;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 0.95rem;
+      padding: 14px 30px;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      box-shadow: 0 6px 24px rgba(232,64,154,0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
     }
 
-    .btn-primary:hover { background: var(--pink); transform: translateY(-1px); }
+    .btn-pink:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(232,64,154,0.4); }
 
-    .btn-outline {
+    .btn-ghost {
       display: inline-block;
-      background: transparent;
+      background: white;
       color: var(--black);
-      font-size: 0.9rem;
-      font-weight: 600;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 0.95rem;
       padding: 14px 28px;
-      border-radius: var(--radius-sm);
-      border: 1.5px solid var(--gray-300);
+      border-radius: var(--radius-pill);
+      border: 2px solid var(--gray);
+      text-decoration: none;
       transition: border-color 0.2s, transform 0.2s;
     }
 
-    .btn-outline:hover { border-color: var(--black); transform: translateY(-1px); }
+    .btn-ghost:hover { border-color: var(--pink); color: var(--pink); transform: translateY(-2px); }
 
-    .hero-stats {
+    .hero-trust {
       display: flex;
-      gap: 32px;
-      margin-top: 48px;
-      padding-top: 32px;
-      border-top: 1px solid var(--gray-300);
+      gap: 20px;
+      flex-wrap: wrap;
     }
 
-    .stat-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
+    .hero-trust-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
       font-weight: 700;
-      color: var(--black);
-      display: block;
+      color: var(--text-light);
     }
 
-    .stat-label { font-size: 0.8rem; color: var(--gray-500); font-weight: 500; }
-
-    .hero-visual {
+    .hero-trust-icon {
+      width: 26px; height: 26px;
+      background: var(--pink-soft);
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
+      font-size: 0.75rem;
     }
 
-    .hero-img-wrap {
+    /* HERO VISUAL */
+    .hero-visual { position: relative; display: flex; align-items: center; justify-content: center; }
+
+    .hero-img-main {
       width: 100%;
-      max-width: 480px;
+      max-width: 460px;
       aspect-ratio: 1;
       border-radius: var(--radius-lg);
       overflow: hidden;
-      background: var(--gray-100);
+      background: linear-gradient(135deg, var(--pink-soft), var(--coral-soft));
+      box-shadow: var(--shadow-lg);
     }
 
-    .hero-img-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .hero-img-main img { width: 100%; height: 100%; object-fit: cover; }
+
+    .hero-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(50px);
+      opacity: 0.25;
+      pointer-events: none;
     }
+
+    .blob-a { width: 300px; height: 300px; background: var(--pink); top: -60px; right: -60px; }
+    .blob-b { width: 200px; height: 200px; background: var(--yellow); bottom: -40px; left: -40px; }
+
+    .hero-chip {
+      position: absolute;
+      background: white;
+      border-radius: var(--radius-sm);
+      padding: 10px 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 0.82rem;
+      white-space: nowrap;
+    }
+
+    .hero-chip-1 { top: 20px; left: -20px; }
+    .hero-chip-2 { bottom: 30px; right: -16px; }
+    .hero-chip span { color: var(--pink); }
 
     /* TRUST BAR */
     .trust-bar {
-      background: var(--black);
-      padding: 14px 0;
+      background: linear-gradient(135deg, var(--pink), var(--coral));
+      padding: 13px 0;
       overflow: hidden;
     }
 
     .trust-track {
       display: flex;
-      gap: 64px;
-      animation: marquee 22s linear infinite;
+      gap: 56px;
+      animation: marquee 20s linear infinite;
       white-space: nowrap;
     }
 
@@ -283,49 +330,49 @@
     .trust-item {
       display: flex;
       align-items: center;
-      gap: 10px;
-      color: rgba(255,255,255,0.75);
-      font-size: 0.82rem;
-      font-weight: 500;
-      letter-spacing: 0.5px;
+      gap: 8px;
+      color: rgba(255,255,255,0.9);
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
       flex-shrink: 0;
     }
 
-    .trust-dot {
-      width: 4px; height: 4px;
-      background: var(--pink);
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
+    .trust-sep { color: rgba(255,255,255,0.4); font-size: 1rem; }
 
     /* SECTIONS */
-    section { padding: 96px 80px; }
+    section { padding: 88px 64px; }
 
-    .section-eyebrow {
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
+    .section-pill {
+      display: inline-block;
+      background: var(--pink-soft);
       color: var(--pink);
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: var(--radius-pill);
       margin-bottom: 12px;
-      display: block;
     }
 
     .section-title {
       font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-      font-weight: 700;
-      color: var(--black);
-      margin-bottom: 12px;
+      font-weight: 900;
       letter-spacing: -0.5px;
+      color: var(--black);
+      margin-bottom: 10px;
     }
 
     .section-sub {
       font-size: 1rem;
-      color: var(--gray-500);
-      max-width: 480px;
+      color: var(--text-mid);
+      max-width: 460px;
+      line-height: 1.65;
     }
 
-    .section-header { margin-bottom: 56px; }
+    .section-header { margin-bottom: 52px; }
 
     /* PRODUCTS */
     #productos { background: var(--white); }
@@ -337,109 +384,98 @@
     }
 
     .product-card {
-      background: var(--gray-50);
-      border-radius: var(--radius);
+      background: var(--bg);
+      border-radius: var(--radius-lg);
       overflow: hidden;
-      border: 1px solid var(--gray-100);
-      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+      transition: transform 0.3s, box-shadow 0.3s;
       cursor: pointer;
+      border: 2px solid transparent;
     }
 
     .product-card:hover {
-      border-color: var(--gray-300);
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--pink-soft);
     }
 
     .product-img {
       width: 100%;
       aspect-ratio: 1;
       overflow: hidden;
-      background: var(--gray-100);
+      background: linear-gradient(135deg, var(--pink-soft), var(--coral-soft));
       position: relative;
     }
 
-    .product-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s;
-    }
-
-    .product-card:hover .product-img img { transform: scale(1.04); }
+    .product-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+    .product-card:hover .product-img img { transform: scale(1.05); }
 
     .product-badge {
       position: absolute;
-      top: 12px; left: 12px;
+      top: 14px; left: 14px;
       background: var(--black);
       color: white;
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      padding: 4px 10px;
-      border-radius: 4px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 0.72rem;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
     }
 
     .product-body { padding: 20px 22px 22px; }
 
     .product-name {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
       font-size: 1.15rem;
-      font-weight: 700;
+      color: var(--black);
       margin-bottom: 6px;
     }
 
-    .product-desc {
-      font-size: 0.85rem;
-      color: var(--gray-500);
-      margin-bottom: 16px;
-      line-height: 1.6;
-    }
+    .product-desc { font-size: 0.85rem; color: var(--text-mid); line-height: 1.6; margin-bottom: 16px; }
 
-    .product-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
+    .product-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 
     .product-price {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--black);
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      font-size: 1.5rem;
+      background: linear-gradient(135deg, var(--pink), var(--coral));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .btn-buy {
       display: inline-block;
       background: var(--black);
       color: white;
-      font-size: 0.82rem;
-      font-weight: 600;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 0.85rem;
       padding: 10px 20px;
-      border-radius: var(--radius-sm);
-      transition: background 0.2s;
-      letter-spacing: 0.02em;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
       border: none;
       cursor: pointer;
     }
 
-    .btn-buy:hover { background: var(--pink); }
+    .btn-buy:hover { background: var(--pink); transform: scale(1.04); }
 
     /* TIKTOK */
-    #tiktok { background: var(--gray-50); }
+    #tiktok { background: var(--bg); }
 
     .tiktok-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 20px;
-      max-width: 800px;
+      max-width: 780px;
     }
 
     .tiktok-card {
       aspect-ratio: 9/16;
       background: var(--black);
-      border-radius: var(--radius);
+      border-radius: var(--radius-lg);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -458,30 +494,29 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(160deg, rgba(212,48,122,0.3), rgba(232,85,62,0.2));
+      background: linear-gradient(160deg, rgba(232,64,154,0.35), rgba(240,101,74,0.2));
     }
 
-    .tiktok-card:hover { transform: scale(1.02); }
+    .tiktok-card:hover { transform: scale(1.03); }
 
     .tiktok-play {
-      width: 52px; height: 52px;
-      border: 2px solid rgba(255,255,255,0.6);
+      width: 56px; height: 56px;
+      background: rgba(255,255,255,0.15);
+      border: 2px solid rgba(255,255,255,0.5);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       position: relative;
       z-index: 1;
-      transition: border-color 0.2s;
+      backdrop-filter: blur(4px);
     }
 
-    .tiktok-card:hover .tiktok-play { border-color: white; }
-
     .tiktok-card h4 {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Nunito', sans-serif;
       font-size: 0.85rem;
-      font-weight: 600;
+      font-weight: 700;
       position: relative;
       z-index: 1;
     }
@@ -490,10 +525,13 @@
       position: absolute;
       bottom: 14px; left: 14px;
       font-size: 0.72rem;
-      font-weight: 500;
-      opacity: 0.6;
+      font-weight: 600;
+      opacity: 0.55;
       z-index: 1;
+      font-family: 'Nunito', sans-serif;
     }
+
+    .tiktok-cta { margin-top: 32px; }
 
     /* REVIEWS */
     #resenas { background: var(--white); }
@@ -505,110 +543,88 @@
     }
 
     .review-card {
-      background: var(--gray-50);
-      border: 1px solid var(--gray-100);
-      border-radius: var(--radius);
+      background: var(--bg);
+      border-radius: var(--radius-lg);
       padding: 28px;
-      transition: border-color 0.3s;
+      border: 2px solid var(--pink-soft);
+      transition: transform 0.3s, box-shadow 0.3s;
     }
 
-    .review-card:hover { border-color: var(--gray-300); }
+    .review-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
 
-    .stars {
-      display: flex;
-      gap: 2px;
-      margin-bottom: 14px;
-    }
+    .stars { display: flex; gap: 2px; margin-bottom: 14px; }
 
     .star {
       width: 14px; height: 14px;
-      background: #F59E0B;
+      background: var(--yellow);
       clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
     }
 
-    .review-text {
-      font-size: 0.9rem;
-      color: var(--gray-500);
-      line-height: 1.7;
-      margin-bottom: 20px;
-    }
+    .review-text { font-size: 0.9rem; color: var(--text-mid); line-height: 1.7; margin-bottom: 20px; }
 
-    .reviewer {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+    .reviewer { display: flex; align-items: center; gap: 12px; }
 
     .reviewer-avatar {
-      width: 38px; height: 38px;
+      width: 40px; height: 40px;
       border-radius: 50%;
-      background: var(--gray-100);
-      border: 1px solid var(--gray-300);
+      background: var(--pink-soft);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1rem;
+      font-size: 1.1rem;
       flex-shrink: 0;
     }
 
-    .reviewer-name { font-size: 0.88rem; font-weight: 600; }
-    .reviewer-date { font-size: 0.78rem; color: var(--gray-500); margin-top: 1px; }
+    .reviewer-name { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.9rem; }
+    .reviewer-date { font-size: 0.77rem; color: var(--text-light); margin-top: 1px; }
 
     /* GARANTIAS */
     #garantias { background: var(--black); }
 
-    #garantias .section-eyebrow { color: var(--pink); }
-    #garantias .section-title { color: white; }
-    #garantias .section-sub { color: rgba(255,255,255,0.5); }
-
     .garantias-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: var(--radius);
-      overflow: hidden;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
     }
 
     .garantia-card {
-      background: var(--black);
-      padding: 36px 32px;
-      transition: background 0.3s;
+      background: #1A1A1A;
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      border: 2px solid #2A2A2A;
+      transition: border-color 0.3s, transform 0.3s;
     }
 
-    .garantia-card:hover { background: #161616; }
+    .garantia-card:hover { border-color: var(--pink); transform: translateY(-4px); }
 
-    .garantia-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--pink);
-      margin-bottom: 16px;
-      display: block;
+    .garantia-icon {
+      width: 48px; height: 48px;
+      background: linear-gradient(135deg, var(--pink), var(--coral));
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 18px;
     }
 
     .garantia-card h3 {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 600;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      font-size: 1rem;
       color: white;
       margin-bottom: 8px;
     }
 
-    .garantia-card p {
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.45);
-      line-height: 1.65;
-    }
+    .garantia-card p { font-size: 0.85rem; color: #666; line-height: 1.65; }
 
     /* SOBRE */
-    #sobre-nosotros { background: var(--gray-50); }
+    #sobre-nosotros { background: var(--bg); }
 
     .about-inner {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 80px;
+      gap: 72px;
       align-items: center;
     }
 
@@ -616,150 +632,136 @@
       aspect-ratio: 4/5;
       border-radius: var(--radius-lg);
       overflow: hidden;
-      background: var(--gray-100);
-    }
-
-    .about-img img { width: 100%; height: 100%; object-fit: cover; }
-
-    .about-placeholder {
-      width: 100%;
-      height: 100%;
+      background: linear-gradient(135deg, var(--pink-soft), var(--coral-soft));
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 8rem;
-      background: linear-gradient(135deg, var(--pink-light), #fde8e1);
+      font-size: 9rem;
     }
 
-    .about-text { display: flex; flex-direction: column; gap: 20px; }
-
-    .about-list { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-top: 8px; }
+    .about-list { list-style: none; margin-top: 20px; display: flex; flex-direction: column; gap: 12px; }
 
     .about-list li {
       display: flex;
       align-items: flex-start;
-      gap: 14px;
+      gap: 10px;
       font-size: 0.92rem;
-      color: var(--gray-500);
+      color: var(--text-mid);
       line-height: 1.6;
     }
 
-    .about-list .line {
-      width: 20px;
-      height: 2px;
-      background: var(--pink);
+    .about-check {
+      width: 20px; height: 20px;
+      background: linear-gradient(135deg, var(--pink), var(--coral));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      color: white;
+      font-weight: 900;
       flex-shrink: 0;
-      margin-top: 10px;
+      margin-top: 2px;
     }
 
     /* TRACKING */
     #rastrear { background: var(--white); }
 
-    .tracking-wrap {
-      max-width: 560px;
+    .tracking-box {
+      max-width: 580px;
+      background: var(--bg);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      border: 2px solid var(--pink-soft);
     }
 
-    .tracking-form {
-      display: flex;
-      gap: 10px;
-      margin-top: 32px;
-    }
+    .tracking-form { display: flex; gap: 10px; margin-top: 24px; }
 
     .tracking-input {
       flex: 1;
       padding: 14px 18px;
-      border: 1.5px solid var(--gray-300);
-      border-radius: var(--radius-sm);
-      font-family: 'Inter', sans-serif;
+      border: 2px solid #EEE;
+      border-radius: var(--radius-pill);
+      font-family: 'Nunito Sans', sans-serif;
       font-size: 0.95rem;
       outline: none;
+      background: white;
       transition: border-color 0.2s;
-      background: var(--white);
-      color: var(--black);
     }
 
-    .tracking-input:focus { border-color: var(--black); }
-    .tracking-input::placeholder { color: var(--gray-300); }
+    .tracking-input:focus { border-color: var(--pink); }
+    .tracking-input::placeholder { color: #CCC; }
 
     .btn-track {
       padding: 14px 24px;
-      background: var(--black);
+      background: linear-gradient(135deg, var(--pink), var(--coral));
       color: white;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.88rem;
-      font-weight: 600;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 0.9rem;
       border: none;
-      border-radius: var(--radius-sm);
+      border-radius: var(--radius-pill);
       cursor: pointer;
-      transition: background 0.2s;
       white-space: nowrap;
+      transition: opacity 0.2s, transform 0.2s;
     }
 
-    .btn-track:hover { background: var(--pink); }
+    .btn-track:hover { opacity: 0.88; transform: scale(1.03); }
 
-    .tracking-error {
-      display: none;
-      font-size: 0.85rem;
-      color: #dc2626;
-      margin-top: 10px;
-    }
-
+    .tracking-error { display: none; font-size: 0.85rem; color: #E53E3E; margin-top: 10px; font-weight: 600; }
     .tracking-error.show { display: block; }
 
-    .tracking-note {
-      margin-top: 16px;
-      font-size: 0.82rem;
-      color: var(--gray-500);
-      line-height: 1.7;
-    }
-
-    .tracking-note a { color: var(--pink); font-weight: 600; }
+    .tracking-note { margin-top: 16px; font-size: 0.82rem; color: var(--text-light); line-height: 1.7; }
+    .tracking-note a { color: var(--pink); font-weight: 700; text-decoration: none; }
 
     /* CONTACTO */
-    #contacto { background: var(--gray-50); }
+    #contacto { background: var(--bg); }
 
-    .contact-inner {
+    .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 80px;
+      gap: 72px;
       align-items: center;
     }
 
-    .contact-links { display: flex; flex-direction: column; gap: 12px; margin-top: 32px; }
+    .contact-links { display: flex; flex-direction: column; gap: 12px; margin-top: 28px; }
 
     .contact-link {
       display: flex;
       align-items: center;
-      gap: 14px;
-      padding: 18px 22px;
+      gap: 16px;
+      padding: 18px 20px;
       background: white;
-      border: 1.5px solid var(--gray-100);
-      border-radius: var(--radius-sm);
-      font-weight: 600;
+      border-radius: var(--radius);
+      border: 2px solid var(--pink-soft);
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
       font-size: 0.9rem;
-      transition: border-color 0.2s, transform 0.2s;
+      text-decoration: none;
+      color: var(--black);
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
     }
 
-    .contact-link:hover { border-color: var(--gray-300); transform: translateX(4px); }
+    .contact-link:hover { border-color: var(--pink); transform: translateX(4px); box-shadow: var(--shadow); }
 
     .contact-icon {
-      width: 36px; height: 36px;
-      background: var(--pink-light);
-      border-radius: 8px;
+      width: 40px; height: 40px;
+      background: var(--pink-soft);
+      border-radius: var(--radius-sm);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1rem;
+      font-size: 1.1rem;
       flex-shrink: 0;
     }
 
-    .contact-desc { font-size: 0.78rem; color: var(--gray-500); font-weight: 400; margin-top: 2px; }
+    .contact-desc { font-size: 0.78rem; color: var(--text-light); font-weight: 600; margin-top: 2px; }
 
     /* STRIPE */
     .stripe-bar {
-      background: var(--gray-50);
-      border-top: 1px solid var(--gray-100);
-      padding: 20px 80px;
+      background: white;
+      border-top: 2px solid var(--pink-soft);
+      padding: 18px 64px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -770,58 +772,60 @@
     .stripe-item {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 7px;
       font-size: 0.82rem;
-      font-weight: 500;
-      color: var(--gray-500);
+      font-weight: 700;
+      color: var(--text-light);
     }
 
-    .stripe-dot { width: 6px; height: 6px; background: #22c55e; border-radius: 50%; }
+    .stripe-dot { width: 7px; height: 7px; background: #22c55e; border-radius: 50%; }
 
     /* FOOTER */
-    footer {
-      background: var(--black);
-      color: rgba(255,255,255,0.4);
-      padding: 56px 80px 32px;
-    }
+    footer { background: var(--black); color: rgba(255,255,255,0.4); padding: 60px 64px 32px; }
 
     .footer-top {
       display: grid;
       grid-template-columns: 2fr 1fr 1fr 1fr;
       gap: 48px;
       margin-bottom: 48px;
-      padding-bottom: 48px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
     }
 
     .footer-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
+      font-family: 'Nunito', sans-serif;
+      font-size: 1.5rem;
       font-weight: 900;
       color: white;
       margin-bottom: 12px;
       display: block;
     }
 
-    .footer-logo span { color: var(--pink); }
+    .footer-logo span {
+      background: linear-gradient(135deg, var(--pink), var(--coral));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
 
     .footer-about { font-size: 0.85rem; line-height: 1.7; max-width: 260px; }
 
     .footer-col h4 {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 1.5px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.6);
+      color: rgba(255,255,255,0.5);
       margin-bottom: 16px;
     }
 
     .footer-col a {
       display: block;
       font-size: 0.85rem;
-      color: rgba(255,255,255,0.35);
+      color: rgba(255,255,255,0.3);
       margin-bottom: 10px;
+      text-decoration: none;
       transition: color 0.2s;
     }
 
@@ -838,53 +842,42 @@
     .footer-bottom p { font-size: 0.8rem; }
 
     .footer-legal { display: flex; gap: 20px; }
-    .footer-legal a { font-size: 0.8rem; color: rgba(255,255,255,0.35); transition: color 0.2s; }
+    .footer-legal a { font-size: 0.8rem; color: rgba(255,255,255,0.3); text-decoration: none; transition: color 0.2s; }
     .footer-legal a:hover { color: white; }
 
     /* REVEAL */
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
     .reveal.visible { opacity: 1; transform: none; }
     .reveal-delay-1 { transition-delay: 0.08s; }
     .reveal-delay-2 { transition-delay: 0.16s; }
     .reveal-delay-3 { transition-delay: 0.24s; }
     .reveal-delay-4 { transition-delay: 0.32s; }
 
-    /* FLOATING CTA */
-    .floating-cta {
-      position: fixed;
-      bottom: 28px; right: 28px;
-      z-index: 80;
-      display: none;
-    }
-
+    /* FLOATING */
+    .floating-cta { position: fixed; bottom: 28px; right: 28px; z-index: 80; display: none; }
     .floating-cta.show { display: block; }
-
     .floating-cta a {
       display: flex;
       align-items: center;
       gap: 8px;
-      background: var(--black);
+      background: linear-gradient(135deg, var(--pink), var(--coral));
       color: white;
-      font-size: 0.85rem;
-      font-weight: 600;
-      padding: 12px 22px;
-      border-radius: 50px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-      transition: background 0.2s, transform 0.2s;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 0.88rem;
+      padding: 13px 24px;
+      border-radius: var(--radius-pill);
+      box-shadow: 0 6px 28px rgba(232,64,154,0.35);
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-
-    .floating-cta a:hover { background: var(--pink); transform: translateY(-2px); }
+    .floating-cta a:hover { transform: translateY(-2px); box-shadow: 0 10px 36px rgba(232,64,154,0.45); }
 
     /* RESPONSIVE */
     @media (max-width: 1024px) {
       section { padding: 72px 40px; }
-      #inicio { padding: 68px 40px 0; }
-      .stripe-bar { padding: 20px 40px; }
+      #inicio { padding: 100px 40px 60px; }
+      .stripe-bar { padding: 16px 40px; }
       footer { padding: 48px 40px 28px; }
       header { padding: 0 32px; }
     }
@@ -894,36 +887,26 @@
       .hamburger { display: flex; }
       header { padding: 0 24px; }
 
-      #inicio {
-        grid-template-columns: 1fr;
-        padding: 100px 24px 48px;
-        gap: 40px;
-        min-height: auto;
-      }
-
+      #inicio { grid-template-columns: 1fr; padding: 100px 24px 48px; gap: 36px; min-height: auto; }
       .hero-visual { order: -1; }
-      .hero-img-wrap { max-width: 100%; }
-      .hero-stats { gap: 24px; }
+      .hero-img-main { max-width: 100%; }
+      .hero-chip { display: none; }
 
       section { padding: 60px 24px; }
-      .stripe-bar { padding: 16px 24px; gap: 16px; }
+      .stripe-bar { padding: 14px 24px; gap: 14px; }
       footer { padding: 40px 24px 24px; }
 
       .footer-top { grid-template-columns: 1fr 1fr; }
       .footer-top > div:first-child { grid-column: 1 / -1; }
-
-      .about-inner { grid-template-columns: 1fr; gap: 40px; }
-      .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+      .about-inner { grid-template-columns: 1fr; gap: 36px; }
+      .contact-grid { grid-template-columns: 1fr; gap: 36px; }
       .tiktok-grid { grid-template-columns: repeat(2, 1fr); }
-
       .footer-bottom { flex-direction: column; text-align: center; }
-      .footer-legal { flex-wrap: wrap; justify-content: center; }
     }
 
     @media (max-width: 480px) {
       .footer-top { grid-template-columns: 1fr; }
-      .tiktok-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-      .hero-stats { flex-wrap: wrap; gap: 20px; }
+      .tiktok-grid { gap: 12px; }
     }
   </style>
 </head>
@@ -951,62 +934,67 @@
   <a href="#inicio" class="mobile-link">Inicio</a>
   <a href="#productos" class="mobile-link">Productos</a>
   <a href="#sobre-nosotros" class="mobile-link">Nosotros</a>
-  <a href="#rastrear" class="mobile-link">Rastrear pedido</a>
+  <a href="#rastrear" class="mobile-link">Rastrear</a>
   <a href="#contacto" class="mobile-link">Contacto</a>
 </div>
 
 <!-- HERO -->
 <section id="inicio">
   <div class="hero-text">
-    <span class="hero-eyebrow">Squishys de calidad · España</span>
-    <h1 class="hero-title">Tócalo.<br>Apriétalo.<br><em>Squíshalo.</em></h1>
-    <p class="hero-sub">Los squishys más virales de España. Materiales seguros, texturas adictivas y diseños únicos.</p>
+    <div class="hero-pill"><span class="hero-pill-dot"></span>Los squishys más virales de España</div>
+    <h1 class="hero-title">Tócalo.<br>Apriétalo.<br><span class="grad">Squíshalo.</span></h1>
+    <p class="hero-sub">Squishys de calidad real. Texturas adictivas, materiales seguros y diseños que no puedes soltar.</p>
     <div class="hero-actions">
-      <a href="#productos" class="btn-primary">Ver productos</a>
-      <a href="#sobre-nosotros" class="btn-outline">Sobre nosotros</a>
+      <a href="#productos" class="btn-pink">Ver productos</a>
+      <a href="#sobre-nosotros" class="btn-ghost">Sobre nosotros</a>
     </div>
-    <div class="hero-stats">
-      <div>
-        <span class="stat-num">500+</span>
-        <span class="stat-label">Clientes felices</span>
-      </div>
-      <div>
-        <span class="stat-num">4.9</span>
-        <span class="stat-label">Valoración media</span>
-      </div>
-      <div>
-        <span class="stat-num">100%</span>
-        <span class="stat-label">Pago seguro</span>
-      </div>
+    <div class="hero-trust">
+      <div class="hero-trust-item"><div class="hero-trust-icon">🔒</div>Pago seguro</div>
+      <div class="hero-trust-item"><div class="hero-trust-icon">✅</div>Originales</div>
+      <div class="hero-trust-item"><div class="hero-trust-icon">⭐</div>500+ clientes</div>
     </div>
   </div>
+
   <div class="hero-visual">
-    <div class="hero-img-wrap">
+    <div class="hero-blob blob-a"></div>
+    <div class="hero-blob blob-b"></div>
+    <div class="hero-img-main">
       <img src="pulpo-galaxy.png" alt="Pulpo Galaxy Squishy" />
     </div>
+    <div class="hero-chip hero-chip-1">Material TPR <span>seguro</span> ✓</div>
+    <div class="hero-chip hero-chip-2"><span>+500</span> clientes felices 🧡</div>
   </div>
 </section>
 
 <!-- TRUST BAR -->
 <div class="trust-bar">
   <div class="trust-track">
-    <span class="trust-item"><span class="trust-dot"></span>Pago seguro con Stripe</span>
-    <span class="trust-item"><span class="trust-dot"></span>Squishys originales</span>
-    <span class="trust-item"><span class="trust-dot"></span>+500 clientes satisfechos</span>
-    <span class="trust-item"><span class="trust-dot"></span>Los más virales de España</span>
-    <span class="trust-item"><span class="trust-dot"></span>Material TPR certificado</span>
-    <span class="trust-item"><span class="trust-dot"></span>Pago seguro con Stripe</span>
-    <span class="trust-item"><span class="trust-dot"></span>Squishys originales</span>
-    <span class="trust-item"><span class="trust-dot"></span>+500 clientes satisfechos</span>
-    <span class="trust-item"><span class="trust-dot"></span>Los más virales de España</span>
-    <span class="trust-item"><span class="trust-dot"></span>Material TPR certificado</span>
+    <span class="trust-item">🔒 Pago seguro con Stripe</span>
+    <span class="trust-sep">·</span>
+    <span class="trust-item">✅ Squishys originales</span>
+    <span class="trust-sep">·</span>
+    <span class="trust-item">⭐ +500 clientes felices</span>
+    <span class="trust-sep">·</span>
+    <span class="trust-item">🧪 Material TPR certificado</span>
+    <span class="trust-sep">·</span>
+    <span class="trust-item">💖 Los más virales de España</span>
+    <span class="trust-sep">·</span>
+    <span class="trust-item">🔒 Pago seguro con Stripe</span>
+    <span class="trust-sep">·</span>
+    <span class="trust-item">✅ Squishys originales</span>
+    <span class="trust-sep">·</span>
+    <span class="trust-item">⭐ +500 clientes felices</span>
+    <span class="trust-sep">·</span>
+    <span class="trust-item">🧪 Material TPR certificado</span>
+    <span class="trust-sep">·</span>
+    <span class="trust-item">💖 Los más virales de España</span>
   </div>
 </div>
 
 <!-- PRODUCTOS -->
 <section id="productos">
   <div class="section-header">
-    <span class="section-eyebrow">Catálogo</span>
+    <span class="section-pill">Catálogo</span>
     <h2 class="section-title">Nuestros squishys</h2>
     <p class="section-sub">Seleccionados uno a uno. Solo vendemos lo que nosotros mismos elegiríamos.</p>
   </div>
@@ -1018,7 +1006,7 @@
         <img src="pulpo-galaxy.png" alt="Pulpo Galaxy Squishy" />
       </div>
       <div class="product-body">
-        <div class="product-name">Pulpo Galaxy</div>
+        <div class="product-name">Pulpo Galaxy ✨</div>
         <div class="product-desc">Pulpo transparente con estrellitas holográficas. Textura gelatinosa y suave, imposible soltarlo.</div>
         <div class="product-footer">
           <span class="product-price">12,95€</span>
@@ -1032,7 +1020,7 @@
 <!-- TIKTOK -->
 <section id="tiktok">
   <div class="section-header">
-    <span class="section-eyebrow">Viral en TikTok</span>
+    <span class="section-pill">Viral en TikTok</span>
     <h2 class="section-title">Como se ve en TikTok</h2>
     <p class="section-sub">Más de 2 millones de visualizaciones y contando.</p>
   </div>
@@ -1041,29 +1029,29 @@
     <div class="tiktok-card reveal reveal-delay-1">
       <div class="tiktok-play">▶</div>
       <h4>Unboxing Pulpo Galaxy</h4>
-      <div class="tiktok-views">842K visualizaciones</div>
+      <div class="tiktok-views">842K views</div>
     </div>
     <div class="tiktok-card reveal reveal-delay-2">
       <div class="tiktok-play">▶</div>
       <h4>Asmr squishing</h4>
-      <div class="tiktok-views">1.2M visualizaciones</div>
+      <div class="tiktok-views">1.2M views</div>
     </div>
     <div class="tiktok-card reveal reveal-delay-3">
       <div class="tiktok-play">▶</div>
       <h4>Review completa</h4>
-      <div class="tiktok-views">670K visualizaciones</div>
+      <div class="tiktok-views">670K views</div>
     </div>
   </div>
 
-  <div style="margin-top: 32px;">
-    <a href="https://www.tiktok.com/@squishal0" target="_blank" rel="noopener" class="btn-outline">Seguirnos en TikTok @squishal0</a>
+  <div class="tiktok-cta">
+    <a href="https://www.tiktok.com/@squishal0" target="_blank" rel="noopener" class="btn-ghost">Seguirnos en TikTok @squishal0</a>
   </div>
 </section>
 
 <!-- RESEÑAS -->
 <section id="resenas">
   <div class="section-header">
-    <span class="section-eyebrow">Opiniones</span>
+    <span class="section-pill">Opiniones</span>
     <h2 class="section-title">Lo que dicen nuestros clientes</h2>
     <p class="section-sub">Opiniones reales de clientes verificados.</p>
   </div>
@@ -1080,7 +1068,6 @@
         </div>
       </div>
     </div>
-
     <div class="review-card reveal reveal-delay-2">
       <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
       <p class="review-text">"Los materiales se notan de calidad. Mi hija está obsesionada. Nada que ver con los que venden en jugueterías."</p>
@@ -1092,7 +1079,6 @@
         </div>
       </div>
     </div>
-
     <div class="review-card reveal reveal-delay-3">
       <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
       <p class="review-text">"Mis compañeros de oficina quieren uno también. Es imposible tenerlo en la mano y no apretarlo."</p>
@@ -1104,7 +1090,6 @@
         </div>
       </div>
     </div>
-
     <div class="review-card reveal reveal-delay-4">
       <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
       <p class="review-text">"Calidad notablemente superior. El pulpo galaxy es precioso en persona, las fotos no le hacen justicia."</p>
@@ -1122,24 +1107,24 @@
 <!-- GARANTÍAS -->
 <section id="garantias">
   <div class="section-header">
-    <span class="section-eyebrow">Garantías</span>
-    <h2 class="section-title">Tu compra, protegida</h2>
-    <p class="section-sub">Transparencia total. Sin letra pequeña.</p>
+    <span class="section-pill" style="background:rgba(232,64,154,0.2); color:var(--pink);">Garantías</span>
+    <h2 class="section-title" style="color:white;">Tu compra, protegida</h2>
+    <p class="section-sub" style="color:rgba(255,255,255,0.45);">Transparencia total. Sin letra pequeña.</p>
   </div>
 
   <div class="garantias-grid">
     <div class="garantia-card reveal reveal-delay-1">
-      <span class="garantia-num">01</span>
+      <div class="garantia-icon">🔒</div>
       <h3>Pago 100% seguro</h3>
-      <p>Procesamos todos los pagos a través de Stripe. Tus datos nunca se almacenan en nuestros servidores.</p>
+      <p>Todos los pagos se procesan con Stripe. Tus datos nunca se almacenan en nuestros servidores.</p>
     </div>
     <div class="garantia-card reveal reveal-delay-2">
-      <span class="garantia-num">02</span>
+      <div class="garantia-icon">🧪</div>
       <h3>Materiales seguros</h3>
       <p>Material TPR de alta calidad, sin olor y libre de sustancias nocivas. Apto para todas las edades.</p>
     </div>
     <div class="garantia-card reveal reveal-delay-3">
-      <span class="garantia-num">03</span>
+      <div class="garantia-icon">💬</div>
       <h3>Soporte real</h3>
       <p>Personas reales detrás de la marca. Escríbenos y te respondemos en menos de 24 horas.</p>
     </div>
@@ -1148,28 +1133,26 @@
 
 <!-- STRIPE BAR -->
 <div class="stripe-bar">
-  <span class="stripe-item"><span class="stripe-dot"></span>Pago verificado con Stripe</span>
+  <span class="stripe-item"><span class="stripe-dot"></span>Verificado con Stripe</span>
   <span class="stripe-item"><span class="stripe-dot"></span>Encriptación SSL</span>
   <span class="stripe-item"><span class="stripe-dot"></span>Apple Pay · Google Pay · Tarjeta</span>
-  <span class="stripe-item"><span class="stripe-dot"></span>Datos protegidos</span>
+  <span class="stripe-item"><span class="stripe-dot"></span>Datos 100% protegidos</span>
 </div>
 
-<!-- SOBRE NOSOTROS -->
+<!-- SOBRE -->
 <section id="sobre-nosotros">
   <div class="about-inner">
-    <div class="about-img">
-      <div class="about-placeholder">🫧</div>
-    </div>
-    <div class="about-text">
-      <span class="section-eyebrow">Sobre nosotros</span>
-      <h2 class="section-title">Somos Squishalo</h2>
-      <p style="color: var(--gray-500); font-size: 0.95rem; line-height: 1.75;">
+    <div class="about-img">🫧</div>
+    <div>
+      <span class="section-pill">Sobre nosotros</span>
+      <h2 class="section-title" style="margin-top:12px;">Somos Squishalo</h2>
+      <p style="color:var(--text-mid); font-size:0.95rem; line-height:1.75; margin-top:12px;">
         Nacimos de una obsesión: encontrar los squishys más satisfactorios del mundo y traerlos a España con garantía de calidad real. Somos una marca española, no un dropshipping genérico.
       </p>
       <ul class="about-list">
-        <li><span class="line"></span><span>Probamos cada producto antes de venderlo. Si no nos convence, no entra al catálogo.</span></li>
-        <li><span class="line"></span><span>Solo materiales certificados y seguros para niños y adultos.</span></li>
-        <li><span class="line"></span><span>Si algo sale mal, lo solucionamos. Sin preguntas.</span></li>
+        <li><span class="about-check">✓</span><span>Probamos cada producto antes de venderlo. Si no nos convence, no entra al catálogo.</span></li>
+        <li><span class="about-check">✓</span><span>Solo materiales certificados y seguros para niños y adultos.</span></li>
+        <li><span class="about-check">✓</span><span>Si algo sale mal, lo solucionamos. Sin preguntas.</span></li>
       </ul>
     </div>
   </div>
@@ -1177,28 +1160,29 @@
 
 <!-- RASTREAR -->
 <section id="rastrear">
-  <div class="tracking-wrap">
-    <span class="section-eyebrow">Seguimiento</span>
-    <h2 class="section-title">Rastrea tu pedido</h2>
-    <p class="section-sub" style="margin-top: 12px;">Introduce el número de seguimiento que te enviamos por email.</p>
+  <span class="section-pill">Seguimiento</span>
+  <h2 class="section-title" style="margin-top:12px; margin-bottom:10px;">Rastrea tu pedido</h2>
+  <p class="section-sub" style="margin-bottom:0;">Introduce el número de seguimiento que te enviamos por email.</p>
+
+  <div class="tracking-box" style="margin-top:36px;">
     <div class="tracking-form">
       <input type="text" id="trackingInput" class="tracking-input" placeholder="Número de seguimiento" maxlength="60" autocomplete="off" />
       <button class="btn-track" id="trackBtn">Rastrear</button>
     </div>
     <div class="tracking-error" id="trackingError">Introduce un número de seguimiento válido.</div>
     <p class="tracking-note">
-      Detectamos tu transportista automáticamente. ¿Sin número? Búscalo en el email de confirmación.
-      <br>¿Problemas? <a href="mailto:squiishalo@gmail.com">squiishalo@gmail.com</a>
+      Detectamos tu transportista automáticamente · Sin registro ni cuenta<br>
+      ¿Problemas? <a href="mailto:squiishalo@gmail.com">squiishalo@gmail.com</a>
     </p>
   </div>
 </section>
 
 <!-- CONTACTO -->
 <section id="contacto">
-  <div class="contact-inner">
+  <div class="contact-grid">
     <div>
-      <span class="section-eyebrow">Contacto</span>
-      <h2 class="section-title">Estamos aquí para ayudarte</h2>
+      <span class="section-pill">Contacto</span>
+      <h2 class="section-title" style="margin-top:12px;">Estamos aquí para ayudarte</h2>
       <p class="section-sub" style="margin-top:12px;">Respondemos en menos de 24 horas, de lunes a viernes.</p>
     </div>
     <div class="contact-links">
@@ -1265,29 +1249,25 @@
 
 <!-- FLOATING CTA -->
 <div class="floating-cta" id="floatingCta">
-  <a href="#productos">Ver productos</a>
+  <a href="#productos">Ver productos ✨</a>
 </div>
 
 <script>
-  // Header scroll
   const header = document.getElementById('header');
   window.addEventListener('scroll', () => {
     header.classList.toggle('scrolled', window.scrollY > 60);
     document.getElementById('floatingCta').classList.toggle('show', window.scrollY > 400);
   });
 
-  // Mobile menu
   document.getElementById('hamburgerBtn').addEventListener('click', () => document.getElementById('mobileMenu').classList.add('open'));
   document.getElementById('mobileClose').addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open'));
   document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open')));
 
-  // Reveal
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // Smooth scroll
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
       const t = document.querySelector(a.getAttribute('href'));
@@ -1295,18 +1275,15 @@
     });
   });
 
-  // Tracking
   const trackBtn = document.getElementById('trackBtn');
   const trackingInput = document.getElementById('trackingInput');
   const trackingError = document.getElementById('trackingError');
-
   trackBtn.addEventListener('click', () => {
     const num = trackingInput.value.trim();
     trackingError.classList.remove('show');
     if (num.length < 5) { trackingError.classList.add('show'); return; }
     window.open(`https://t.17track.net/es#nums=${encodeURIComponent(num)}`, '_blank', 'noopener');
   });
-
   trackingInput.addEventListener('keydown', e => { if (e.key === 'Enter') trackBtn.click(); });
 </script>
 </body>
