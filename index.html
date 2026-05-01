@@ -38,7 +38,7 @@
 
     /* HEADER */
     header {
-      position: fixed;
+      position: sticky;
       top: 0; left: 0; right: 0;
       z-index: 100;
       height: 70px;
@@ -47,6 +47,8 @@
       align-items: center;
       justify-content: space-between;
       transition: background 0.3s, box-shadow 0.3s;
+      background: rgba(255,250,248,0.96);
+      backdrop-filter: blur(12px);
     }
 
     header.scrolled {
@@ -394,7 +396,8 @@
       font-size: 0.82rem;
       font-weight: 700;
       letter-spacing: 0.3px;
-      position: relative;
+      position: sticky;
+      top: 0;
       z-index: 101;
     }
 
@@ -909,9 +912,7 @@
 </div>
 
 <script>
-  const header = document.getElementById('header');
   window.addEventListener('scroll', () => {
-    header.classList.toggle('scrolled', window.scrollY > 60);
     document.getElementById('floatingCta').classList.toggle('show', window.scrollY > 400);
   });
 
