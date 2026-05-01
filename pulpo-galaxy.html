@@ -7,72 +7,89 @@
   <meta name="description" content="Pulpo squishy transparente con estrellitas holográficas. Material TPR seguro. Compra en Squishalo." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --pink: #D4307A;
-      --pink-light: #f7e8f1;
-      --black: #0e0e0e;
+      --pink: #E8409A;
+      --pink-soft: #F9D0EA;
+      --coral: #F0654A;
+      --coral-soft: #FCE0D9;
+      --yellow: #FFD166;
+      --bg: #FFFAF8;
       --white: #ffffff;
-      --gray-50: #fafafa;
-      --gray-100: #f4f4f4;
-      --gray-300: #d4d4d4;
-      --gray-500: #737373;
-      --radius: 16px;
-      --radius-sm: 8px;
+      --black: #1C1C1E;
+      --gray: #F2F2F7;
+      --text-mid: #555;
+      --text-light: #999;
+      --radius-pill: 50px;
+      --radius-lg: 28px;
+      --radius: 20px;
+      --radius-sm: 12px;
+      --shadow: 0 4px 28px rgba(232,64,154,0.10);
+      --shadow-lg: 0 12px 48px rgba(232,64,154,0.18);
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Nunito Sans', sans-serif;
       color: var(--black);
-      background: var(--white);
+      background: var(--bg);
       font-size: 15px;
       line-height: 1.6;
     }
 
-    h1, h2, h3 { font-family: 'Playfair Display', serif; line-height: 1.15; }
+    h1, h2, h3 { font-family: 'Nunito', sans-serif; }
 
     /* HEADER */
     header {
       position: sticky;
-      top: 0;
-      z-index: 100;
-      height: 64px;
-      padding: 0 48px;
+      top: 0; z-index: 100;
+      height: 68px;
+      padding: 0 40px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: rgba(255,255,255,0.97);
-      border-bottom: 1px solid var(--gray-100);
+      background: rgba(255,250,248,0.96);
       backdrop-filter: blur(12px);
+      border-bottom: 2px solid var(--pink-soft);
     }
 
     .logo {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Nunito', sans-serif;
       font-weight: 900;
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       color: var(--black);
       text-decoration: none;
+      letter-spacing: -0.5px;
     }
 
-    .logo span { color: var(--pink); }
+    .logo span {
+      background: linear-gradient(135deg, var(--pink), var(--coral));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
 
     .back-link {
       display: flex;
       align-items: center;
       gap: 8px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--gray-500);
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-mid);
       text-decoration: none;
-      transition: color 0.2s;
+      padding: 8px 18px;
+      border-radius: var(--radius-pill);
+      border: 2px solid var(--pink-soft);
+      background: white;
+      transition: border-color 0.2s, color 0.2s;
     }
 
-    .back-link:hover { color: var(--black); }
+    .back-link:hover { border-color: var(--pink); color: var(--pink); }
 
     /* MAIN */
     main {
@@ -84,93 +101,133 @@
     .product-layout {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 72px;
+      gap: 64px;
       align-items: start;
     }
 
     /* IMAGE */
-    .product-image-wrap { position: sticky; top: 80px; }
+    .product-image-wrap { position: sticky; top: 84px; }
 
     .product-image {
       aspect-ratio: 1;
-      border-radius: var(--radius);
+      border-radius: var(--radius-lg);
       overflow: hidden;
-      background: var(--gray-100);
+      background: linear-gradient(135deg, var(--pink-soft), var(--coral-soft));
+      box-shadow: var(--shadow-lg);
     }
 
     .product-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
+    .image-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
     .image-tag {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      margin-top: 14px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--gray-500);
+      gap: 6px;
+      background: white;
+      border: 2px solid var(--pink-soft);
+      border-radius: var(--radius-pill);
+      padding: 5px 13px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-mid);
     }
 
-    .image-tag-dot { width: 6px; height: 6px; background: #22c55e; border-radius: 50%; }
+    .tag-dot { width: 6px; height: 6px; background: #22c55e; border-radius: 50%; }
 
     /* INFO */
     .product-info { display: flex; flex-direction: column; gap: 24px; }
 
-    .product-eyebrow {
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
+    .product-pill {
+      display: inline-block;
+      background: var(--pink-soft);
       color: var(--pink);
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: var(--radius-pill);
     }
 
     .product-title {
-      font-size: 2.4rem;
-      font-weight: 700;
-      letter-spacing: -0.5px;
+      font-size: 2.6rem;
+      font-weight: 900;
+      letter-spacing: -1px;
       color: var(--black);
+      line-height: 1.1;
     }
 
     .product-price {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--black);
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      font-size: 2.2rem;
+      background: linear-gradient(135deg, var(--pink), var(--coral));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
-    .divider { height: 1px; background: var(--gray-100); }
+    .divider { height: 2px; background: var(--pink-soft); border-radius: 2px; }
 
     .product-desc {
-      font-size: 0.92rem;
-      color: var(--gray-500);
+      font-size: 0.95rem;
+      color: var(--text-mid);
       line-height: 1.8;
     }
 
     /* FEATURES */
-    .features { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--gray-100); border-radius: var(--radius); overflow: hidden; }
+    .features { display: flex; flex-direction: column; gap: 10px; }
 
     .feature {
       display: flex;
       align-items: flex-start;
-      gap: 16px;
-      padding: 18px 20px;
-      border-bottom: 1px solid var(--gray-100);
-      transition: background 0.2s;
+      gap: 14px;
+      padding: 16px 18px;
+      background: white;
+      border-radius: var(--radius);
+      border: 2px solid var(--pink-soft);
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
     }
 
-    .feature:last-child { border-bottom: none; }
-    .feature:hover { background: var(--gray-50); }
+    .feature:hover { border-color: var(--pink); transform: translateX(4px); box-shadow: var(--shadow); }
 
-    .feature-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--pink);
+    .feature-icon {
+      width: 38px; height: 38px;
+      background: linear-gradient(135deg, var(--pink-soft), var(--coral-soft));
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
       flex-shrink: 0;
-      margin-top: 1px;
     }
 
-    .feature-text strong { display: block; font-size: 0.88rem; font-weight: 600; margin-bottom: 3px; }
-    .feature-text span { font-size: 0.82rem; color: var(--gray-500); line-height: 1.5; }
+    .feature-text strong { display: block; font-family: 'Nunito', sans-serif; font-size: 0.9rem; font-weight: 800; margin-bottom: 3px; }
+    .feature-text span { font-size: 0.82rem; color: var(--text-mid); line-height: 1.5; }
+
+    /* STARS */
+    .rating-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .stars { display: flex; gap: 2px; }
+    .star {
+      width: 15px; height: 15px;
+      background: var(--yellow);
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    }
+
+    .rating-text { font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.85rem; color: var(--text-mid); }
 
     /* CTA */
     .cta-block { display: flex; flex-direction: column; gap: 10px; }
@@ -178,30 +235,32 @@
     .btn-buy {
       display: block;
       text-align: center;
-      background: var(--black);
+      background: linear-gradient(135deg, var(--pink), var(--coral));
       color: white;
-      font-size: 0.92rem;
-      font-weight: 600;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      font-size: 1.05rem;
       padding: 16px;
-      border-radius: var(--radius-sm);
+      border-radius: var(--radius-pill);
       text-decoration: none;
-      letter-spacing: 0.02em;
-      transition: background 0.2s, transform 0.2s;
+      box-shadow: 0 6px 24px rgba(232,64,154,0.3);
+      transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
     }
 
-    .btn-buy:hover { background: var(--pink); transform: translateY(-1px); }
+    .btn-buy:hover { transform: translateY(-2px); box-shadow: 0 10px 36px rgba(232,64,154,0.4); opacity: 0.92; }
 
     .stripe-note {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      font-size: 0.78rem;
-      color: var(--gray-500);
-      font-weight: 500;
+      font-size: 0.8rem;
+      color: var(--text-light);
+      font-weight: 700;
+      font-family: 'Nunito', sans-serif;
     }
 
-    .stripe-dot { width: 5px; height: 5px; background: #22c55e; border-radius: 50%; }
+    .stripe-dot { width: 6px; height: 6px; background: #22c55e; border-radius: 50%; }
 
     /* RESPONSIVE */
     @media (max-width: 768px) {
@@ -209,7 +268,8 @@
       main { padding: 32px 24px 64px; }
       .product-layout { grid-template-columns: 1fr; gap: 36px; }
       .product-image-wrap { position: static; }
-      .product-title { font-size: 1.8rem; }
+      .product-title { font-size: 2rem; }
+      .product-price { font-size: 1.8rem; }
     }
   </style>
 </head>
@@ -223,49 +283,64 @@
 <main>
   <div class="product-layout">
 
+    <!-- IMAGEN -->
     <div class="product-image-wrap">
       <div class="product-image">
         <img src="pulpo-galaxy.png" alt="Pulpo Galaxy Squishy" />
       </div>
-      <div class="image-tag">
-        <span class="image-tag-dot"></span>
-        Material TPR certificado · Sin olor · Apto todas las edades
+      <div class="image-tags">
+        <span class="image-tag"><span class="tag-dot"></span>Material TPR certificado</span>
+        <span class="image-tag"><span class="tag-dot"></span>Sin olor</span>
+        <span class="image-tag"><span class="tag-dot"></span>Todas las edades</span>
       </div>
     </div>
 
+    <!-- INFO -->
     <div class="product-info">
-      <span class="product-eyebrow">Squishy antiestrés</span>
-      <h1 class="product-title">Pulpo Galaxy</h1>
+
+      <span class="product-pill">Squishy antiestrés</span>
+
+      <h1 class="product-title">Pulpo Galaxy ✨</h1>
+
+      <div class="rating-row">
+        <div class="stars">
+          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+        </div>
+        <span class="rating-text">4.9 · 47 valoraciones</span>
+      </div>
+
       <div class="product-price">12,95€</div>
+
       <div class="divider"></div>
+
       <p class="product-desc">
         Pulpo transparente con estrellitas holográficas flotando en su interior. Textura suave y gelatinosa, tentáculos que se mueven solos. Una vez que lo tienes en la mano, es imposible soltarlo.
       </p>
 
       <div class="features">
         <div class="feature">
-          <span class="feature-num">01</span>
+          <div class="feature-icon">🧪</div>
           <div class="feature-text">
             <strong>Material TPR de alta calidad</strong>
-            <span>Seguro para niños y adultos. Sin olor, sin sustancias nocivas. Resistente al uso continuado.</span>
+            <span>Seguro para niños y adultos. Sin olor ni sustancias nocivas. Resistente al uso continuado.</span>
           </div>
         </div>
         <div class="feature">
-          <span class="feature-num">02</span>
+          <div class="feature-icon">🧘</div>
           <div class="feature-text">
             <strong>Antiestrés y antiansíedad</strong>
             <span>Perfecto para momentos de tensión, exámenes o trabajo. Compacto, cabe en cualquier bolsillo.</span>
           </div>
         </div>
         <div class="feature">
-          <span class="feature-num">03</span>
+          <div class="feature-icon">🎁</div>
           <div class="feature-text">
             <strong>Para todas las edades</strong>
-            <span>Ideal como regalo, juguete sensorial o coleccionable. Divertido tanto para niños como adultos.</span>
+            <span>Ideal como regalo, juguete sensorial o coleccionable. Para niños y adultos por igual.</span>
           </div>
         </div>
         <div class="feature">
-          <span class="feature-num">04</span>
+          <div class="feature-icon">🌟</div>
           <div class="feature-text">
             <strong>Diseño holográfico único</strong>
             <span>Estrellitas flotantes visibles desde todos los ángulos. Cada unidad es ligeramente distinta.</span>
@@ -277,8 +352,8 @@
         <a href="https://buy.stripe.com/cNi28r3159uc834git2Ry0i" class="btn-buy">Comprar ahora — 12,95€</a>
         <p class="stripe-note"><span class="stripe-dot"></span>Pago seguro con Stripe · Apple Pay · Google Pay</p>
       </div>
-    </div>
 
+    </div>
   </div>
 </main>
 
