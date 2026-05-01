@@ -3,88 +3,98 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SQUISHALO – Tócalo. Apriétalo. Squíshalo.</title>
+  <title>Squishalo – Squishys de calidad</title>
   <meta name="description" content="Squishys virales de calidad. Pago seguro con Stripe." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --pink: #E8409A;
-      --coral: #F0654A;
+      --pink: #D4307A;
+      --pink-light: #f7e8f1;
+      --coral: #E8553E;
+      --black: #0e0e0e;
       --white: #ffffff;
-      --off-white: #FFF8FC;
-      --gray: #f5f5f5;
-      --text: #1a1a1a;
-      --text-light: #666;
-      --radius: 20px;
-      --shadow: 0 4px 24px rgba(232,64,154,0.12);
-      --shadow-hover: 0 8px 40px rgba(232,64,154,0.22);
+      --gray-50: #fafafa;
+      --gray-100: #f4f4f4;
+      --gray-300: #d4d4d4;
+      --gray-500: #737373;
+      --text: #0e0e0e;
+      --radius-sm: 8px;
+      --radius: 16px;
+      --radius-lg: 24px;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Nunito', sans-serif;
+      font-family: 'Inter', sans-serif;
       color: var(--text);
       background: var(--white);
       overflow-x: hidden;
+      font-size: 15px;
+      line-height: 1.6;
     }
 
-    h1, h2, h3, .logo { font-family: 'Fredoka One', cursive; }
+    h1, h2, h3, h4 { font-family: 'Playfair Display', serif; line-height: 1.15; }
 
-    /* ── HEADER ── */
+    a { text-decoration: none; color: inherit; }
+
+    /* HEADER */
     header {
       position: fixed;
       top: 0; left: 0; right: 0;
-      z-index: 1000;
-      padding: 18px 24px;
+      z-index: 100;
+      padding: 0 48px;
+      height: 68px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      transition: background 0.3s, box-shadow 0.3s, padding 0.3s;
+      transition: background 0.4s, border-color 0.4s;
+      border-bottom: 1px solid transparent;
     }
 
     header.scrolled {
-      background: rgba(255,255,255,0.96);
-      backdrop-filter: blur(8px);
-      box-shadow: 0 2px 20px rgba(232,64,154,0.1);
-      padding: 10px 24px;
+      background: rgba(255,255,255,0.97);
+      border-bottom-color: var(--gray-100);
+      backdrop-filter: blur(12px);
     }
 
     .logo {
-      font-size: 2rem;
-      background: linear-gradient(135deg, var(--pink), var(--coral));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      letter-spacing: -1px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 1.5rem;
+      letter-spacing: -0.5px;
+      color: var(--black);
     }
 
-    nav { display: flex; gap: 8px; align-items: center; }
+    .logo span { color: var(--pink); }
+
+    nav { display: flex; align-items: center; gap: 4px; }
 
     nav a {
-      font-family: 'Nunito', sans-serif;
-      font-weight: 700;
-      font-size: 0.95rem;
-      color: var(--text);
-      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--gray-500);
       padding: 8px 16px;
-      border-radius: 30px;
-      transition: background 0.2s, color 0.2s;
+      border-radius: 6px;
+      transition: color 0.2s, background 0.2s;
+      letter-spacing: 0.01em;
     }
 
-    nav a:hover { background: var(--pink); color: white; }
+    nav a:hover { color: var(--black); background: var(--gray-100); }
 
-    nav .cta-nav {
-      background: linear-gradient(135deg, var(--pink), var(--coral));
-      color: white;
-      padding: 8px 20px;
+    .nav-cta {
+      background: var(--black) !important;
+      color: white !important;
+      padding: 8px 20px !important;
+      border-radius: 6px;
+      font-weight: 600 !important;
     }
 
-    nav .cta-nav:hover { opacity: 0.88; color: white; background: linear-gradient(135deg, var(--pink), var(--coral)); }
+    .nav-cta:hover { background: var(--pink) !important; }
 
     .hamburger {
       display: none;
@@ -98,32 +108,32 @@
 
     .hamburger span {
       display: block;
-      width: 26px;
-      height: 3px;
-      background: var(--pink);
-      border-radius: 3px;
+      width: 22px;
+      height: 2px;
+      background: var(--black);
+      border-radius: 2px;
       transition: all 0.3s;
     }
 
     .mobile-menu {
       display: none;
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(255,255,255,0.98);
-      z-index: 999;
+      inset: 0;
+      background: white;
+      z-index: 99;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 24px;
+      gap: 32px;
     }
 
     .mobile-menu.open { display: flex; }
 
     .mobile-menu a {
-      font-family: 'Fredoka One', cursive;
-      font-size: 2rem;
-      color: var(--text);
-      text-decoration: none;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--black);
       transition: color 0.2s;
     }
 
@@ -131,144 +141,137 @@
 
     .mobile-close {
       position: absolute;
-      top: 20px; right: 24px;
-      font-size: 2.2rem;
+      top: 20px; right: 28px;
+      font-size: 1.8rem;
       background: none;
       border: none;
       cursor: pointer;
-      color: var(--pink);
-      font-family: 'Fredoka One', cursive;
+      color: var(--gray-500);
+      line-height: 1;
     }
 
-    /* ── HERO ── */
+    /* HERO */
     #inicio {
       min-height: 100vh;
-      background: linear-gradient(160deg, #fff8fc 0%, #fce4f3 40%, #fde8e1 100%);
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 120px 24px 80px;
-      position: relative;
-      overflow: hidden;
+      padding: 0 80px;
+      gap: 60px;
+      background: var(--gray-50);
+      padding-top: 68px;
     }
 
-    .hero-blobs {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-    }
+    .hero-text { max-width: 520px; }
 
-    .blob {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(60px);
-      opacity: 0.35;
-    }
-
-    .blob-1 { width: 400px; height: 400px; background: var(--pink); top: -100px; left: -100px; }
-    .blob-2 { width: 300px; height: 300px; background: var(--coral); bottom: -80px; right: -80px; }
-    .blob-3 { width: 200px; height: 200px; background: #ffb3d9; top: 50%; left: 50%; transform: translate(-50%,-50%); }
-
-    .hero-content { position: relative; z-index: 1; max-width: 700px; }
-
-    .hero-badge {
+    .hero-eyebrow {
       display: inline-block;
-      background: white;
-      border: 2px solid var(--pink);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
       color: var(--pink);
-      font-weight: 800;
-      font-size: 0.85rem;
-      padding: 6px 18px;
-      border-radius: 30px;
-      margin-bottom: 24px;
-      letter-spacing: 0.5px;
+      margin-bottom: 20px;
     }
 
     .hero-title {
-      font-size: clamp(3rem, 10vw, 6rem);
-      line-height: 1.05;
-      background: linear-gradient(135deg, var(--pink), var(--coral));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 16px;
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      font-weight: 900;
+      color: var(--black);
+      margin-bottom: 20px;
+      letter-spacing: -1px;
     }
 
-    .hero-slogan {
-      font-size: clamp(1.1rem, 3vw, 1.5rem);
-      color: var(--text-light);
-      font-weight: 600;
-      margin-bottom: 32px;
+    .hero-title em { color: var(--pink); font-style: normal; }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--gray-500);
+      margin-bottom: 36px;
+      font-weight: 400;
+      max-width: 400px;
     }
 
-    .hero-emojis { font-size: 2.5rem; margin-bottom: 16px; display: block; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 
     .btn-primary {
       display: inline-block;
-      background: linear-gradient(135deg, var(--pink), var(--coral));
+      background: var(--black);
       color: white;
-      font-family: 'Fredoka One', cursive;
-      font-size: 1.2rem;
-      padding: 16px 40px;
-      border-radius: 50px;
-      text-decoration: none;
-      box-shadow: 0 6px 30px rgba(232,64,154,0.35);
-      transition: transform 0.2s, box-shadow 0.2s;
-      border: none;
-      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 14px 28px;
+      border-radius: var(--radius-sm);
+      transition: background 0.2s, transform 0.2s;
+      letter-spacing: 0.02em;
     }
 
-    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 40px rgba(232,64,154,0.45); }
+    .btn-primary:hover { background: var(--pink); transform: translateY(-1px); }
 
-    .btn-secondary {
+    .btn-outline {
       display: inline-block;
-      background: white;
-      color: var(--pink);
-      font-family: 'Fredoka One', cursive;
-      font-size: 1rem;
-      padding: 12px 28px;
-      border-radius: 50px;
-      text-decoration: none;
-      box-shadow: var(--shadow);
-      transition: transform 0.2s, box-shadow 0.2s;
-      border: 2px solid var(--pink);
-      cursor: pointer;
+      background: transparent;
+      color: var(--black);
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 14px 28px;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid var(--gray-300);
+      transition: border-color 0.2s, transform 0.2s;
     }
 
-    .btn-secondary:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+    .btn-outline:hover { border-color: var(--black); transform: translateY(-1px); }
 
-    .hero-trust {
+    .hero-stats {
       display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 36px;
+      gap: 32px;
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid var(--gray-300);
     }
 
-    .hero-trust span {
-      font-size: 0.85rem;
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
       font-weight: 700;
-      color: var(--text-light);
+      color: var(--black);
+      display: block;
+    }
+
+    .stat-label { font-size: 0.8rem; color: var(--gray-500); font-weight: 500; }
+
+    .hero-visual {
       display: flex;
       align-items: center;
-      gap: 6px;
+      justify-content: center;
     }
 
-    .hero-trust .dot { color: var(--pink); font-size: 1.2rem; }
+    .hero-img-wrap {
+      width: 100%;
+      max-width: 480px;
+      aspect-ratio: 1;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--gray-100);
+    }
 
-    /* ── TRUST BAR ── */
+    .hero-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* TRUST BAR */
     .trust-bar {
-      background: linear-gradient(135deg, var(--pink), var(--coral));
-      padding: 14px 24px;
+      background: var(--black);
+      padding: 14px 0;
       overflow: hidden;
     }
 
     .trust-track {
       display: flex;
-      gap: 60px;
-      animation: marquee 20s linear infinite;
+      gap: 64px;
+      animation: marquee 22s linear infinite;
       white-space: nowrap;
     }
 
@@ -280,239 +283,254 @@
     .trust-item {
       display: flex;
       align-items: center;
-      gap: 8px;
-      color: white;
-      font-weight: 700;
-      font-size: 0.9rem;
+      gap: 10px;
+      color: rgba(255,255,255,0.75);
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
       flex-shrink: 0;
     }
 
-    .trust-icon { font-size: 1.1rem; }
+    .trust-dot {
+      width: 4px; height: 4px;
+      background: var(--pink);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
 
-    /* ── SECTION COMMON ── */
-    section { padding: 80px 24px; }
+    /* SECTIONS */
+    section { padding: 96px 80px; }
 
-    .section-label {
-      display: inline-block;
-      background: linear-gradient(135deg, #fce4f3, #fde8e1);
-      color: var(--pink);
-      font-weight: 800;
-      font-size: 0.8rem;
-      letter-spacing: 1.5px;
+    .section-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 2.5px;
       text-transform: uppercase;
-      padding: 6px 16px;
-      border-radius: 30px;
+      color: var(--pink);
       margin-bottom: 12px;
+      display: block;
     }
 
     .section-title {
-      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      color: var(--black);
       margin-bottom: 12px;
-      background: linear-gradient(135deg, var(--pink), var(--coral));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      letter-spacing: -0.5px;
     }
 
     .section-sub {
-      color: var(--text-light);
-      font-size: 1.05rem;
-      max-width: 500px;
-      margin: 0 auto 48px;
+      font-size: 1rem;
+      color: var(--gray-500);
+      max-width: 480px;
     }
 
-    .section-header { text-align: center; }
+    .section-header { margin-bottom: 56px; }
 
-    /* ── PRODUCTOS ── */
-    #productos { background: var(--off-white); }
+    /* PRODUCTS */
+    #productos { background: var(--white); }
 
     .products-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 28px;
-      max-width: 1200px;
-      margin: 0 auto;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
     }
 
     .product-card {
-      background: white;
+      background: var(--gray-50);
       border-radius: var(--radius);
       overflow: hidden;
-      box-shadow: var(--shadow);
-      transition: transform 0.3s, box-shadow 0.3s;
-      position: relative;
+      border: 1px solid var(--gray-100);
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
     }
 
-    .product-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
-
-    .product-badge {
-      position: absolute;
-      top: 14px; left: 14px;
-      background: linear-gradient(135deg, var(--pink), var(--coral));
-      color: white;
-      font-weight: 800;
-      font-size: 0.75rem;
-      padding: 4px 12px;
-      border-radius: 20px;
-      z-index: 1;
+    .product-card:hover {
+      border-color: var(--gray-300);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
     }
 
     .product-img {
       width: 100%;
       aspect-ratio: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 5rem;
-      background: linear-gradient(135deg, #fce4f3, #fde8e1);
+      overflow: hidden;
+      background: var(--gray-100);
+      position: relative;
     }
 
-    .product-body { padding: 20px; }
+    .product-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .product-card:hover .product-img img { transform: scale(1.04); }
+
+    .product-badge {
+      position: absolute;
+      top: 12px; left: 12px;
+      background: var(--black);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+
+    .product-body { padding: 20px 22px 22px; }
 
     .product-name {
-      font-family: 'Fredoka One', cursive;
-      font-size: 1.25rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
       margin-bottom: 6px;
     }
 
     .product-desc {
-      font-size: 0.9rem;
-      color: var(--text-light);
-      margin-bottom: 12px;
-      line-height: 1.5;
+      font-size: 0.85rem;
+      color: var(--gray-500);
+      margin-bottom: 16px;
+      line-height: 1.6;
     }
 
-    .product-meta {
+    .product-footer {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 8px;
+      gap: 12px;
     }
 
     .product-price {
-      font-family: 'Fredoka One', cursive;
-      font-size: 1.6rem;
-      color: var(--pink);
-    }
-
-    .product-price .old-price {
-      font-family: 'Nunito', sans-serif;
-      font-size: 0.9rem;
-      color: #aaa;
-      text-decoration: line-through;
-      margin-left: 6px;
-    }
-
-    .product-shipping {
-      font-size: 0.78rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
       font-weight: 700;
-      color: #22c55e;
-      margin-bottom: 14px;
+      color: var(--black);
     }
-
-    .product-shipping::before { content: "🚚 "; }
 
     .btn-buy {
-      display: block;
-      width: 100%;
-      text-align: center;
-      background: linear-gradient(135deg, var(--pink), var(--coral));
+      display: inline-block;
+      background: var(--black);
       color: white;
-      font-family: 'Fredoka One', cursive;
-      font-size: 1.05rem;
-      padding: 12px;
-      border-radius: 14px;
-      text-decoration: none;
-      transition: opacity 0.2s, transform 0.2s;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: var(--radius-sm);
+      transition: background 0.2s;
+      letter-spacing: 0.02em;
       border: none;
       cursor: pointer;
     }
 
-    .btn-buy:hover { opacity: 0.88; transform: scale(1.02); }
+    .btn-buy:hover { background: var(--pink); }
 
-    /* ── TIKTOK ── */
-    #tiktok { background: white; }
+    /* TIKTOK */
+    #tiktok { background: var(--gray-50); }
 
     .tiktok-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 20px;
-      max-width: 900px;
-      margin: 0 auto;
+      max-width: 800px;
     }
 
     .tiktok-card {
       aspect-ratio: 9/16;
-      background: linear-gradient(160deg, #1a1a1a, #2d2d2d);
-      border-radius: 20px;
-      overflow: hidden;
+      background: var(--black);
+      border-radius: var(--radius);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 12px;
+      gap: 14px;
       color: white;
       text-align: center;
       padding: 24px;
       cursor: pointer;
       transition: transform 0.3s;
       position: relative;
+      overflow: hidden;
     }
 
-    .tiktok-card:hover { transform: scale(1.03); }
+    .tiktok-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, rgba(212,48,122,0.3), rgba(232,85,62,0.2));
+    }
+
+    .tiktok-card:hover { transform: scale(1.02); }
 
     .tiktok-play {
-      width: 64px; height: 64px;
-      background: linear-gradient(135deg, var(--pink), var(--coral));
+      width: 52px; height: 52px;
+      border: 2px solid rgba(255,255,255,0.6);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.6rem;
+      font-size: 1.2rem;
+      position: relative;
+      z-index: 1;
+      transition: border-color 0.2s;
     }
 
-    .tiktok-card h4 { font-family: 'Fredoka One', cursive; font-size: 1rem; }
-    .tiktok-card p { font-size: 0.8rem; opacity: 0.7; }
+    .tiktok-card:hover .tiktok-play { border-color: white; }
+
+    .tiktok-card h4 {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      position: relative;
+      z-index: 1;
+    }
 
     .tiktok-views {
       position: absolute;
       bottom: 14px; left: 14px;
-      background: rgba(255,255,255,0.15);
-      backdrop-filter: blur(4px);
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 0.78rem;
-      font-weight: 700;
+      font-size: 0.72rem;
+      font-weight: 500;
+      opacity: 0.6;
+      z-index: 1;
     }
 
-    /* ── REVIEWS ── */
-    #resenas { background: var(--off-white); }
+    /* REVIEWS */
+    #resenas { background: var(--white); }
 
     .reviews-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 24px;
-      max-width: 1100px;
-      margin: 0 auto;
+      gap: 20px;
     }
 
     .review-card {
-      background: white;
+      background: var(--gray-50);
+      border: 1px solid var(--gray-100);
       border-radius: var(--radius);
       padding: 28px;
-      box-shadow: var(--shadow);
-      transition: transform 0.3s;
+      transition: border-color 0.3s;
     }
 
-    .review-card:hover { transform: translateY(-4px); }
+    .review-card:hover { border-color: var(--gray-300); }
 
-    .stars { color: #FBBF24; font-size: 1.1rem; margin-bottom: 12px; }
+    .stars {
+      display: flex;
+      gap: 2px;
+      margin-bottom: 14px;
+    }
+
+    .star {
+      width: 14px; height: 14px;
+      background: #F59E0B;
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    }
 
     .review-text {
-      color: var(--text);
-      font-size: 0.95rem;
-      line-height: 1.6;
-      margin-bottom: 16px;
+      font-size: 0.9rem;
+      color: var(--gray-500);
+      line-height: 1.7;
+      margin-bottom: 20px;
     }
 
     .reviewer {
@@ -522,170 +540,294 @@
     }
 
     .reviewer-avatar {
-      width: 44px; height: 44px;
+      width: 38px; height: 38px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--pink), var(--coral));
+      background: var(--gray-100);
+      border: 1px solid var(--gray-300);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.2rem;
+      font-size: 1rem;
       flex-shrink: 0;
     }
 
-    .reviewer-name { font-weight: 800; font-size: 0.95rem; }
-    .reviewer-date { font-size: 0.8rem; color: var(--text-light); }
+    .reviewer-name { font-size: 0.88rem; font-weight: 600; }
+    .reviewer-date { font-size: 0.78rem; color: var(--gray-500); margin-top: 1px; }
 
-    .review-verified {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: #22c55e;
-      background: #f0fdf4;
-      padding: 3px 10px;
-      border-radius: 20px;
-      margin-top: 8px;
-    }
+    /* GARANTIAS */
+    #garantias { background: var(--black); }
 
-    /* ── GARANTÍAS ── */
-    #garantias { background: white; }
+    #garantias .section-eyebrow { color: var(--pink); }
+    #garantias .section-title { color: white; }
+    #garantias .section-sub { color: rgba(255,255,255,0.5); }
 
     .garantias-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 24px;
-      max-width: 1100px;
-      margin: 0 auto;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      overflow: hidden;
     }
 
     .garantia-card {
-      text-align: center;
-      padding: 36px 24px;
-      border-radius: var(--radius);
-      border: 2px solid #f5f5f5;
-      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+      background: var(--black);
+      padding: 36px 32px;
+      transition: background 0.3s;
     }
 
-    .garantia-card:hover {
-      border-color: var(--pink);
-      transform: translateY(-4px);
-      box-shadow: var(--shadow);
-    }
+    .garantia-card:hover { background: #161616; }
 
-    .garantia-icon {
-      font-size: 3rem;
+    .garantia-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--pink);
       margin-bottom: 16px;
       display: block;
     }
 
     .garantia-card h3 {
-      font-size: 1.1rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: white;
       margin-bottom: 8px;
-      font-family: 'Fredoka One', cursive;
     }
 
     .garantia-card p {
-      font-size: 0.88rem;
-      color: var(--text-light);
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.65;
+    }
+
+    /* SOBRE */
+    #sobre-nosotros { background: var(--gray-50); }
+
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-img {
+      aspect-ratio: 4/5;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--gray-100);
+    }
+
+    .about-img img { width: 100%; height: 100%; object-fit: cover; }
+
+    .about-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8rem;
+      background: linear-gradient(135deg, var(--pink-light), #fde8e1);
+    }
+
+    .about-text { display: flex; flex-direction: column; gap: 20px; }
+
+    .about-list { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-top: 8px; }
+
+    .about-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: 0.92rem;
+      color: var(--gray-500);
       line-height: 1.6;
     }
 
-    /* ── STRIPE BADGE ── */
-    .stripe-section {
-      background: linear-gradient(135deg, #f8faff, #f0f4ff);
-      padding: 48px 24px;
-      text-align: center;
+    .about-list .line {
+      width: 20px;
+      height: 2px;
+      background: var(--pink);
+      flex-shrink: 0;
+      margin-top: 10px;
     }
 
-    .stripe-badge {
-      display: inline-flex;
+    /* TRACKING */
+    #rastrear { background: var(--white); }
+
+    .tracking-wrap {
+      max-width: 560px;
+    }
+
+    .tracking-form {
+      display: flex;
+      gap: 10px;
+      margin-top: 32px;
+    }
+
+    .tracking-input {
+      flex: 1;
+      padding: 14px 18px;
+      border: 1.5px solid var(--gray-300);
+      border-radius: var(--radius-sm);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+      background: var(--white);
+      color: var(--black);
+    }
+
+    .tracking-input:focus { border-color: var(--black); }
+    .tracking-input::placeholder { color: var(--gray-300); }
+
+    .btn-track {
+      padding: 14px 24px;
+      background: var(--black);
+      color: white;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-track:hover { background: var(--pink); }
+
+    .tracking-error {
+      display: none;
+      font-size: 0.85rem;
+      color: #dc2626;
+      margin-top: 10px;
+    }
+
+    .tracking-error.show { display: block; }
+
+    .tracking-note {
+      margin-top: 16px;
+      font-size: 0.82rem;
+      color: var(--gray-500);
+      line-height: 1.7;
+    }
+
+    .tracking-note a { color: var(--pink); font-weight: 600; }
+
+    /* CONTACTO */
+    #contacto { background: var(--gray-50); }
+
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
       align-items: center;
-      gap: 12px;
+    }
+
+    .contact-links { display: flex; flex-direction: column; gap: 12px; margin-top: 32px; }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 22px;
       background: white;
-      border: 2px solid #e2e8f0;
-      border-radius: 16px;
-      padding: 16px 28px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      border: 1.5px solid var(--gray-100);
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: border-color 0.2s, transform 0.2s;
     }
 
-    .stripe-logo {
-      font-family: 'Fredoka One', cursive;
-      font-size: 1.5rem;
-      color: #635bff;
+    .contact-link:hover { border-color: var(--gray-300); transform: translateX(4px); }
+
+    .contact-icon {
+      width: 36px; height: 36px;
+      background: var(--pink-light);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
     }
 
-    .stripe-text { text-align: left; }
-    .stripe-text strong { display: block; font-size: 0.95rem; }
-    .stripe-text span { font-size: 0.8rem; color: var(--text-light); }
+    .contact-desc { font-size: 0.78rem; color: var(--gray-500); font-weight: 400; margin-top: 2px; }
 
-    /* ── FOOTER ── */
+    /* STRIPE */
+    .stripe-bar {
+      background: var(--gray-50);
+      border-top: 1px solid var(--gray-100);
+      padding: 20px 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .stripe-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--gray-500);
+    }
+
+    .stripe-dot { width: 6px; height: 6px; background: #22c55e; border-radius: 50%; }
+
+    /* FOOTER */
     footer {
-      background: #0f0f0f;
-      color: #ccc;
-      padding: 60px 24px 32px;
-    }
-
-    .footer-inner {
-      max-width: 1100px;
-      margin: 0 auto;
+      background: var(--black);
+      color: rgba(255,255,255,0.4);
+      padding: 56px 80px 32px;
     }
 
     .footer-top {
       display: grid;
       grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 40px;
-      margin-bottom: 40px;
+      gap: 48px;
+      margin-bottom: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
     .footer-logo {
-      font-size: 2rem;
-      background: linear-gradient(135deg, var(--pink), var(--coral));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: white;
       margin-bottom: 12px;
+      display: block;
     }
 
-    .footer-about { font-size: 0.88rem; line-height: 1.7; color: #888; max-width: 280px; }
+    .footer-logo span { color: var(--pink); }
+
+    .footer-about { font-size: 0.85rem; line-height: 1.7; max-width: 260px; }
 
     .footer-col h4 {
-      font-family: 'Fredoka One', cursive;
-      font-size: 1rem;
-      color: white;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
       margin-bottom: 16px;
     }
 
     .footer-col a {
       display: block;
-      font-size: 0.88rem;
-      color: #888;
-      text-decoration: none;
-      margin-bottom: 8px;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 10px;
       transition: color 0.2s;
     }
 
-    .footer-col a:hover { color: var(--pink); }
-
-    .social-links { display: flex; gap: 12px; margin-top: 8px; }
-
-    .social-link {
-      width: 38px; height: 38px;
-      background: #1f1f1f;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      text-decoration: none;
-      transition: background 0.2s, transform 0.2s;
-    }
-
-    .social-link:hover { background: var(--pink); transform: scale(1.1); }
+    .footer-col a:hover { color: white; }
 
     .footer-bottom {
-      border-top: 1px solid #1f1f1f;
-      padding-top: 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -693,218 +835,95 @@
       gap: 12px;
     }
 
-    .footer-bottom p { font-size: 0.82rem; color: #555; }
+    .footer-bottom p { font-size: 0.8rem; }
 
-    .footer-legal { display: flex; gap: 16px; }
-    .footer-legal a { font-size: 0.82rem; color: #555; text-decoration: none; transition: color 0.2s; }
-    .footer-legal a:hover { color: var(--pink); }
+    .footer-legal { display: flex; gap: 20px; }
+    .footer-legal a { font-size: 0.8rem; color: rgba(255,255,255,0.35); transition: color 0.2s; }
+    .footer-legal a:hover { color: white; }
 
-    /* ── SCROLL ANIMATIONS ── */
+    /* REVEAL */
     .reveal {
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
     }
 
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.08s; }
+    .reveal-delay-2 { transition-delay: 0.16s; }
+    .reveal-delay-3 { transition-delay: 0.24s; }
+    .reveal-delay-4 { transition-delay: 0.32s; }
 
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.2s; }
-    .reveal-delay-3 { transition-delay: 0.3s; }
-    .reveal-delay-4 { transition-delay: 0.4s; }
-    .reveal-delay-5 { transition-delay: 0.5s; }
-    .reveal-delay-6 { transition-delay: 0.6s; }
-
-    /* ── FLOATING CTA ── */
+    /* FLOATING CTA */
     .floating-cta {
       position: fixed;
-      bottom: 28px;
-      right: 24px;
-      z-index: 800;
+      bottom: 28px; right: 28px;
+      z-index: 80;
       display: none;
     }
 
     .floating-cta.show { display: block; }
 
     .floating-cta a {
-      background: linear-gradient(135deg, var(--pink), var(--coral));
-      color: white;
-      font-family: 'Fredoka One', cursive;
-      font-size: 1rem;
-      padding: 14px 24px;
-      border-radius: 50px;
-      text-decoration: none;
-      box-shadow: 0 6px 30px rgba(232,64,154,0.4);
       display: flex;
       align-items: center;
       gap: 8px;
-      transition: transform 0.2s;
-    }
-
-    .floating-cta a:hover { transform: scale(1.05); }
-
-    /* ── SOBRE NOSOTROS ── */
-    #sobre-nosotros {
-      background: linear-gradient(160deg, #fff8fc 0%, #fde8e1 100%);
-    }
-
-    .about-inner {
-      max-width: 900px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-    }
-
-    .about-visual {
-      font-size: 10rem;
-      text-align: center;
-      line-height: 1;
-    }
-
-    .about-text .section-label { display: block; margin-bottom: 12px; }
-    .about-text .section-title { text-align: left; }
-
-    .about-list {
-      list-style: none;
-      margin-top: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .about-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
-
-    .about-list .check {
-      width: 22px;
-      height: 22px;
-      background: linear-gradient(135deg, var(--pink), var(--coral));
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.7rem;
+      background: var(--black);
       color: white;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    /* ── RESPONSIVE ── */
-    /* ── RASTREAR ── */
-    #rastrear { background: white; }
-
-    .tracking-box {
-      max-width: 600px;
-      margin: 0 auto;
-      background: var(--off-white);
-      border-radius: var(--radius);
-      padding: 40px 36px;
-      box-shadow: var(--shadow);
-      border: 2px solid #fce4f3;
-    }
-
-    .tracking-form {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 24px;
-    }
-
-    .tracking-input {
-      flex: 1;
-      padding: 14px 20px;
-      border: 2px solid #f0d0e8;
-      border-radius: 14px;
-      font-family: 'Nunito', sans-serif;
-      font-size: 1rem;
+      font-size: 0.85rem;
       font-weight: 600;
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      background: white;
+      padding: 12px 22px;
+      border-radius: 50px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      transition: background 0.2s, transform 0.2s;
     }
 
-    .tracking-input:focus {
-      border-color: var(--pink);
-      box-shadow: 0 0 0 3px rgba(232,64,154,0.12);
+    .floating-cta a:hover { background: var(--pink); transform: translateY(-2px); }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      section { padding: 72px 40px; }
+      #inicio { padding: 68px 40px 0; }
+      .stripe-bar { padding: 20px 40px; }
+      footer { padding: 48px 40px 28px; }
+      header { padding: 0 32px; }
     }
-
-    .tracking-input::placeholder { color: #bbb; font-weight: 400; }
-
-    .btn-track {
-      padding: 14px 28px;
-      background: linear-gradient(135deg, var(--pink), var(--coral));
-      color: white;
-      font-family: 'Fredoka One', cursive;
-      font-size: 1rem;
-      border: none;
-      border-radius: 14px;
-      cursor: pointer;
-      transition: opacity 0.2s, transform 0.2s;
-      white-space: nowrap;
-    }
-
-    .btn-track:hover { opacity: 0.88; transform: scale(1.03); }
-
-
-    .tracking-note {
-      margin-top: 20px;
-      font-size: 0.82rem;
-      color: var(--text-light);
-      text-align: center;
-      line-height: 1.7;
-    }
-
-    .tracking-note a { color: var(--pink); text-decoration: none; font-weight: 700; }
-
-    .tracking-error {
-      display: none;
-      background: #fff5f5;
-      border: 2px solid #fed7d7;
-      border-radius: 12px;
-      padding: 14px 20px;
-      color: #e53e3e;
-      font-size: 0.88rem;
-      font-weight: 600;
-      text-align: center;
-      margin-top: 12px;
-    }
-
-    .tracking-error.show { display: block; }
 
     @media (max-width: 768px) {
       nav { display: none; }
       .hamburger { display: flex; }
+      header { padding: 0 24px; }
+
+      #inicio {
+        grid-template-columns: 1fr;
+        padding: 100px 24px 48px;
+        gap: 40px;
+        min-height: auto;
+      }
+
+      .hero-visual { order: -1; }
+      .hero-img-wrap { max-width: 100%; }
+      .hero-stats { gap: 24px; }
+
+      section { padding: 60px 24px; }
+      .stripe-bar { padding: 16px 24px; gap: 16px; }
+      footer { padding: 40px 24px 24px; }
 
       .footer-top { grid-template-columns: 1fr 1fr; }
       .footer-top > div:first-child { grid-column: 1 / -1; }
-      .footer-about { max-width: 100%; }
 
-      .about-inner { grid-template-columns: 1fr; gap: 32px; }
-      .about-visual { font-size: 6rem; }
-      .about-text .section-title { text-align: center; }
-      .about-text .section-label { display: inline-block; }
-      .about-text { text-align: center; }
-      .about-list li { text-align: left; }
-
-      section { padding: 60px 20px; }
-
+      .about-inner { grid-template-columns: 1fr; gap: 40px; }
+      .contact-inner { grid-template-columns: 1fr; gap: 40px; }
       .tiktok-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .footer-legal { flex-wrap: wrap; justify-content: center; }
     }
 
     @media (max-width: 480px) {
       .footer-top { grid-template-columns: 1fr; }
-      .tiktok-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
-      .footer-bottom { flex-direction: column; text-align: center; }
-      .footer-legal { flex-wrap: wrap; justify-content: center; }
+      .tiktok-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .hero-stats { flex-wrap: wrap; gap: 20px; }
     }
   </style>
 </head>
@@ -912,14 +931,14 @@
 
 <!-- HEADER -->
 <header id="header">
-  <a href="#inicio" class="logo">SQUISHALO</a>
+  <a href="#inicio" class="logo">Squish<span>alo</span></a>
   <nav>
     <a href="#inicio">Inicio</a>
     <a href="#productos">Productos</a>
-    <a href="#sobre-nosotros">Sobre nosotros</a>
+    <a href="#sobre-nosotros">Nosotros</a>
     <a href="#rastrear">Rastrear pedido</a>
     <a href="#contacto">Contacto</a>
-    <a href="#productos" class="cta-nav">🛒 Ver productos</a>
+    <a href="#productos" class="nav-cta">Ver productos</a>
   </nav>
   <button class="hamburger" id="hamburgerBtn" aria-label="Menú">
     <span></span><span></span><span></span>
@@ -931,350 +950,322 @@
   <button class="mobile-close" id="mobileClose">✕</button>
   <a href="#inicio" class="mobile-link">Inicio</a>
   <a href="#productos" class="mobile-link">Productos</a>
-  <a href="#sobre-nosotros" class="mobile-link">Sobre nosotros</a>
+  <a href="#sobre-nosotros" class="mobile-link">Nosotros</a>
   <a href="#rastrear" class="mobile-link">Rastrear pedido</a>
   <a href="#contacto" class="mobile-link">Contacto</a>
 </div>
 
 <!-- HERO -->
 <section id="inicio">
-  <div class="hero-blobs">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
+  <div class="hero-text">
+    <span class="hero-eyebrow">Squishys de calidad · España</span>
+    <h1 class="hero-title">Tócalo.<br>Apriétalo.<br><em>Squíshalo.</em></h1>
+    <p class="hero-sub">Los squishys más virales de España. Materiales seguros, texturas adictivas y diseños únicos.</p>
+    <div class="hero-actions">
+      <a href="#productos" class="btn-primary">Ver productos</a>
+      <a href="#sobre-nosotros" class="btn-outline">Sobre nosotros</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <span class="stat-num">500+</span>
+        <span class="stat-label">Clientes felices</span>
+      </div>
+      <div>
+        <span class="stat-num">4.9</span>
+        <span class="stat-label">Valoración media</span>
+      </div>
+      <div>
+        <span class="stat-num">100%</span>
+        <span class="stat-label">Pago seguro</span>
+      </div>
+    </div>
   </div>
-  <div class="hero-content">
-    <div class="hero-badge">✨ Los squishys más virales de España</div>
-    <span class="hero-emojis">🫧🌸💖</span>
-    <h1 class="hero-title">SQUISHALO</h1>
-    <p class="hero-slogan">Tócalo. Apriétalo. Squíshalo.</p>
-    <a href="#productos" class="btn-primary">Ver productos 🛍️</a>
-    <div class="hero-trust">
-      <span><span class="dot">●</span> Pago seguro Stripe</span>
-      <span><span class="dot">●</span> Squishys originales</span>
+  <div class="hero-visual">
+    <div class="hero-img-wrap">
+      <img src="pulpo-galaxy.png" alt="Pulpo Galaxy Squishy" />
     </div>
   </div>
 </section>
 
 <!-- TRUST BAR -->
 <div class="trust-bar">
-  <div class="trust-track" id="trustTrack">
-    <span class="trust-item"><span class="trust-icon">🔒</span> Pago seguro con Stripe</span>
-    <span class="trust-item"><span class="trust-icon">✅</span> Squishys originales</span>
-    <span class="trust-item"><span class="trust-icon">⭐</span> +500 clientes felices</span>
-    <span class="trust-item"><span class="trust-icon">💖</span> Los más virales de España</span>
-    <span class="trust-item"><span class="trust-icon">🔒</span> Pago seguro con Stripe</span>
-    <span class="trust-item"><span class="trust-icon">✅</span> Squishys originales</span>
-    <span class="trust-item"><span class="trust-icon">⭐</span> +500 clientes felices</span>
-    <span class="trust-item"><span class="trust-icon">💖</span> Los más virales de España</span>
+  <div class="trust-track">
+    <span class="trust-item"><span class="trust-dot"></span>Pago seguro con Stripe</span>
+    <span class="trust-item"><span class="trust-dot"></span>Squishys originales</span>
+    <span class="trust-item"><span class="trust-dot"></span>+500 clientes satisfechos</span>
+    <span class="trust-item"><span class="trust-dot"></span>Los más virales de España</span>
+    <span class="trust-item"><span class="trust-dot"></span>Material TPR certificado</span>
+    <span class="trust-item"><span class="trust-dot"></span>Pago seguro con Stripe</span>
+    <span class="trust-item"><span class="trust-dot"></span>Squishys originales</span>
+    <span class="trust-item"><span class="trust-dot"></span>+500 clientes satisfechos</span>
+    <span class="trust-item"><span class="trust-dot"></span>Los más virales de España</span>
+    <span class="trust-item"><span class="trust-dot"></span>Material TPR certificado</span>
   </div>
 </div>
 
 <!-- PRODUCTOS -->
 <section id="productos">
   <div class="section-header">
-    <span class="section-label">Catálogo</span>
+    <span class="section-eyebrow">Catálogo</span>
     <h2 class="section-title">Nuestros squishys</h2>
-    <p class="section-sub">Todos originales, certificados y con la textura más suave que hayas tocado jamás.</p>
+    <p class="section-sub">Seleccionados uno a uno. Solo vendemos lo que nosotros mismos elegiríamos.</p>
   </div>
 
   <div class="products-grid">
-
-    <div class="product-card reveal reveal-delay-1" style="cursor:pointer;" onclick="window.open('pulpo-galaxy.html','_blank')">
-      <div class="product-badge">🔥 Más vendido</div>
-      <div class="product-img" style="padding: 0;">
-        <img src="pulpo-galaxy.png" alt="Pulpo Galaxy Squishy" style="width:100%;height:100%;object-fit:cover;" />
+    <div class="product-card reveal reveal-delay-1" onclick="window.open('pulpo-galaxy.html','_blank')">
+      <div class="product-img">
+        <div class="product-badge">Más vendido</div>
+        <img src="pulpo-galaxy.png" alt="Pulpo Galaxy Squishy" />
       </div>
       <div class="product-body">
-        <div class="product-name">Pulpo Galaxy ✨</div>
-        <div class="product-desc">Pulpo transparente con estrellitas holográficas dentro. Textura suave y gelatinosa, imposible soltarlo.</div>
-        <div class="product-meta">
-          <div class="product-price">12,95€</div>
+        <div class="product-name">Pulpo Galaxy</div>
+        <div class="product-desc">Pulpo transparente con estrellitas holográficas. Textura gelatinosa y suave, imposible soltarlo.</div>
+        <div class="product-footer">
+          <span class="product-price">12,95€</span>
+          <a href="pulpo-galaxy.html" target="_blank" class="btn-buy" onclick="event.stopPropagation()">Comprar</a>
         </div>
-        <a href="pulpo-galaxy.html" target="_blank" class="btn-buy" onclick="event.stopPropagation()">🛒 Comprar ahora</a>
       </div>
     </div>
-
-
   </div>
 </section>
 
 <!-- TIKTOK -->
 <section id="tiktok">
   <div class="section-header">
-    <span class="section-label">Viral en TikTok</span>
+    <span class="section-eyebrow">Viral en TikTok</span>
     <h2 class="section-title">Como se ve en TikTok</h2>
-    <p class="section-sub">Nuestros squishys están arrasando. Más de 2 millones de views y contando.</p>
+    <p class="section-sub">Más de 2 millones de visualizaciones y contando.</p>
   </div>
 
   <div class="tiktok-grid">
-
     <div class="tiktok-card reveal reveal-delay-1">
       <div class="tiktok-play">▶</div>
-      <h4>Unboxing Oso Mochi Jumbo</h4>
-      <p>¡No puedo parar de apretarlo!</p>
-      <div class="tiktok-views">👁 842K views</div>
+      <h4>Unboxing Pulpo Galaxy</h4>
+      <div class="tiktok-views">842K visualizaciones</div>
     </div>
-
     <div class="tiktok-card reveal reveal-delay-2">
       <div class="tiktok-play">▶</div>
-      <h4>Asmr squishing pack x5</h4>
-      <p>El sonido más satisfactorio</p>
-      <div class="tiktok-views">👁 1.2M views</div>
+      <h4>Asmr squishing</h4>
+      <div class="tiktok-views">1.2M visualizaciones</div>
     </div>
-
     <div class="tiktok-card reveal reveal-delay-3">
       <div class="tiktok-play">▶</div>
-      <h4>Unicornio Galaxy unboxing</h4>
-      <p>¡Los colores son increíbles!</p>
-      <div class="tiktok-views">👁 670K views</div>
+      <h4>Review completa</h4>
+      <div class="tiktok-views">670K visualizaciones</div>
     </div>
-
   </div>
 
-  <div style="text-align:center; margin-top: 32px;">
-    <a href="https://www.tiktok.com/@squishal0" target="_blank" rel="noopener" class="btn-secondary">
-      🎵 Seguirnos en TikTok @squishal0
-    </a>
+  <div style="margin-top: 32px;">
+    <a href="https://www.tiktok.com/@squishal0" target="_blank" rel="noopener" class="btn-outline">Seguirnos en TikTok @squishal0</a>
   </div>
 </section>
 
 <!-- RESEÑAS -->
 <section id="resenas">
   <div class="section-header">
-    <span class="section-label">Opiniones reales</span>
+    <span class="section-eyebrow">Opiniones</span>
     <h2 class="section-title">Lo que dicen nuestros clientes</h2>
-    <p class="section-sub">Sin filtros, sin mentiras. Opiniones verificadas de clientes reales.</p>
+    <p class="section-sub">Opiniones reales de clientes verificados.</p>
   </div>
 
   <div class="reviews-grid">
-
     <div class="review-card reveal reveal-delay-1">
-      <div class="stars">★★★★★</div>
-      <p class="review-text">"¡El oso mochi es exactamente como en el vídeo de TikTok! La textura es increíblemente suave y el relleno slow rise es adictivo. Llegó en 2 días y el embalaje era muy cuidado. Ya he pedido 3 más."</p>
+      <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+      <p class="review-text">"La textura es increíblemente suave. Llegó en 2 días y el embalaje era muy cuidado. Ya he pedido 3 más."</p>
       <div class="reviewer">
         <div class="reviewer-avatar">👩</div>
         <div>
           <div class="reviewer-name">Laura M.</div>
-          <div class="reviewer-date">Hace 3 días · Madrid</div>
+          <div class="reviewer-date">Madrid · Hace 3 días</div>
         </div>
       </div>
-      <span class="review-verified">✓ Compra verificada</span>
     </div>
 
     <div class="review-card reveal reveal-delay-2">
-      <div class="stars">★★★★★</div>
-      <p class="review-text">"Compré el pack rainbow para mi hija de 8 años y está obsesionada. Los materiales se notan de calidad, nada de ese plástico barato que huele mal. El envío súper rápido. 100% recomendable."</p>
+      <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+      <p class="review-text">"Los materiales se notan de calidad. Mi hija está obsesionada. Nada que ver con los que venden en jugueterías."</p>
       <div class="reviewer">
         <div class="reviewer-avatar">👨</div>
         <div>
           <div class="reviewer-name">Carlos R.</div>
-          <div class="reviewer-date">Hace 1 semana · Barcelona</div>
+          <div class="reviewer-date">Barcelona · Hace 1 semana</div>
         </div>
       </div>
-      <span class="review-verified">✓ Compra verificada</span>
     </div>
 
     <div class="review-card reveal reveal-delay-3">
-      <div class="stars">★★★★★</div>
-      <p class="review-text">"La fresa scented huele INCREÍBLE. Pensé que sería un olor artificial horrible pero es suave y agradable. Ya no puedo trabajar sin tenerla en la mano. Mis compis de oficina quieren uno también jajaja."</p>
+      <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+      <p class="review-text">"Mis compañeros de oficina quieren uno también. Es imposible tenerlo en la mano y no apretarlo."</p>
       <div class="reviewer">
         <div class="reviewer-avatar">👩</div>
         <div>
           <div class="reviewer-name">Sofía P.</div>
-          <div class="reviewer-date">Hace 5 días · Valencia</div>
+          <div class="reviewer-date">Valencia · Hace 5 días</div>
         </div>
       </div>
-      <span class="review-verified">✓ Compra verificada</span>
     </div>
 
     <div class="review-card reveal reveal-delay-4">
-      <div class="stars">★★★★☆</div>
-      <p class="review-text">"Muy buenos productos, calidad notablemente superior a los que venden en jugueterías. El unicornio galaxy es precioso en persona, las fotos no le hacen justicia. Quito una estrella porque tardó 3 días en vez de 2."</p>
+      <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+      <p class="review-text">"Calidad notablemente superior. El pulpo galaxy es precioso en persona, las fotos no le hacen justicia."</p>
       <div class="reviewer">
         <div class="reviewer-avatar">👩</div>
         <div>
           <div class="reviewer-name">Ana T.</div>
-          <div class="reviewer-date">Hace 2 semanas · Sevilla</div>
+          <div class="reviewer-date">Sevilla · Hace 2 semanas</div>
         </div>
       </div>
-      <span class="review-verified">✓ Compra verificada</span>
     </div>
-
   </div>
 </section>
 
 <!-- GARANTÍAS -->
 <section id="garantias">
   <div class="section-header">
-    <span class="section-label">Transparencia total</span>
+    <span class="section-eyebrow">Garantías</span>
     <h2 class="section-title">Tu compra, protegida</h2>
-    <p class="section-sub">Porque compramos lo que vendemos. Cada squishy pasa por nuestros estándares de calidad.</p>
+    <p class="section-sub">Transparencia total. Sin letra pequeña.</p>
   </div>
 
   <div class="garantias-grid">
-
     <div class="garantia-card reveal reveal-delay-1">
-      <span class="garantia-icon">🔒</span>
+      <span class="garantia-num">01</span>
       <h3>Pago 100% seguro</h3>
-      <p>Procesamos todos los pagos a través de Stripe, el estándar mundial en seguridad de pagos online. Tus datos nunca se almacenan.</p>
+      <p>Procesamos todos los pagos a través de Stripe. Tus datos nunca se almacenan en nuestros servidores.</p>
     </div>
-
+    <div class="garantia-card reveal reveal-delay-2">
+      <span class="garantia-num">02</span>
+      <h3>Materiales seguros</h3>
+      <p>Material TPR de alta calidad, sin olor y libre de sustancias nocivas. Apto para todas las edades.</p>
+    </div>
+    <div class="garantia-card reveal reveal-delay-3">
+      <span class="garantia-num">03</span>
+      <h3>Soporte real</h3>
+      <p>Personas reales detrás de la marca. Escríbenos y te respondemos en menos de 24 horas.</p>
+    </div>
   </div>
 </section>
 
-<!-- STRIPE BADGE -->
-<div class="stripe-section">
-  <div class="stripe-badge">
-    <span style="font-size:2rem;">🔒</span>
-    <div>
-      <div class="stripe-logo">stripe</div>
-    </div>
-    <div class="stripe-text">
-      <strong>Pago 100% seguro con Stripe</strong>
-      <span>Tarjeta, Apple Pay, Google Pay · Sin guardar datos · Encriptación SSL</span>
-    </div>
-  </div>
+<!-- STRIPE BAR -->
+<div class="stripe-bar">
+  <span class="stripe-item"><span class="stripe-dot"></span>Pago verificado con Stripe</span>
+  <span class="stripe-item"><span class="stripe-dot"></span>Encriptación SSL</span>
+  <span class="stripe-item"><span class="stripe-dot"></span>Apple Pay · Google Pay · Tarjeta</span>
+  <span class="stripe-item"><span class="stripe-dot"></span>Datos protegidos</span>
 </div>
 
 <!-- SOBRE NOSOTROS -->
 <section id="sobre-nosotros">
   <div class="about-inner">
-    <div class="about-visual reveal">🫧</div>
-    <div class="about-text reveal reveal-delay-2">
-      <span class="section-label">Sobre nosotros</span>
+    <div class="about-img">
+      <div class="about-placeholder">🫧</div>
+    </div>
+    <div class="about-text">
+      <span class="section-eyebrow">Sobre nosotros</span>
       <h2 class="section-title">Somos Squishalo</h2>
-      <p style="color: var(--text-light); font-size: 0.95rem; line-height: 1.7; margin-top: 12px;">
-        Nacimos de una obsesión: encontrar los squishys más satisfactorios del mundo y traerlos a España con garantía de calidad real.
+      <p style="color: var(--gray-500); font-size: 0.95rem; line-height: 1.75;">
+        Nacimos de una obsesión: encontrar los squishys más satisfactorios del mundo y traerlos a España con garantía de calidad real. Somos una marca española, no un dropshipping genérico.
       </p>
       <ul class="about-list">
-        <li>
-          <span class="check">✓</span>
-          <span>Probamos cada producto antes de venderlo. Si no nos convence, no entra al catálogo.</span>
-        </li>
-        <li>
-          <span class="check">✓</span>
-          <span>Solo vendemos squishys con materiales certificados y seguros para niños y adultos.</span>
-        </li>
-        <li>
-          <span class="check">✓</span>
-          <span>Somos una marca española, no un dropshipping genérico. Aquí hay personas reales detrás.</span>
-        </li>
-        <li>
-          <span class="check">✓</span>
-          <span>Si algo sale mal, lo solucionamos. Esa es nuestra promesa.</span>
-        </li>
+        <li><span class="line"></span><span>Probamos cada producto antes de venderlo. Si no nos convence, no entra al catálogo.</span></li>
+        <li><span class="line"></span><span>Solo materiales certificados y seguros para niños y adultos.</span></li>
+        <li><span class="line"></span><span>Si algo sale mal, lo solucionamos. Sin preguntas.</span></li>
       </ul>
     </div>
   </div>
 </section>
 
-<!-- CONTACTO -->
-<section id="contacto" style="background: var(--off-white); text-align: center;">
-  <div class="section-header">
-    <span class="section-label">Contacto</span>
-    <h2 class="section-title">¿Tienes alguna pregunta?</h2>
-    <p class="section-sub">Estamos aquí para ayudarte. Escríbenos y te respondemos rápido.</p>
+<!-- RASTREAR -->
+<section id="rastrear">
+  <div class="tracking-wrap">
+    <span class="section-eyebrow">Seguimiento</span>
+    <h2 class="section-title">Rastrea tu pedido</h2>
+    <p class="section-sub" style="margin-top: 12px;">Introduce el número de seguimiento que te enviamos por email.</p>
+    <div class="tracking-form">
+      <input type="text" id="trackingInput" class="tracking-input" placeholder="Número de seguimiento" maxlength="60" autocomplete="off" />
+      <button class="btn-track" id="trackBtn">Rastrear</button>
+    </div>
+    <div class="tracking-error" id="trackingError">Introduce un número de seguimiento válido.</div>
+    <p class="tracking-note">
+      Detectamos tu transportista automáticamente. ¿Sin número? Búscalo en el email de confirmación.
+      <br>¿Problemas? <a href="mailto:squiishalo@gmail.com">squiishalo@gmail.com</a>
+    </p>
   </div>
-  <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 8px;">
-    <a href="https://instagram.com/squishal0" target="_blank" rel="noopener" class="btn-primary">
-      📸 @squishal0 en Instagram
-    </a>
-    <a href="mailto:hola@squishalo.com" class="btn-secondary">
-      ✉️ hola@squishalo.com
-    </a>
-  </div>
-  <p style="margin-top: 28px; font-size: 0.88rem; color: var(--text-light);">
-    Respondemos en menos de 24h · Lunes a viernes
-  </p>
 </section>
 
-<!-- RASTREAR PEDIDO -->
-<section id="rastrear">
-  <div class="section-header">
-    <span class="section-label">Seguimiento</span>
-    <h2 class="section-title">Rastrea tu pedido</h2>
-    <p class="section-sub">Introduce el número de seguimiento que te enviamos por email y consulta dónde está tu squishy.</p>
-  </div>
-
-  <div class="tracking-box reveal">
-    <div class="tracking-form">
-      <input
-        type="text"
-        id="trackingInput"
-        class="tracking-input"
-        placeholder="Pega aquí tu número de seguimiento"
-        maxlength="60"
-        autocomplete="off"
-      />
-      <button class="btn-track" id="trackBtn">📦 Rastrear</button>
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="contact-inner">
+    <div>
+      <span class="section-eyebrow">Contacto</span>
+      <h2 class="section-title">Estamos aquí para ayudarte</h2>
+      <p class="section-sub" style="margin-top:12px;">Respondemos en menos de 24 horas, de lunes a viernes.</p>
     </div>
-
-    <div class="tracking-error" id="trackingError">
-      ⚠️ Por favor, introduce un número de seguimiento.
+    <div class="contact-links">
+      <a href="https://instagram.com/squishal0" target="_blank" rel="noopener" class="contact-link">
+        <div class="contact-icon">📸</div>
+        <div>
+          <div>@squishal0 en Instagram</div>
+          <div class="contact-desc">Síguenos y escríbenos por DM</div>
+        </div>
+      </a>
+      <a href="mailto:squiishalo@gmail.com" class="contact-link">
+        <div class="contact-icon">✉️</div>
+        <div>
+          <div>squiishalo@gmail.com</div>
+          <div class="contact-desc">Respondemos en menos de 24h</div>
+        </div>
+      </a>
+      <a href="https://www.tiktok.com/@squishal0" target="_blank" rel="noopener" class="contact-link">
+        <div class="contact-icon">🎵</div>
+        <div>
+          <div>@squishal0 en TikTok</div>
+          <div class="contact-desc">Vídeos, unboxings y novedades</div>
+        </div>
+      </a>
     </div>
-
-    <p class="tracking-note">
-      Detectamos tu transportista automáticamente · Sin registro ni cuenta<br>
-      ¿No tienes el número? Búscalo en el email de confirmación de tu pedido.<br>
-      ¿Problemas? <a href="mailto:hola@squishalo.com">hola@squishalo.com</a>
-    </p>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div>
-        <div class="footer-logo">SQUISHALO</div>
-        <p class="footer-about">
-          Los squishys más virales de España. Calidad real, materiales certificados y envío rápido.
-          Tócalo. Apriétalo. Squíshalo.
-        </p>
-        <div class="social-links" style="margin-top:20px;">
-          <a href="https://instagram.com/squishal0" target="_blank" rel="noopener" class="social-link" title="Instagram">📸</a>
-          <a href="https://www.tiktok.com/@squishal0" target="_blank" rel="noopener" class="social-link" title="TikTok">🎵</a>
-        </div>
-      </div>
-
-      <div class="footer-col">
-        <h4>Tienda</h4>
-        <a href="#productos">Todos los productos</a>
-        <a href="#productos">Más vendidos</a>
-        <a href="#productos">Novedades</a>
-        <a href="#productos">Packs ahorro</a>
-      </div>
-
-      <div class="footer-col">
-        <h4>Ayuda</h4>
-        <a href="#contacto">Contacto</a>
-        <a href="#garantias">Pago seguro</a>
-      </div>
-
-      <div class="footer-col">
-        <h4>Legal</h4>
-        <a href="#">Aviso legal</a>
-        <a href="#">Política de privacidad</a>
-        <a href="#">Política de cookies</a>
-        <a href="#">Condiciones de venta</a>
-      </div>
+  <div class="footer-top">
+    <div>
+      <span class="footer-logo">Squish<span>alo</span></span>
+      <p class="footer-about">Los squishys más virales de España. Calidad real, materiales certificados. Tócalo. Apriétalo. Squíshalo.</p>
     </div>
-
-    <div class="footer-bottom">
-      <p>© 2025 Squishalo · squishalo.com · Todos los derechos reservados</p>
-      <div class="footer-legal">
-        <a href="#">Aviso legal</a>
-        <a href="#">Privacidad</a>
-        <a href="#">Cookies</a>
-      </div>
+    <div class="footer-col">
+      <h4>Tienda</h4>
+      <a href="#productos">Todos los productos</a>
+      <a href="#productos">Más vendidos</a>
+      <a href="#productos">Novedades</a>
+    </div>
+    <div class="footer-col">
+      <h4>Ayuda</h4>
+      <a href="#contacto">Contacto</a>
+      <a href="#rastrear">Rastrear pedido</a>
+      <a href="#garantias">Pago seguro</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="#">Aviso legal</a>
+      <a href="#">Privacidad</a>
+      <a href="#">Cookies</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Squishalo · squishalo.com</p>
+    <div class="footer-legal">
+      <a href="#">Aviso legal</a>
+      <a href="#">Privacidad</a>
+      <a href="#">Cookies</a>
     </div>
   </div>
 </footer>
 
 <!-- FLOATING CTA -->
 <div class="floating-cta" id="floatingCta">
-  <a href="#productos">🛍️ Ver productos</a>
+  <a href="#productos">Ver productos</a>
 </div>
 
 <script>
@@ -1282,40 +1273,29 @@
   const header = document.getElementById('header');
   window.addEventListener('scroll', () => {
     header.classList.toggle('scrolled', window.scrollY > 60);
-  });
-
-  // Floating CTA
-  const floatingCta = document.getElementById('floatingCta');
-  window.addEventListener('scroll', () => {
-    floatingCta.classList.toggle('show', window.scrollY > 400);
+    document.getElementById('floatingCta').classList.toggle('show', window.scrollY > 400);
   });
 
   // Mobile menu
-  const hamburgerBtn = document.getElementById('hamburgerBtn');
-  const mobileMenu = document.getElementById('mobileMenu');
-  const mobileClose = document.getElementById('mobileClose');
+  document.getElementById('hamburgerBtn').addEventListener('click', () => document.getElementById('mobileMenu').classList.add('open'));
+  document.getElementById('mobileClose').addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open'));
+  document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open')));
 
-  hamburgerBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
-  mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  // Reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  document.querySelectorAll('.mobile-link').forEach(link => {
-    link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+    });
   });
 
-  // Scroll reveal
-  const revealEls = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-
-  revealEls.forEach(el => observer.observe(el));
-
-  // Tracking — universal via 17track
+  // Tracking
   const trackBtn = document.getElementById('trackBtn');
   const trackingInput = document.getElementById('trackingInput');
   const trackingError = document.getElementById('trackingError');
@@ -1327,20 +1307,7 @@
     window.open(`https://t.17track.net/es#nums=${encodeURIComponent(num)}`, '_blank', 'noopener');
   });
 
-  trackingInput.addEventListener('keydown', e => {
-    if (e.key === 'Enter') trackBtn.click();
-  });
-
-  // Smooth scroll for nav links
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      const target = document.querySelector(a.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
-  });
+  trackingInput.addEventListener('keydown', e => { if (e.key === 'Enter') trackBtn.click(); });
 </script>
 </body>
 </html>

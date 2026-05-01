@@ -3,295 +3,282 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pulpo Galaxy – SQUISHALO</title>
-  <meta name="description" content="Pulpo squishy transparente con estrellitas. Material TPR seguro, textura suave y antiestrés. Compra en SQUISHALO." />
+  <title>Pulpo Galaxy – Squishalo</title>
+  <meta name="description" content="Pulpo squishy transparente con estrellitas holográficas. Material TPR seguro. Compra en Squishalo." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --pink: #E8409A;
-      --coral: #F0654A;
+      --pink: #D4307A;
+      --pink-light: #f7e8f1;
+      --black: #0e0e0e;
       --white: #ffffff;
-      --off-white: #FFF8FC;
-      --text: #1a1a1a;
-      --text-light: #666;
-      --radius: 20px;
-      --shadow: 0 4px 24px rgba(232,64,154,0.12);
+      --gray-50: #fafafa;
+      --gray-100: #f4f4f4;
+      --gray-300: #d4d4d4;
+      --gray-500: #737373;
+      --radius: 16px;
+      --radius-sm: 8px;
     }
 
     html { scroll-behavior: smooth; }
-    body { font-family: 'Nunito', sans-serif; color: var(--text); background: var(--white); }
-    h1, h2, h3 { font-family: 'Fredoka One', cursive; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--black);
+      background: var(--white);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3 { font-family: 'Playfair Display', serif; line-height: 1.15; }
 
     /* HEADER */
     header {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid #fce4f3;
-      padding: 14px 24px;
+      height: 64px;
+      padding: 0 48px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      background: rgba(255,255,255,0.97);
+      border-bottom: 1px solid var(--gray-100);
+      backdrop-filter: blur(12px);
     }
 
     .logo {
-      font-family: 'Fredoka One', cursive;
-      font-size: 1.6rem;
-      background: linear-gradient(135deg, var(--pink), var(--coral));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 1.4rem;
+      color: var(--black);
       text-decoration: none;
     }
+
+    .logo span { color: var(--pink); }
 
     .back-link {
       display: flex;
       align-items: center;
-      gap: 6px;
-      font-weight: 700;
-      font-size: 0.9rem;
-      color: var(--text-light);
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--gray-500);
       text-decoration: none;
       transition: color 0.2s;
     }
 
-    .back-link:hover { color: var(--pink); }
+    .back-link:hover { color: var(--black); }
 
     /* MAIN */
     main {
-      max-width: 1000px;
+      max-width: 1040px;
       margin: 0 auto;
-      padding: 48px 24px 80px;
+      padding: 56px 40px 96px;
     }
 
     .product-layout {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 60px;
+      gap: 72px;
       align-items: start;
     }
 
-    /* IMAGEN */
-    .product-image-wrap {
-      position: sticky;
-      top: 90px;
-    }
+    /* IMAGE */
+    .product-image-wrap { position: sticky; top: 80px; }
 
     .product-image {
-      border-radius: 28px;
-      overflow: hidden;
-      background: linear-gradient(135deg, #fce4f3, #fde8e1);
       aspect-ratio: 1;
-      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--gray-100);
     }
 
-    .product-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+    .product-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-    .image-badge {
+    .image-tag {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
       margin-top: 14px;
-      background: #f0fdf4;
-      color: #16a34a;
-      font-weight: 800;
-      font-size: 0.82rem;
-      padding: 6px 14px;
-      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--gray-500);
     }
 
-    /* INFO */
-    .product-info { display: flex; flex-direction: column; gap: 20px; }
+    .image-tag-dot { width: 6px; height: 6px; background: #22c55e; border-radius: 50%; }
 
-    .product-tag {
-      display: inline-block;
-      background: linear-gradient(135deg, #fce4f3, #fde8e1);
-      color: var(--pink);
-      font-weight: 800;
-      font-size: 0.78rem;
-      letter-spacing: 1px;
+    /* INFO */
+    .product-info { display: flex; flex-direction: column; gap: 24px; }
+
+    .product-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      padding: 5px 14px;
-      border-radius: 30px;
+      color: var(--pink);
     }
 
     .product-title {
-      font-size: 2.2rem;
-      line-height: 1.1;
-      background: linear-gradient(135deg, var(--pink), var(--coral));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--black);
     }
 
-    .product-price-block {
-      display: flex;
-      align-items: center;
-      gap: 12px;
+    .product-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--black);
     }
 
-    .price-main {
-      font-family: 'Fredoka One', cursive;
-      font-size: 2.6rem;
-      color: var(--pink);
-    }
-
-    .price-unit {
-      font-size: 0.88rem;
-      color: var(--text-light);
-      font-weight: 600;
-    }
-
-    .divider {
-      height: 1px;
-      background: #f5e4f0;
-    }
+    .divider { height: 1px; background: var(--gray-100); }
 
     .product-desc {
-      font-size: 1rem;
-      color: var(--text-light);
-      line-height: 1.75;
+      font-size: 0.92rem;
+      color: var(--gray-500);
+      line-height: 1.8;
     }
 
     /* FEATURES */
-    .features { display: flex; flex-direction: column; gap: 12px; }
+    .features { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--gray-100); border-radius: var(--radius); overflow: hidden; }
 
     .feature {
       display: flex;
       align-items: flex-start;
-      gap: 12px;
-      padding: 14px 16px;
-      background: var(--off-white);
-      border-radius: 14px;
+      gap: 16px;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--gray-100);
+      transition: background 0.2s;
     }
 
-    .feature-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .feature:last-child { border-bottom: none; }
+    .feature:hover { background: var(--gray-50); }
 
-    .feature-text strong { display: block; font-size: 0.92rem; margin-bottom: 2px; }
-    .feature-text span { font-size: 0.83rem; color: var(--text-light); line-height: 1.5; }
+    .feature-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--pink);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .feature-text strong { display: block; font-size: 0.88rem; font-weight: 600; margin-bottom: 3px; }
+    .feature-text span { font-size: 0.82rem; color: var(--gray-500); line-height: 1.5; }
 
     /* CTA */
-    .cta-block { display: flex; flex-direction: column; gap: 12px; }
+    .cta-block { display: flex; flex-direction: column; gap: 10px; }
 
     .btn-buy {
       display: block;
       text-align: center;
-      background: linear-gradient(135deg, var(--pink), var(--coral));
+      background: var(--black);
       color: white;
-      font-family: 'Fredoka One', cursive;
-      font-size: 1.2rem;
-      padding: 18px;
-      border-radius: 16px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      padding: 16px;
+      border-radius: var(--radius-sm);
       text-decoration: none;
-      box-shadow: 0 6px 30px rgba(232,64,154,0.3);
-      transition: transform 0.2s, box-shadow 0.2s;
+      letter-spacing: 0.02em;
+      transition: background 0.2s, transform 0.2s;
     }
 
-    .btn-buy:hover { transform: translateY(-3px); box-shadow: 0 10px 40px rgba(232,64,154,0.4); }
+    .btn-buy:hover { background: var(--pink); transform: translateY(-1px); }
 
     .stripe-note {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
-      font-size: 0.82rem;
-      color: var(--text-light);
-      font-weight: 700;
+      gap: 8px;
+      font-size: 0.78rem;
+      color: var(--gray-500);
+      font-weight: 500;
     }
 
+    .stripe-dot { width: 5px; height: 5px; background: #22c55e; border-radius: 50%; }
+
     /* RESPONSIVE */
-    @media (max-width: 700px) {
-      .product-layout { grid-template-columns: 1fr; gap: 32px; }
+    @media (max-width: 768px) {
+      header { padding: 0 24px; }
+      main { padding: 32px 24px 64px; }
+      .product-layout { grid-template-columns: 1fr; gap: 36px; }
       .product-image-wrap { position: static; }
       .product-title { font-size: 1.8rem; }
-      .price-main { font-size: 2rem; }
     }
   </style>
 </head>
 <body>
 
 <header>
-  <a href="index.html" class="logo">SQUISHALO</a>
+  <a href="index.html" class="logo">Squish<span>alo</span></a>
   <a href="index.html#productos" class="back-link">← Volver al catálogo</a>
 </header>
 
 <main>
   <div class="product-layout">
 
-    <!-- IMAGEN -->
     <div class="product-image-wrap">
       <div class="product-image">
         <img src="pulpo-galaxy.png" alt="Pulpo Galaxy Squishy" />
       </div>
-      <div class="image-badge">✅ Material TPR certificado · Sin olor</div>
+      <div class="image-tag">
+        <span class="image-tag-dot"></span>
+        Material TPR certificado · Sin olor · Apto todas las edades
+      </div>
     </div>
 
-    <!-- INFO -->
     <div class="product-info">
-
-      <span class="product-tag">✨ Squishy antiestrés</span>
-
+      <span class="product-eyebrow">Squishy antiestrés</span>
       <h1 class="product-title">Pulpo Galaxy</h1>
-
-      <div class="product-price-block">
-        <span class="price-main">12,95€</span>
-        <span class="price-unit">unidad</span>
-      </div>
-
+      <div class="product-price">12,95€</div>
       <div class="divider"></div>
-
       <p class="product-desc">
         Pulpo transparente con estrellitas holográficas flotando en su interior. Textura suave y gelatinosa, tentáculos que se mueven solos. Una vez que lo tienes en la mano, es imposible soltarlo.
       </p>
 
       <div class="features">
         <div class="feature">
-          <span class="feature-icon">🧪</span>
+          <span class="feature-num">01</span>
           <div class="feature-text">
             <strong>Material TPR de alta calidad</strong>
-            <span>Seguro para niños y adultos. Sin olor, sin sustancias nocivas. Apto para apretar repetidamente.</span>
+            <span>Seguro para niños y adultos. Sin olor, sin sustancias nocivas. Resistente al uso continuado.</span>
           </div>
         </div>
         <div class="feature">
-          <span class="feature-icon">🧘</span>
+          <span class="feature-num">02</span>
           <div class="feature-text">
             <strong>Antiestrés y antiansíedad</strong>
-            <span>Perfecto para momentos de tensión, exámenes, trabajo o largos viajes. Cabe en cualquier bolsillo.</span>
+            <span>Perfecto para momentos de tensión, exámenes o trabajo. Compacto, cabe en cualquier bolsillo.</span>
           </div>
         </div>
         <div class="feature">
-          <span class="feature-icon">🎉</span>
+          <span class="feature-num">03</span>
           <div class="feature-text">
             <strong>Para todas las edades</strong>
-            <span>Ideal como regalo, recuerdo de fiesta o juguete sensorial. Divertido tanto para niños como para adultos.</span>
+            <span>Ideal como regalo, juguete sensorial o coleccionable. Divertido tanto para niños como adultos.</span>
           </div>
         </div>
         <div class="feature">
-          <span class="feature-icon">👜</span>
+          <span class="feature-num">04</span>
           <div class="feature-text">
-            <strong>Compacto y portátil</strong>
-            <span>Pequeño y ligero. Cabe en un maletín, mochila o bolsillo de chaqueta sin ocupar espacio.</span>
+            <strong>Diseño holográfico único</strong>
+            <span>Estrellitas flotantes visibles desde todos los ángulos. Cada unidad es ligeramente distinta.</span>
           </div>
         </div>
       </div>
 
       <div class="cta-block">
-        <a href="https://buy.stripe.com/cNi28r3159uc834git2Ry0i" class="btn-buy">🛒 Comprar ahora · 12,95€</a>
-        <p class="stripe-note">🔒 Pago seguro con Stripe · Apple Pay · Google Pay</p>
+        <a href="https://buy.stripe.com/cNi28r3159uc834git2Ry0i" class="btn-buy">Comprar ahora — 12,95€</a>
+        <p class="stripe-note"><span class="stripe-dot"></span>Pago seguro con Stripe · Apple Pay · Google Pay</p>
       </div>
-
     </div>
+
   </div>
 </main>
 
