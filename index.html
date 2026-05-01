@@ -7,7 +7,7 @@
   <meta name="description" content="Squishys virales de calidad. Pago seguro con Stripe." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -17,12 +17,10 @@
       --coral: #F0654A;
       --coral-soft: #FCE0D9;
       --yellow: #FFD166;
-      --mint: #A8E6CF;
       --bg: #FFFAF8;
       --white: #ffffff;
       --black: #1C1C1E;
       --gray: #F2F2F7;
-      --text: #1C1C1E;
       --text-mid: #555;
       --text-light: #999;
       --radius-pill: 50px;
@@ -30,22 +28,15 @@
       --radius: 20px;
       --radius-sm: 12px;
       --shadow: 0 4px 28px rgba(232,64,154,0.10);
-      --shadow-lg: 0 12px 48px rgba(232,64,154,0.18);
+      --shadow-lg: 0 16px 56px rgba(232,64,154,0.18);
     }
 
     html { scroll-behavior: smooth; }
+    body { font-family: 'Nunito Sans', sans-serif; color: var(--black); background: var(--bg); overflow-x: hidden; font-size: 15px; line-height: 1.6; }
+    h1, h2, h3 { font-family: 'Nunito', sans-serif; }
+    a { text-decoration: none; color: inherit; }
 
-    body {
-      font-family: 'Nunito Sans', sans-serif;
-      color: var(--text);
-      background: var(--bg);
-      overflow-x: hidden;
-      font-size: 15px;
-    }
-
-    h1, h2, h3, .logo { font-family: 'Nunito', sans-serif; }
-
-    /* ── HEADER ── */
+    /* HEADER */
     header {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -59,112 +50,44 @@
     }
 
     header.scrolled {
-      background: rgba(255,250,248,0.95);
+      background: rgba(255,250,248,0.96);
       backdrop-filter: blur(12px);
-      box-shadow: 0 2px 20px rgba(232,64,154,0.08);
+      box-shadow: 0 2px 20px rgba(232,64,154,0.07);
     }
 
-    .logo {
-      font-size: 1.7rem;
-      font-weight: 900;
-      color: var(--black);
-      letter-spacing: -0.5px;
-    }
-
-    .logo span {
-      background: linear-gradient(135deg, var(--pink), var(--coral));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
+    .logo { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.7rem; color: var(--black); letter-spacing: -0.5px; }
+    .logo span { background: linear-gradient(135deg, var(--pink), var(--coral)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
     nav { display: flex; align-items: center; gap: 4px; }
-
-    nav a {
-      font-family: 'Nunito', sans-serif;
-      font-weight: 700;
-      font-size: 0.9rem;
-      color: var(--text-mid);
-      padding: 8px 16px;
-      border-radius: var(--radius-pill);
-      transition: background 0.2s, color 0.2s;
-      text-decoration: none;
-    }
-
+    nav a { font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.9rem; color: var(--text-mid); padding: 8px 16px; border-radius: var(--radius-pill); transition: background 0.2s, color 0.2s; }
     nav a:hover { background: var(--pink-soft); color: var(--pink); }
-
-    .nav-cta {
-      background: var(--black) !important;
-      color: white !important;
-      padding: 9px 22px !important;
-    }
-
+    .nav-cta { background: var(--black) !important; color: white !important; padding: 9px 22px !important; }
     .nav-cta:hover { background: var(--pink) !important; color: white !important; }
 
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      background: none;
-      border: none;
-    }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
+    .hamburger span { display: block; width: 24px; height: 2.5px; background: var(--black); border-radius: 2px; }
 
-    .hamburger span {
-      display: block;
-      width: 24px;
-      height: 2.5px;
-      background: var(--black);
-      border-radius: 2px;
-      transition: all 0.3s;
-    }
-
-    .mobile-menu {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: var(--bg);
-      z-index: 99;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 28px;
-    }
-
+    .mobile-menu { display: none; position: fixed; inset: 0; background: var(--bg); z-index: 99; flex-direction: column; align-items: center; justify-content: center; gap: 28px; }
     .mobile-menu.open { display: flex; }
-
-    .mobile-menu a {
-      font-family: 'Nunito', sans-serif;
-      font-size: 2rem;
-      font-weight: 900;
-      color: var(--black);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
+    .mobile-menu a { font-family: 'Nunito', sans-serif; font-size: 2rem; font-weight: 900; color: var(--black); transition: color 0.2s; }
     .mobile-menu a:hover { color: var(--pink); }
-
-    .mobile-close {
-      position: absolute;
-      top: 20px; right: 28px;
-      font-size: 1.8rem;
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: var(--text-light);
-    }
+    .mobile-close { position: absolute; top: 20px; right: 28px; font-size: 1.8rem; background: none; border: none; cursor: pointer; color: var(--text-light); }
 
     /* ── HERO ── */
     #inicio {
       min-height: 100vh;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      align-items: center;
-      gap: 40px;
-      padding: 100px 64px 60px;
+      padding-top: 70px;
+      overflow: hidden;
     }
 
-    .hero-text {}
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 64px 56px 64px 64px;
+    }
 
     .hero-pill {
       display: inline-flex;
@@ -174,17 +97,17 @@
       color: var(--pink);
       font-family: 'Nunito', sans-serif;
       font-weight: 800;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       padding: 6px 16px;
       border-radius: var(--radius-pill);
       margin-bottom: 24px;
-      letter-spacing: 0.3px;
+      width: fit-content;
     }
 
     .hero-pill-dot { width: 6px; height: 6px; background: var(--pink); border-radius: 50%; }
 
     .hero-title {
-      font-size: clamp(2.8rem, 5.5vw, 5rem);
+      font-size: clamp(2.6rem, 4.5vw, 4.2rem);
       font-weight: 900;
       line-height: 1.08;
       letter-spacing: -1.5px;
@@ -200,14 +123,14 @@
     }
 
     .hero-sub {
-      font-size: 1.05rem;
+      font-size: 1rem;
       color: var(--text-mid);
-      line-height: 1.7;
+      line-height: 1.75;
       margin-bottom: 36px;
-      max-width: 400px;
+      max-width: 380px;
     }
 
-    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 44px; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; }
 
     .btn-pink {
       display: inline-block;
@@ -218,7 +141,6 @@
       font-size: 0.95rem;
       padding: 14px 30px;
       border-radius: var(--radius-pill);
-      text-decoration: none;
       box-shadow: 0 6px 24px rgba(232,64,154,0.3);
       transition: transform 0.2s, box-shadow 0.2s;
     }
@@ -234,154 +156,76 @@
       font-size: 0.95rem;
       padding: 14px 28px;
       border-radius: var(--radius-pill);
-      border: 2px solid var(--gray);
-      text-decoration: none;
-      transition: border-color 0.2s, transform 0.2s;
+      border: 2px solid #E8E8E8;
+      transition: border-color 0.2s, color 0.2s, transform 0.2s;
     }
 
     .btn-ghost:hover { border-color: var(--pink); color: var(--pink); transform: translateY(-2px); }
 
-    .hero-trust {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
+    .hero-trust { display: flex; gap: 20px; flex-wrap: wrap; }
+    .hero-trust-item { display: flex; align-items: center; gap: 7px; font-size: 0.82rem; font-weight: 700; color: var(--text-light); }
+    .hero-trust-icon { width: 26px; height: 26px; background: var(--pink-soft); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; }
+
+    /* HERO VISUAL — imagen a sangre */
+    .hero-visual {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(160deg, var(--pink-soft) 0%, var(--coral-soft) 100%);
     }
 
-    .hero-trust-item {
+    .hero-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    .hero-visual-overlay {
+      position: absolute;
+      bottom: 24px;
+      left: 24px;
       display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .hero-tag {
+      display: inline-flex;
       align-items: center;
       gap: 6px;
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--text-light);
-    }
-
-    .hero-trust-icon {
-      width: 26px; height: 26px;
-      background: var(--pink-soft);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.75rem;
-    }
-
-    /* HERO VISUAL */
-    .hero-visual { position: relative; display: flex; align-items: center; justify-content: center; }
-
-    .hero-img-main {
-      width: 100%;
-      max-width: 460px;
-      aspect-ratio: 1;
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      background: linear-gradient(135deg, var(--pink-soft), var(--coral-soft));
-      box-shadow: var(--shadow-lg);
-    }
-
-    .hero-img-main img { width: 100%; height: 100%; object-fit: cover; }
-
-    .hero-blob {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(50px);
-      opacity: 0.25;
-      pointer-events: none;
-    }
-
-    .blob-a { width: 300px; height: 300px; background: var(--pink); top: -60px; right: -60px; }
-    .blob-b { width: 200px; height: 200px; background: var(--yellow); bottom: -40px; left: -40px; }
-
-    .hero-chip {
-      position: absolute;
-      background: white;
-      border-radius: var(--radius-sm);
-      padding: 10px 16px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px);
+      border-radius: var(--radius-pill);
+      padding: 7px 14px;
       font-family: 'Nunito', sans-serif;
       font-weight: 800;
-      font-size: 0.82rem;
-      white-space: nowrap;
+      font-size: 0.78rem;
+      color: var(--black);
+      width: fit-content;
     }
 
-    .hero-chip-1 { top: 20px; left: -20px; }
-    .hero-chip-2 { bottom: 30px; right: -16px; }
-    .hero-chip span { color: var(--pink); }
+    .hero-tag-dot { width: 6px; height: 6px; background: #22c55e; border-radius: 50%; }
 
     /* TRUST BAR */
-    .trust-bar {
-      background: linear-gradient(135deg, var(--pink), var(--coral));
-      padding: 13px 0;
-      overflow: hidden;
-    }
-
-    .trust-track {
-      display: flex;
-      gap: 56px;
-      animation: marquee 20s linear infinite;
-      white-space: nowrap;
-    }
-
-    @keyframes marquee {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    .trust-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: rgba(255,255,255,0.9);
-      font-family: 'Nunito', sans-serif;
-      font-weight: 700;
-      font-size: 0.85rem;
-      flex-shrink: 0;
-    }
-
-    .trust-sep { color: rgba(255,255,255,0.4); font-size: 1rem; }
+    .trust-bar { background: linear-gradient(135deg, var(--pink), var(--coral)); padding: 13px 0; overflow: hidden; }
+    .trust-track { display: flex; gap: 56px; animation: marquee 22s linear infinite; white-space: nowrap; }
+    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .trust-item { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.92); font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.85rem; flex-shrink: 0; }
+    .trust-sep { color: rgba(255,255,255,0.35); }
 
     /* SECTIONS */
     section { padding: 88px 64px; }
 
-    .section-pill {
-      display: inline-block;
-      background: var(--pink-soft);
-      color: var(--pink);
-      font-family: 'Nunito', sans-serif;
-      font-weight: 800;
-      font-size: 0.75rem;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      padding: 5px 14px;
-      border-radius: var(--radius-pill);
-      margin-bottom: 12px;
-    }
-
-    .section-title {
-      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-      font-weight: 900;
-      letter-spacing: -0.5px;
-      color: var(--black);
-      margin-bottom: 10px;
-    }
-
-    .section-sub {
-      font-size: 1rem;
-      color: var(--text-mid);
-      max-width: 460px;
-      line-height: 1.65;
-    }
-
+    .section-pill { display: inline-block; background: var(--pink-soft); color: var(--pink); font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; padding: 5px 14px; border-radius: var(--radius-pill); margin-bottom: 12px; }
+    .section-title { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 900; letter-spacing: -0.5px; color: var(--black); margin-bottom: 10px; }
+    .section-sub { font-size: 1rem; color: var(--text-mid); max-width: 460px; line-height: 1.65; }
     .section-header { margin-bottom: 52px; }
 
     /* PRODUCTS */
     #productos { background: var(--white); }
 
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 24px;
-    }
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
 
     .product-card {
       background: var(--bg);
@@ -392,457 +236,138 @@
       border: 2px solid transparent;
     }
 
-    .product-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-lg);
-      border-color: var(--pink-soft);
-    }
+    .product-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: var(--pink-soft); }
 
-    .product-img {
-      width: 100%;
-      aspect-ratio: 1;
-      overflow: hidden;
-      background: linear-gradient(135deg, var(--pink-soft), var(--coral-soft));
-      position: relative;
-    }
-
+    .product-img { width: 100%; aspect-ratio: 1; overflow: hidden; background: linear-gradient(135deg, var(--pink-soft), var(--coral-soft)); position: relative; }
     .product-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
     .product-card:hover .product-img img { transform: scale(1.05); }
 
-    .product-badge {
-      position: absolute;
-      top: 14px; left: 14px;
-      background: var(--black);
-      color: white;
-      font-family: 'Nunito', sans-serif;
-      font-weight: 800;
-      font-size: 0.72rem;
-      padding: 4px 12px;
-      border-radius: var(--radius-pill);
-    }
+    .product-badge { position: absolute; top: 14px; left: 14px; background: var(--black); color: white; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.72rem; padding: 4px 12px; border-radius: var(--radius-pill); }
 
     .product-body { padding: 20px 22px 22px; }
-
-    .product-name {
-      font-family: 'Nunito', sans-serif;
-      font-weight: 900;
-      font-size: 1.15rem;
-      color: var(--black);
-      margin-bottom: 6px;
-    }
-
+    .product-name { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.15rem; color: var(--black); margin-bottom: 6px; }
     .product-desc { font-size: 0.85rem; color: var(--text-mid); line-height: 1.6; margin-bottom: 16px; }
-
     .product-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .product-price { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.5rem; background: linear-gradient(135deg, var(--pink), var(--coral)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
-    .product-price {
-      font-family: 'Nunito', sans-serif;
-      font-weight: 900;
-      font-size: 1.5rem;
-      background: linear-gradient(135deg, var(--pink), var(--coral));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .btn-buy {
-      display: inline-block;
-      background: var(--black);
-      color: white;
-      font-family: 'Nunito', sans-serif;
-      font-weight: 800;
-      font-size: 0.85rem;
-      padding: 10px 20px;
-      border-radius: var(--radius-pill);
-      text-decoration: none;
-      transition: background 0.2s, transform 0.2s;
-      border: none;
-      cursor: pointer;
-    }
-
+    .btn-buy { display: inline-block; background: var(--black); color: white; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.85rem; padding: 10px 20px; border-radius: var(--radius-pill); transition: background 0.2s, transform 0.2s; border: none; cursor: pointer; }
     .btn-buy:hover { background: var(--pink); transform: scale(1.04); }
 
-    /* TIKTOK */
-    #tiktok { background: var(--bg); }
+    /* REVIEWS — sin borde, solo sombra */
+    #resenas { background: var(--bg); }
 
-    .tiktok-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      max-width: 780px;
-    }
-
-    .tiktok-card {
-      aspect-ratio: 9/16;
-      background: var(--black);
-      border-radius: var(--radius-lg);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 14px;
-      color: white;
-      text-align: center;
-      padding: 24px;
-      cursor: pointer;
-      transition: transform 0.3s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .tiktok-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(160deg, rgba(232,64,154,0.35), rgba(240,101,74,0.2));
-    }
-
-    .tiktok-card:hover { transform: scale(1.03); }
-
-    .tiktok-play {
-      width: 56px; height: 56px;
-      background: rgba(255,255,255,0.15);
-      border: 2px solid rgba(255,255,255,0.5);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.3rem;
-      position: relative;
-      z-index: 1;
-      backdrop-filter: blur(4px);
-    }
-
-    .tiktok-card h4 {
-      font-family: 'Nunito', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 700;
-      position: relative;
-      z-index: 1;
-    }
-
-    .tiktok-views {
-      position: absolute;
-      bottom: 14px; left: 14px;
-      font-size: 0.72rem;
-      font-weight: 600;
-      opacity: 0.55;
-      z-index: 1;
-      font-family: 'Nunito', sans-serif;
-    }
-
-    .tiktok-cta { margin-top: 32px; }
-
-    /* REVIEWS */
-    #resenas { background: var(--white); }
-
-    .reviews-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 20px;
-    }
+    .reviews-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
 
     .review-card {
-      background: var(--bg);
+      background: var(--white);
       border-radius: var(--radius-lg);
       padding: 28px;
-      border: 2px solid var(--pink-soft);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
       transition: transform 0.3s, box-shadow 0.3s;
     }
 
-    .review-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .review-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,0.1); }
 
     .stars { display: flex; gap: 2px; margin-bottom: 14px; }
-
-    .star {
-      width: 14px; height: 14px;
-      background: var(--yellow);
-      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-    }
+    .star { width: 14px; height: 14px; background: var(--yellow); clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); }
 
     .review-text { font-size: 0.9rem; color: var(--text-mid); line-height: 1.7; margin-bottom: 20px; }
-
     .reviewer { display: flex; align-items: center; gap: 12px; }
-
-    .reviewer-avatar {
-      width: 40px; height: 40px;
-      border-radius: 50%;
-      background: var(--pink-soft);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      flex-shrink: 0;
-    }
-
+    .reviewer-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--pink-soft); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
     .reviewer-name { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.9rem; }
     .reviewer-date { font-size: 0.77rem; color: var(--text-light); margin-top: 1px; }
 
     /* GARANTIAS */
     #garantias { background: var(--black); }
 
-    .garantias-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 20px;
-    }
+    .garantias-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
 
-    .garantia-card {
-      background: #1A1A1A;
-      border-radius: var(--radius-lg);
-      padding: 32px 28px;
-      border: 2px solid #2A2A2A;
-      transition: border-color 0.3s, transform 0.3s;
-    }
-
+    .garantia-card { background: #1A1A1A; border-radius: var(--radius-lg); padding: 32px 28px; border: 2px solid #2A2A2A; transition: border-color 0.3s, transform 0.3s; }
     .garantia-card:hover { border-color: var(--pink); transform: translateY(-4px); }
 
-    .garantia-icon {
-      width: 48px; height: 48px;
-      background: linear-gradient(135deg, var(--pink), var(--coral));
-      border-radius: var(--radius-sm);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
-      margin-bottom: 18px;
-    }
-
-    .garantia-card h3 {
-      font-family: 'Nunito', sans-serif;
-      font-weight: 900;
-      font-size: 1rem;
-      color: white;
-      margin-bottom: 8px;
-    }
-
+    .garantia-icon { width: 48px; height: 48px; background: linear-gradient(135deg, var(--pink), var(--coral)); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 18px; }
+    .garantia-card h3 { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1rem; color: white; margin-bottom: 8px; }
     .garantia-card p { font-size: 0.85rem; color: #666; line-height: 1.65; }
 
     /* SOBRE */
     #sobre-nosotros { background: var(--bg); }
 
-    .about-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 72px;
-      align-items: center;
-    }
+    .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
 
-    .about-img {
-      aspect-ratio: 4/5;
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      background: linear-gradient(135deg, var(--pink-soft), var(--coral-soft));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 9rem;
-    }
+    .about-img { aspect-ratio: 4/5; border-radius: var(--radius-lg); overflow: hidden; background: linear-gradient(135deg, var(--pink-soft), var(--coral-soft)); display: flex; align-items: center; justify-content: center; font-size: 9rem; }
 
     .about-list { list-style: none; margin-top: 20px; display: flex; flex-direction: column; gap: 12px; }
-
-    .about-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 0.92rem;
-      color: var(--text-mid);
-      line-height: 1.6;
-    }
-
-    .about-check {
-      width: 20px; height: 20px;
-      background: linear-gradient(135deg, var(--pink), var(--coral));
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.65rem;
-      color: white;
-      font-weight: 900;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
+    .about-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.92rem; color: var(--text-mid); line-height: 1.6; }
+    .about-check { width: 20px; height: 20px; background: linear-gradient(135deg, var(--pink), var(--coral)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; color: white; font-weight: 900; flex-shrink: 0; margin-top: 2px; }
 
     /* TRACKING */
     #rastrear { background: var(--white); }
 
-    .tracking-box {
-      max-width: 580px;
-      background: var(--bg);
-      border-radius: var(--radius-lg);
-      padding: 40px;
-      border: 2px solid var(--pink-soft);
-    }
+    .tracking-box { max-width: 560px; background: var(--bg); border-radius: var(--radius-lg); padding: 40px; box-shadow: 0 2px 20px rgba(232,64,154,0.08); }
 
     .tracking-form { display: flex; gap: 10px; margin-top: 24px; }
 
-    .tracking-input {
-      flex: 1;
-      padding: 14px 18px;
-      border: 2px solid #EEE;
-      border-radius: var(--radius-pill);
-      font-family: 'Nunito Sans', sans-serif;
-      font-size: 0.95rem;
-      outline: none;
-      background: white;
-      transition: border-color 0.2s;
-    }
-
+    .tracking-input { flex: 1; padding: 14px 18px; border: 2px solid #EEE; border-radius: var(--radius-pill); font-family: 'Nunito Sans', sans-serif; font-size: 0.95rem; outline: none; background: white; transition: border-color 0.2s; }
     .tracking-input:focus { border-color: var(--pink); }
     .tracking-input::placeholder { color: #CCC; }
 
-    .btn-track {
-      padding: 14px 24px;
-      background: linear-gradient(135deg, var(--pink), var(--coral));
-      color: white;
-      font-family: 'Nunito', sans-serif;
-      font-weight: 800;
-      font-size: 0.9rem;
-      border: none;
-      border-radius: var(--radius-pill);
-      cursor: pointer;
-      white-space: nowrap;
-      transition: opacity 0.2s, transform 0.2s;
-    }
-
+    .btn-track { padding: 14px 24px; background: linear-gradient(135deg, var(--pink), var(--coral)); color: white; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.9rem; border: none; border-radius: var(--radius-pill); cursor: pointer; white-space: nowrap; transition: opacity 0.2s, transform 0.2s; }
     .btn-track:hover { opacity: 0.88; transform: scale(1.03); }
 
     .tracking-error { display: none; font-size: 0.85rem; color: #E53E3E; margin-top: 10px; font-weight: 600; }
     .tracking-error.show { display: block; }
-
     .tracking-note { margin-top: 16px; font-size: 0.82rem; color: var(--text-light); line-height: 1.7; }
-    .tracking-note a { color: var(--pink); font-weight: 700; text-decoration: none; }
+    .tracking-note a { color: var(--pink); font-weight: 700; }
 
     /* CONTACTO */
     #contacto { background: var(--bg); }
 
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 72px;
-      align-items: center;
-    }
-
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
     .contact-links { display: flex; flex-direction: column; gap: 12px; margin-top: 28px; }
 
-    .contact-link {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 18px 20px;
-      background: white;
-      border-radius: var(--radius);
-      border: 2px solid var(--pink-soft);
-      font-family: 'Nunito', sans-serif;
-      font-weight: 800;
-      font-size: 0.9rem;
-      text-decoration: none;
-      color: var(--black);
-      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
-    }
+    .contact-link { display: flex; align-items: center; gap: 16px; padding: 18px 20px; background: white; border-radius: var(--radius); box-shadow: 0 2px 12px rgba(0,0,0,0.05); font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.9rem; color: var(--black); transition: transform 0.2s, box-shadow 0.2s; }
+    .contact-link:hover { transform: translateX(4px); box-shadow: var(--shadow); }
 
-    .contact-link:hover { border-color: var(--pink); transform: translateX(4px); box-shadow: var(--shadow); }
-
-    .contact-icon {
-      width: 40px; height: 40px;
-      background: var(--pink-soft);
-      border-radius: var(--radius-sm);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      flex-shrink: 0;
-    }
-
+    .contact-icon { width: 40px; height: 40px; background: var(--pink-soft); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
     .contact-desc { font-size: 0.78rem; color: var(--text-light); font-weight: 600; margin-top: 2px; }
 
     /* STRIPE */
-    .stripe-bar {
-      background: white;
-      border-top: 2px solid var(--pink-soft);
-      padding: 18px 64px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 32px;
-      flex-wrap: wrap;
-    }
-
-    .stripe-item {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--text-light);
-    }
-
+    .stripe-bar { background: white; border-top: 1px solid #F0F0F0; padding: 18px 64px; display: flex; align-items: center; justify-content: center; gap: 32px; flex-wrap: wrap; }
+    .stripe-item { display: flex; align-items: center; gap: 7px; font-size: 0.82rem; font-weight: 700; color: var(--text-light); }
     .stripe-dot { width: 7px; height: 7px; background: #22c55e; border-radius: 50%; }
 
-    /* FOOTER */
-    footer { background: var(--black); color: rgba(255,255,255,0.4); padding: 60px 64px 32px; }
+    /* FOOTER — simplificado */
+    footer { background: var(--black); color: rgba(255,255,255,0.4); padding: 48px 64px 28px; }
+
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
 
     .footer-top {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 48px;
-      margin-bottom: 48px;
-      padding-bottom: 40px;
-      border-bottom: 1px solid rgba(255,255,255,0.07);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
     }
 
-    .footer-logo {
-      font-family: 'Nunito', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 900;
-      color: white;
-      margin-bottom: 12px;
-      display: block;
-    }
+    .footer-brand {}
 
-    .footer-logo span {
-      background: linear-gradient(135deg, var(--pink), var(--coral));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
+    .footer-logo { font-family: 'Nunito', sans-serif; font-size: 1.4rem; font-weight: 900; color: white; display: block; margin-bottom: 8px; }
+    .footer-logo span { background: linear-gradient(135deg, var(--pink), var(--coral)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .footer-tagline { font-size: 0.85rem; color: rgba(255,255,255,0.35); max-width: 220px; line-height: 1.6; }
 
-    .footer-about { font-size: 0.85rem; line-height: 1.7; max-width: 260px; }
-
-    .footer-col h4 {
-      font-family: 'Nunito', sans-serif;
-      font-weight: 800;
-      font-size: 0.8rem;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
-      margin-bottom: 16px;
-    }
-
-    .footer-col a {
-      display: block;
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.3);
-      margin-bottom: 10px;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
+    .footer-links { display: flex; gap: 48px; }
+    .footer-col h4 { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.78rem; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 14px; }
+    .footer-col a { display: block; font-size: 0.85rem; color: rgba(255,255,255,0.3); margin-bottom: 8px; transition: color 0.2s; }
     .footer-col a:hover { color: white; }
 
-    .footer-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.07); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
     .footer-bottom p { font-size: 0.8rem; }
-
     .footer-legal { display: flex; gap: 20px; }
-    .footer-legal a { font-size: 0.8rem; color: rgba(255,255,255,0.3); text-decoration: none; transition: color 0.2s; }
+    .footer-legal a { font-size: 0.8rem; color: rgba(255,255,255,0.3); transition: color 0.2s; }
     .footer-legal a:hover { color: white; }
 
     /* REVEAL */
@@ -856,29 +381,16 @@
     /* FLOATING */
     .floating-cta { position: fixed; bottom: 28px; right: 28px; z-index: 80; display: none; }
     .floating-cta.show { display: block; }
-    .floating-cta a {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: linear-gradient(135deg, var(--pink), var(--coral));
-      color: white;
-      font-family: 'Nunito', sans-serif;
-      font-weight: 800;
-      font-size: 0.88rem;
-      padding: 13px 24px;
-      border-radius: var(--radius-pill);
-      box-shadow: 0 6px 28px rgba(232,64,154,0.35);
-      text-decoration: none;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .floating-cta a:hover { transform: translateY(-2px); box-shadow: 0 10px 36px rgba(232,64,154,0.45); }
+    .floating-cta a { display: flex; align-items: center; gap: 8px; background: linear-gradient(135deg, var(--pink), var(--coral)); color: white; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.88rem; padding: 13px 24px; border-radius: var(--radius-pill); box-shadow: 0 6px 28px rgba(232,64,154,0.35); transition: transform 0.2s; }
+    .floating-cta a:hover { transform: translateY(-2px); }
 
     /* RESPONSIVE */
     @media (max-width: 1024px) {
       section { padding: 72px 40px; }
-      #inicio { padding: 100px 40px 60px; }
+      #inicio { padding-top: 70px; }
+      .hero-text { padding: 48px 40px; }
       .stripe-bar { padding: 16px 40px; }
-      footer { padding: 48px 40px 28px; }
+      footer { padding: 40px 40px 24px; }
       header { padding: 0 32px; }
     }
 
@@ -887,26 +399,23 @@
       .hamburger { display: flex; }
       header { padding: 0 24px; }
 
-      #inicio { grid-template-columns: 1fr; padding: 100px 24px 48px; gap: 36px; min-height: auto; }
-      .hero-visual { order: -1; }
-      .hero-img-main { max-width: 100%; }
-      .hero-chip { display: none; }
+      #inicio { grid-template-columns: 1fr; min-height: auto; }
+      .hero-text { padding: 100px 24px 40px; order: 2; }
+      .hero-visual { order: 1; height: 60vw; min-height: 280px; }
 
       section { padding: 60px 24px; }
       .stripe-bar { padding: 14px 24px; gap: 14px; }
-      footer { padding: 40px 24px 24px; }
+      footer { padding: 36px 24px 20px; }
 
-      .footer-top { grid-template-columns: 1fr 1fr; }
-      .footer-top > div:first-child { grid-column: 1 / -1; }
       .about-inner { grid-template-columns: 1fr; gap: 36px; }
       .contact-grid { grid-template-columns: 1fr; gap: 36px; }
-      .tiktok-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { flex-direction: column; gap: 28px; }
+      .footer-links { gap: 32px; }
       .footer-bottom { flex-direction: column; text-align: center; }
     }
 
     @media (max-width: 480px) {
-      .footer-top { grid-template-columns: 1fr; }
-      .tiktok-grid { gap: 12px; }
+      .footer-links { flex-wrap: wrap; gap: 24px; }
     }
   </style>
 </head>
@@ -956,13 +465,11 @@
   </div>
 
   <div class="hero-visual">
-    <div class="hero-blob blob-a"></div>
-    <div class="hero-blob blob-b"></div>
-    <div class="hero-img-main">
-      <img src="pulpo-galaxy.png" alt="Pulpo Galaxy Squishy" />
+    <img src="pulpo-galaxy.png" alt="Pulpo Galaxy Squishy" />
+    <div class="hero-visual-overlay">
+      <div class="hero-tag"><span class="hero-tag-dot"></span>Material TPR certificado</div>
+      <div class="hero-tag"><span class="hero-tag-dot"></span>Pago seguro con Stripe</div>
     </div>
-    <div class="hero-chip hero-chip-1">Material TPR <span>seguro</span> ✓</div>
-    <div class="hero-chip hero-chip-2"><span>+500</span> clientes felices 🧡</div>
   </div>
 </section>
 
@@ -1017,37 +524,6 @@
   </div>
 </section>
 
-<!-- TIKTOK -->
-<section id="tiktok">
-  <div class="section-header">
-    <span class="section-pill">Viral en TikTok</span>
-    <h2 class="section-title">Como se ve en TikTok</h2>
-    <p class="section-sub">Más de 2 millones de visualizaciones y contando.</p>
-  </div>
-
-  <div class="tiktok-grid">
-    <div class="tiktok-card reveal reveal-delay-1">
-      <div class="tiktok-play">▶</div>
-      <h4>Unboxing Pulpo Galaxy</h4>
-      <div class="tiktok-views">842K views</div>
-    </div>
-    <div class="tiktok-card reveal reveal-delay-2">
-      <div class="tiktok-play">▶</div>
-      <h4>Asmr squishing</h4>
-      <div class="tiktok-views">1.2M views</div>
-    </div>
-    <div class="tiktok-card reveal reveal-delay-3">
-      <div class="tiktok-play">▶</div>
-      <h4>Review completa</h4>
-      <div class="tiktok-views">670K views</div>
-    </div>
-  </div>
-
-  <div class="tiktok-cta">
-    <a href="https://www.tiktok.com/@squishal0" target="_blank" rel="noopener" class="btn-ghost">Seguirnos en TikTok @squishal0</a>
-  </div>
-</section>
-
 <!-- RESEÑAS -->
 <section id="resenas">
   <div class="section-header">
@@ -1062,10 +538,7 @@
       <p class="review-text">"La textura es increíblemente suave. Llegó en 2 días y el embalaje era muy cuidado. Ya he pedido 3 más."</p>
       <div class="reviewer">
         <div class="reviewer-avatar">👩</div>
-        <div>
-          <div class="reviewer-name">Laura M.</div>
-          <div class="reviewer-date">Madrid · Hace 3 días</div>
-        </div>
+        <div><div class="reviewer-name">Laura M.</div><div class="reviewer-date">Madrid · Hace 3 días</div></div>
       </div>
     </div>
     <div class="review-card reveal reveal-delay-2">
@@ -1073,10 +546,7 @@
       <p class="review-text">"Los materiales se notan de calidad. Mi hija está obsesionada. Nada que ver con los que venden en jugueterías."</p>
       <div class="reviewer">
         <div class="reviewer-avatar">👨</div>
-        <div>
-          <div class="reviewer-name">Carlos R.</div>
-          <div class="reviewer-date">Barcelona · Hace 1 semana</div>
-        </div>
+        <div><div class="reviewer-name">Carlos R.</div><div class="reviewer-date">Barcelona · Hace 1 semana</div></div>
       </div>
     </div>
     <div class="review-card reveal reveal-delay-3">
@@ -1084,10 +554,7 @@
       <p class="review-text">"Mis compañeros de oficina quieren uno también. Es imposible tenerlo en la mano y no apretarlo."</p>
       <div class="reviewer">
         <div class="reviewer-avatar">👩</div>
-        <div>
-          <div class="reviewer-name">Sofía P.</div>
-          <div class="reviewer-date">Valencia · Hace 5 días</div>
-        </div>
+        <div><div class="reviewer-name">Sofía P.</div><div class="reviewer-date">Valencia · Hace 5 días</div></div>
       </div>
     </div>
     <div class="review-card reveal reveal-delay-4">
@@ -1095,10 +562,7 @@
       <p class="review-text">"Calidad notablemente superior. El pulpo galaxy es precioso en persona, las fotos no le hacen justicia."</p>
       <div class="reviewer">
         <div class="reviewer-avatar">👩</div>
-        <div>
-          <div class="reviewer-name">Ana T.</div>
-          <div class="reviewer-date">Sevilla · Hace 2 semanas</div>
-        </div>
+        <div><div class="reviewer-name">Ana T.</div><div class="reviewer-date">Sevilla · Hace 2 semanas</div></div>
       </div>
     </div>
   </div>
@@ -1107,11 +571,10 @@
 <!-- GARANTÍAS -->
 <section id="garantias">
   <div class="section-header">
-    <span class="section-pill" style="background:rgba(232,64,154,0.2); color:var(--pink);">Garantías</span>
+    <span class="section-pill" style="background:rgba(232,64,154,0.2);color:var(--pink);">Garantías</span>
     <h2 class="section-title" style="color:white;">Tu compra, protegida</h2>
     <p class="section-sub" style="color:rgba(255,255,255,0.45);">Transparencia total. Sin letra pequeña.</p>
   </div>
-
   <div class="garantias-grid">
     <div class="garantia-card reveal reveal-delay-1">
       <div class="garantia-icon">🔒</div>
@@ -1146,7 +609,7 @@
     <div>
       <span class="section-pill">Sobre nosotros</span>
       <h2 class="section-title" style="margin-top:12px;">Somos Squishalo</h2>
-      <p style="color:var(--text-mid); font-size:0.95rem; line-height:1.75; margin-top:12px;">
+      <p style="color:var(--text-mid);font-size:0.95rem;line-height:1.75;margin-top:12px;">
         Nacimos de una obsesión: encontrar los squishys más satisfactorios del mundo y traerlos a España con garantía de calidad real. Somos una marca española, no un dropshipping genérico.
       </p>
       <ul class="about-list">
@@ -1161,9 +624,8 @@
 <!-- RASTREAR -->
 <section id="rastrear">
   <span class="section-pill">Seguimiento</span>
-  <h2 class="section-title" style="margin-top:12px; margin-bottom:10px;">Rastrea tu pedido</h2>
-  <p class="section-sub" style="margin-bottom:0;">Introduce el número de seguimiento que te enviamos por email.</p>
-
+  <h2 class="section-title" style="margin-top:12px;margin-bottom:10px;">Rastrea tu pedido</h2>
+  <p class="section-sub">Introduce el número de seguimiento que te enviamos por email.</p>
   <div class="tracking-box" style="margin-top:36px;">
     <div class="tracking-form">
       <input type="text" id="trackingInput" class="tracking-input" placeholder="Número de seguimiento" maxlength="60" autocomplete="off" />
@@ -1188,24 +650,15 @@
     <div class="contact-links">
       <a href="https://instagram.com/squishal0" target="_blank" rel="noopener" class="contact-link">
         <div class="contact-icon">📸</div>
-        <div>
-          <div>@squishal0 en Instagram</div>
-          <div class="contact-desc">Síguenos y escríbenos por DM</div>
-        </div>
+        <div><div>@squishal0 en Instagram</div><div class="contact-desc">Síguenos y escríbenos por DM</div></div>
       </a>
       <a href="mailto:squiishalo@gmail.com" class="contact-link">
         <div class="contact-icon">✉️</div>
-        <div>
-          <div>squiishalo@gmail.com</div>
-          <div class="contact-desc">Respondemos en menos de 24h</div>
-        </div>
+        <div><div>squiishalo@gmail.com</div><div class="contact-desc">Respondemos en menos de 24h</div></div>
       </a>
       <a href="https://www.tiktok.com/@squishal0" target="_blank" rel="noopener" class="contact-link">
         <div class="contact-icon">🎵</div>
-        <div>
-          <div>@squishal0 en TikTok</div>
-          <div class="contact-desc">Vídeos, unboxings y novedades</div>
-        </div>
+        <div><div>@squishal0 en TikTok</div><div class="contact-desc">Vídeos, unboxings y novedades</div></div>
       </a>
     </div>
   </div>
@@ -1213,36 +666,34 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-top">
-    <div>
-      <span class="footer-logo">Squish<span>alo</span></span>
-      <p class="footer-about">Los squishys más virales de España. Calidad real, materiales certificados. Tócalo. Apriétalo. Squíshalo.</p>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="footer-logo">Squish<span>alo</span></span>
+        <p class="footer-tagline">Los squishys más virales de España. Tócalo. Apriétalo. Squíshalo.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Tienda</h4>
+          <a href="#productos">Productos</a>
+          <a href="#resenas">Opiniones</a>
+          <a href="#rastrear">Rastrear pedido</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="#">Aviso legal</a>
+          <a href="#">Privacidad</a>
+          <a href="#">Cookies</a>
+        </div>
+      </div>
     </div>
-    <div class="footer-col">
-      <h4>Tienda</h4>
-      <a href="#productos">Todos los productos</a>
-      <a href="#productos">Más vendidos</a>
-      <a href="#productos">Novedades</a>
-    </div>
-    <div class="footer-col">
-      <h4>Ayuda</h4>
-      <a href="#contacto">Contacto</a>
-      <a href="#rastrear">Rastrear pedido</a>
-      <a href="#garantias">Pago seguro</a>
-    </div>
-    <div class="footer-col">
-      <h4>Legal</h4>
-      <a href="#">Aviso legal</a>
-      <a href="#">Privacidad</a>
-      <a href="#">Cookies</a>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>© 2025 Squishalo · squishalo.com</p>
-    <div class="footer-legal">
-      <a href="#">Aviso legal</a>
-      <a href="#">Privacidad</a>
-      <a href="#">Cookies</a>
+    <div class="footer-bottom">
+      <p>© 2025 Squishalo · squishalo.com</p>
+      <div class="footer-legal">
+        <a href="#">Aviso legal</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Cookies</a>
+      </div>
     </div>
   </div>
 </footer>
