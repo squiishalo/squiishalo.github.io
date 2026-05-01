@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SQUISHALO – Tócalo. Apriétalo. Squíshalo.</title>
+  <meta name="description" content="Squishys virales de calidad. Pago seguro con Stripe." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --pink: #E8409A;
+      --coral: #F0654A;
+      --white: #ffffff;
+      --off-white: #FFF8FC;
+      --gray: #f5f5f5;
+      --text: #1a1a1a;
+      --text-light: #666;
+      --radius: 20px;
+      --shadow: 0 4px 24px rgba(232,64,154,0.12);
+      --shadow-hover: 0 8px 40px rgba(232,64,154,0.22);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, .logo { font-family: 'Fredoka One', cursive; }
+
+    /* ── HEADER ── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.3s, box-shadow 0.3s, padding 0.3s;
+    }
+
+    header.scrolled {
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 2px 20px rgba(232,64,154,0.1);
+      padding: 10px 24px;
+    }
+
+    .logo {
+      font-size: 2rem;
+      background: linear-gradient(135deg, var(--pink), var(--coral));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -1px;
+    }
+
+    nav { display: flex; gap: 8px; align-items: center; }
+
+    nav a {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text);
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 30px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    nav a:hover { background: var(--pink); color: white; }
+
+    nav .cta-nav {
+      background: linear-gradient(135deg, var(--pink), var(--coral));
+      color: white;
+      padding: 8px 20px;
+    }
+
+    nav .cta-nav:hover { opacity: 0.88; color: white; background: linear-gradient(135deg, var(--pink), var(--coral)); }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 3px;
+      background: var(--pink);
+      border-radius: 3px;
+      transition: all 0.3s;
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(255,255,255,0.98);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+    }
+
+    .mobile-menu.open { display: flex; }
+
+    .mobile-menu a {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2rem;
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .mobile-menu a:hover { color: var(--pink); }
+
+    .mobile-close {
+      position: absolute;
+      top: 20px; right: 24px;
+      font-size: 2.2rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--pink);
+      font-family: 'Fredoka One', cursive;
+    }
+
+    /* ── HERO ── */
+    #inicio {
+      min-height: 100vh;
+      background: linear-gradient(160deg, #fff8fc 0%, #fce4f3 40%, #fde8e1 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-blobs {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.35;
+    }
+
+    .blob-1 { width: 400px; height: 400px; background: var(--pink); top: -100px; left: -100px; }
+    .blob-2 { width: 300px; height: 300px; background: var(--coral); bottom: -80px; right: -80px; }
+    .blob-3 { width: 200px; height: 200px; background: #ffb3d9; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+
+    .hero-content { position: relative; z-index: 1; max-width: 700px; }
+
+    .hero-badge {
+      display: inline-block;
+      background: white;
+      border: 2px solid var(--pink);
+      color: var(--pink);
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 6px 18px;
+      border-radius: 30px;
+      margin-bottom: 24px;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 10vw, 6rem);
+      line-height: 1.05;
+      background: linear-gradient(135deg, var(--pink), var(--coral));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+    }
+
+    .hero-slogan {
+      font-size: clamp(1.1rem, 3vw, 1.5rem);
+      color: var(--text-light);
+      font-weight: 600;
+      margin-bottom: 32px;
+    }
+
+    .hero-emojis { font-size: 2.5rem; margin-bottom: 16px; display: block; }
+
+    .btn-primary {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--pink), var(--coral));
+      color: white;
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.2rem;
+      padding: 16px 40px;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 6px 30px rgba(232,64,154,0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 40px rgba(232,64,154,0.45); }
+
+    .btn-secondary {
+      display: inline-block;
+      background: white;
+      color: var(--pink);
+      font-family: 'Fredoka One', cursive;
+      font-size: 1rem;
+      padding: 12px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 2px solid var(--pink);
+      cursor: pointer;
+    }
+
+    .btn-secondary:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+
+    .hero-trust {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 36px;
+    }
+
+    .hero-trust span {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-light);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-trust .dot { color: var(--pink); font-size: 1.2rem; }
+
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      background: linear-gradient(135deg, var(--pink), var(--coral));
+      padding: 14px 24px;
+      overflow: hidden;
+    }
+
+    .trust-track {
+      display: flex;
+      gap: 60px;
+      animation: marquee 20s linear infinite;
+      white-space: nowrap;
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: white;
+      font-weight: 700;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .trust-icon { font-size: 1.1rem; }
+
+    /* ── SECTION COMMON ── */
+    section { padding: 80px 24px; }
+
+    .section-label {
+      display: inline-block;
+      background: linear-gradient(135deg, #fce4f3, #fde8e1);
+      color: var(--pink);
+      font-weight: 800;
+      font-size: 0.8rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 30px;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, var(--pink), var(--coral));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-sub {
+      color: var(--text-light);
+      font-size: 1.05rem;
+      max-width: 500px;
+      margin: 0 auto 48px;
+    }
+
+    .section-header { text-align: center; }
+
+    /* ── PRODUCTOS ── */
+    #productos { background: var(--off-white); }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 28px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+    }
+
+    .product-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+
+    .product-badge {
+      position: absolute;
+      top: 14px; left: 14px;
+      background: linear-gradient(135deg, var(--pink), var(--coral));
+      color: white;
+      font-weight: 800;
+      font-size: 0.75rem;
+      padding: 4px 12px;
+      border-radius: 20px;
+      z-index: 1;
+    }
+
+    .product-img {
+      width: 100%;
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      background: linear-gradient(135deg, #fce4f3, #fde8e1);
+    }
+
+    .product-body { padding: 20px; }
+
+    .product-name {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.25rem;
+      margin-bottom: 6px;
+    }
+
+    .product-desc {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .product-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .product-price {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.6rem;
+      color: var(--pink);
+    }
+
+    .product-price .old-price {
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.9rem;
+      color: #aaa;
+      text-decoration: line-through;
+      margin-left: 6px;
+    }
+
+    .product-shipping {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #22c55e;
+      margin-bottom: 14px;
+    }
+
+    .product-shipping::before { content: "🚚 "; }
+
+    .btn-buy {
+      display: block;
+      width: 100%;
+      text-align: center;
+      background: linear-gradient(135deg, var(--pink), var(--coral));
+      color: white;
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.05rem;
+      padding: 12px;
+      border-radius: 14px;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-buy:hover { opacity: 0.88; transform: scale(1.02); }
+
+    /* ── TIKTOK ── */
+    #tiktok { background: white; }
+
+    .tiktok-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .tiktok-card {
+      aspect-ratio: 9/16;
+      background: linear-gradient(160deg, #1a1a1a, #2d2d2d);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: white;
+      text-align: center;
+      padding: 24px;
+      cursor: pointer;
+      transition: transform 0.3s;
+      position: relative;
+    }
+
+    .tiktok-card:hover { transform: scale(1.03); }
+
+    .tiktok-play {
+      width: 64px; height: 64px;
+      background: linear-gradient(135deg, var(--pink), var(--coral));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+    }
+
+    .tiktok-card h4 { font-family: 'Fredoka One', cursive; font-size: 1rem; }
+    .tiktok-card p { font-size: 0.8rem; opacity: 0.7; }
+
+    .tiktok-views {
+      position: absolute;
+      bottom: 14px; left: 14px;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(4px);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    /* ── REVIEWS ── */
+    #resenas { background: var(--off-white); }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .review-card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s;
+    }
+
+    .review-card:hover { transform: translateY(-4px); }
+
+    .stars { color: #FBBF24; font-size: 1.1rem; margin-bottom: 12px; }
+
+    .review-text {
+      color: var(--text);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .reviewer {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .reviewer-avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--pink), var(--coral));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .reviewer-name { font-weight: 800; font-size: 0.95rem; }
+    .reviewer-date { font-size: 0.8rem; color: var(--text-light); }
+
+    .review-verified {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #22c55e;
+      background: #f0fdf4;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-top: 8px;
+    }
+
+    /* ── GARANTÍAS ── */
+    #garantias { background: white; }
+
+    .garantias-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .garantia-card {
+      text-align: center;
+      padding: 36px 24px;
+      border-radius: var(--radius);
+      border: 2px solid #f5f5f5;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+
+    .garantia-card:hover {
+      border-color: var(--pink);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .garantia-icon {
+      font-size: 3rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .garantia-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+      font-family: 'Fredoka One', cursive;
+    }
+
+    .garantia-card p {
+      font-size: 0.88rem;
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    /* ── STRIPE BADGE ── */
+    .stripe-section {
+      background: linear-gradient(135deg, #f8faff, #f0f4ff);
+      padding: 48px 24px;
+      text-align: center;
+    }
+
+    .stripe-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: white;
+      border: 2px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 16px 28px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+
+    .stripe-logo {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.5rem;
+      color: #635bff;
+    }
+
+    .stripe-text { text-align: left; }
+    .stripe-text strong { display: block; font-size: 0.95rem; }
+    .stripe-text span { font-size: 0.8rem; color: var(--text-light); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0f0f0f;
+      color: #ccc;
+      padding: 60px 24px 32px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-logo {
+      font-size: 2rem;
+      background: linear-gradient(135deg, var(--pink), var(--coral));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+    }
+
+    .footer-about { font-size: 0.88rem; line-height: 1.7; color: #888; max-width: 280px; }
+
+    .footer-col h4 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1rem;
+      color: white;
+      margin-bottom: 16px;
+    }
+
+    .footer-col a {
+      display: block;
+      font-size: 0.88rem;
+      color: #888;
+      text-decoration: none;
+      margin-bottom: 8px;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover { color: var(--pink); }
+
+    .social-links { display: flex; gap: 12px; margin-top: 8px; }
+
+    .social-link {
+      width: 38px; height: 38px;
+      background: #1f1f1f;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .social-link:hover { background: var(--pink); transform: scale(1.1); }
+
+    .footer-bottom {
+      border-top: 1px solid #1f1f1f;
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-bottom p { font-size: 0.82rem; color: #555; }
+
+    .footer-legal { display: flex; gap: 16px; }
+    .footer-legal a { font-size: 0.82rem; color: #555; text-decoration: none; transition: color 0.2s; }
+    .footer-legal a:hover { color: var(--pink); }
+
+    /* ── SCROLL ANIMATIONS ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+    .reveal-delay-6 { transition-delay: 0.6s; }
+
+    /* ── FLOATING CTA ── */
+    .floating-cta {
+      position: fixed;
+      bottom: 28px;
+      right: 24px;
+      z-index: 800;
+      display: none;
+    }
+
+    .floating-cta.show { display: block; }
+
+    .floating-cta a {
+      background: linear-gradient(135deg, var(--pink), var(--coral));
+      color: white;
+      font-family: 'Fredoka One', cursive;
+      font-size: 1rem;
+      padding: 14px 24px;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 6px 30px rgba(232,64,154,0.4);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.2s;
+    }
+
+    .floating-cta a:hover { transform: scale(1.05); }
+
+    /* ── SOBRE NOSOTROS ── */
+    #sobre-nosotros {
+      background: linear-gradient(160deg, #fff8fc 0%, #fde8e1 100%);
+    }
+
+    .about-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-visual {
+      font-size: 10rem;
+      text-align: center;
+      line-height: 1;
+    }
+
+    .about-text .section-label { display: block; margin-bottom: 12px; }
+    .about-text .section-title { text-align: left; }
+
+    .about-list {
+      list-style: none;
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .about-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .about-list .check {
+      width: 22px;
+      height: 22px;
+      background: linear-gradient(135deg, var(--pink), var(--coral));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      color: white;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* ── RESPONSIVE ── */
+    /* ── RASTREAR ── */
+    #rastrear { background: white; }
+
+    .tracking-box {
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--off-white);
+      border-radius: var(--radius);
+      padding: 40px 36px;
+      box-shadow: var(--shadow);
+      border: 2px solid #fce4f3;
+    }
+
+    .tracking-form {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .tracking-input {
+      flex: 1;
+      padding: 14px 20px;
+      border: 2px solid #f0d0e8;
+      border-radius: 14px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      background: white;
+    }
+
+    .tracking-input:focus {
+      border-color: var(--pink);
+      box-shadow: 0 0 0 3px rgba(232,64,154,0.12);
+    }
+
+    .tracking-input::placeholder { color: #bbb; font-weight: 400; }
+
+    .btn-track {
+      padding: 14px 28px;
+      background: linear-gradient(135deg, var(--pink), var(--coral));
+      color: white;
+      font-family: 'Fredoka One', cursive;
+      font-size: 1rem;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-track:hover { opacity: 0.88; transform: scale(1.03); }
+
+
+    .tracking-note {
+      margin-top: 20px;
+      font-size: 0.82rem;
+      color: var(--text-light);
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    .tracking-note a { color: var(--pink); text-decoration: none; font-weight: 700; }
+
+    .tracking-error {
+      display: none;
+      background: #fff5f5;
+      border: 2px solid #fed7d7;
+      border-radius: 12px;
+      padding: 14px 20px;
+      color: #e53e3e;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-align: center;
+      margin-top: 12px;
+    }
+
+    .tracking-error.show { display: block; }
+
+    @media (max-width: 768px) {
+      nav { display: none; }
+      .hamburger { display: flex; }
+
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .footer-top > div:first-child { grid-column: 1 / -1; }
+      .footer-about { max-width: 100%; }
+
+      .about-inner { grid-template-columns: 1fr; gap: 32px; }
+      .about-visual { font-size: 6rem; }
+      .about-text .section-title { text-align: center; }
+      .about-text .section-label { display: inline-block; }
+      .about-text { text-align: center; }
+      .about-list li { text-align: left; }
+
+      section { padding: 60px 20px; }
+
+      .tiktok-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 480px) {
+      .footer-top { grid-template-columns: 1fr; }
+      .tiktok-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .footer-legal { flex-wrap: wrap; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="header">
+  <a href="#inicio" class="logo">SQUISHALO</a>
+  <nav>
+    <a href="#inicio">Inicio</a>
+    <a href="#productos">Productos</a>
+    <a href="#sobre-nosotros">Sobre nosotros</a>
+    <a href="#rastrear">Rastrear pedido</a>
+    <a href="#contacto">Contacto</a>
+    <a href="#productos" class="cta-nav">🛒 Ver productos</a>
+  </nav>
+  <button class="hamburger" id="hamburgerBtn" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose">✕</button>
+  <a href="#inicio" class="mobile-link">Inicio</a>
+  <a href="#productos" class="mobile-link">Productos</a>
+  <a href="#sobre-nosotros" class="mobile-link">Sobre nosotros</a>
+  <a href="#rastrear" class="mobile-link">Rastrear pedido</a>
+  <a href="#contacto" class="mobile-link">Contacto</a>
+</div>
+
+<!-- HERO -->
+<section id="inicio">
+  <div class="hero-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge">✨ Los squishys más virales de España</div>
+    <span class="hero-emojis">🫧🌸💖</span>
+    <h1 class="hero-title">SQUISHALO</h1>
+    <p class="hero-slogan">Tócalo. Apriétalo. Squíshalo.</p>
+    <a href="#productos" class="btn-primary">Ver productos 🛍️</a>
+    <div class="hero-trust">
+      <span><span class="dot">●</span> Pago seguro Stripe</span>
+      <span><span class="dot">●</span> Squishys originales</span>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-track" id="trustTrack">
+    <span class="trust-item"><span class="trust-icon">🔒</span> Pago seguro con Stripe</span>
+    <span class="trust-item"><span class="trust-icon">✅</span> Squishys originales</span>
+    <span class="trust-item"><span class="trust-icon">⭐</span> +500 clientes felices</span>
+    <span class="trust-item"><span class="trust-icon">💖</span> Los más virales de España</span>
+    <span class="trust-item"><span class="trust-icon">🔒</span> Pago seguro con Stripe</span>
+    <span class="trust-item"><span class="trust-icon">✅</span> Squishys originales</span>
+    <span class="trust-item"><span class="trust-icon">⭐</span> +500 clientes felices</span>
+    <span class="trust-item"><span class="trust-icon">💖</span> Los más virales de España</span>
+  </div>
+</div>
+
+<!-- PRODUCTOS -->
+<section id="productos">
+  <div class="section-header">
+    <span class="section-label">Catálogo</span>
+    <h2 class="section-title">Nuestros squishys</h2>
+    <p class="section-sub">Todos originales, certificados y con la textura más suave que hayas tocado jamás.</p>
+  </div>
+
+  <div class="products-grid">
+
+    <div class="product-card reveal reveal-delay-1" style="cursor:pointer;" onclick="window.open('pulpo-galaxy.html','_blank')">
+      <div class="product-badge">🔥 Más vendido</div>
+      <div class="product-img" style="padding: 0;">
+        <img src="pulpo-galaxy.png" alt="Pulpo Galaxy Squishy" style="width:100%;height:100%;object-fit:cover;" />
+      </div>
+      <div class="product-body">
+        <div class="product-name">Pulpo Galaxy ✨</div>
+        <div class="product-desc">Pulpo transparente con estrellitas holográficas dentro. Textura suave y gelatinosa, imposible soltarlo.</div>
+        <div class="product-meta">
+          <div class="product-price">12,95€</div>
+        </div>
+        <a href="pulpo-galaxy.html" target="_blank" class="btn-buy" onclick="event.stopPropagation()">🛒 Comprar ahora</a>
+      </div>
+    </div>
+
+
+  </div>
+</section>
+
+<!-- TIKTOK -->
+<section id="tiktok">
+  <div class="section-header">
+    <span class="section-label">Viral en TikTok</span>
+    <h2 class="section-title">Como se ve en TikTok</h2>
+    <p class="section-sub">Nuestros squishys están arrasando. Más de 2 millones de views y contando.</p>
+  </div>
+
+  <div class="tiktok-grid">
+
+    <div class="tiktok-card reveal reveal-delay-1">
+      <div class="tiktok-play">▶</div>
+      <h4>Unboxing Oso Mochi Jumbo</h4>
+      <p>¡No puedo parar de apretarlo!</p>
+      <div class="tiktok-views">👁 842K views</div>
+    </div>
+
+    <div class="tiktok-card reveal reveal-delay-2">
+      <div class="tiktok-play">▶</div>
+      <h4>Asmr squishing pack x5</h4>
+      <p>El sonido más satisfactorio</p>
+      <div class="tiktok-views">👁 1.2M views</div>
+    </div>
+
+    <div class="tiktok-card reveal reveal-delay-3">
+      <div class="tiktok-play">▶</div>
+      <h4>Unicornio Galaxy unboxing</h4>
+      <p>¡Los colores son increíbles!</p>
+      <div class="tiktok-views">👁 670K views</div>
+    </div>
+
+  </div>
+
+  <div style="text-align:center; margin-top: 32px;">
+    <a href="https://www.tiktok.com/@squishal0" target="_blank" rel="noopener" class="btn-secondary">
+      🎵 Seguirnos en TikTok @squishal0
+    </a>
+  </div>
+</section>
+
+<!-- RESEÑAS -->
+<section id="resenas">
+  <div class="section-header">
+    <span class="section-label">Opiniones reales</span>
+    <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+    <p class="section-sub">Sin filtros, sin mentiras. Opiniones verificadas de clientes reales.</p>
+  </div>
+
+  <div class="reviews-grid">
+
+    <div class="review-card reveal reveal-delay-1">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"¡El oso mochi es exactamente como en el vídeo de TikTok! La textura es increíblemente suave y el relleno slow rise es adictivo. Llegó en 2 días y el embalaje era muy cuidado. Ya he pedido 3 más."</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">👩</div>
+        <div>
+          <div class="reviewer-name">Laura M.</div>
+          <div class="reviewer-date">Hace 3 días · Madrid</div>
+        </div>
+      </div>
+      <span class="review-verified">✓ Compra verificada</span>
+    </div>
+
+    <div class="review-card reveal reveal-delay-2">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"Compré el pack rainbow para mi hija de 8 años y está obsesionada. Los materiales se notan de calidad, nada de ese plástico barato que huele mal. El envío súper rápido. 100% recomendable."</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">👨</div>
+        <div>
+          <div class="reviewer-name">Carlos R.</div>
+          <div class="reviewer-date">Hace 1 semana · Barcelona</div>
+        </div>
+      </div>
+      <span class="review-verified">✓ Compra verificada</span>
+    </div>
+
+    <div class="review-card reveal reveal-delay-3">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"La fresa scented huele INCREÍBLE. Pensé que sería un olor artificial horrible pero es suave y agradable. Ya no puedo trabajar sin tenerla en la mano. Mis compis de oficina quieren uno también jajaja."</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">👩</div>
+        <div>
+          <div class="reviewer-name">Sofía P.</div>
+          <div class="reviewer-date">Hace 5 días · Valencia</div>
+        </div>
+      </div>
+      <span class="review-verified">✓ Compra verificada</span>
+    </div>
+
+    <div class="review-card reveal reveal-delay-4">
+      <div class="stars">★★★★☆</div>
+      <p class="review-text">"Muy buenos productos, calidad notablemente superior a los que venden en jugueterías. El unicornio galaxy es precioso en persona, las fotos no le hacen justicia. Quito una estrella porque tardó 3 días en vez de 2."</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">👩</div>
+        <div>
+          <div class="reviewer-name">Ana T.</div>
+          <div class="reviewer-date">Hace 2 semanas · Sevilla</div>
+        </div>
+      </div>
+      <span class="review-verified">✓ Compra verificada</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- GARANTÍAS -->
+<section id="garantias">
+  <div class="section-header">
+    <span class="section-label">Transparencia total</span>
+    <h2 class="section-title">Tu compra, protegida</h2>
+    <p class="section-sub">Porque compramos lo que vendemos. Cada squishy pasa por nuestros estándares de calidad.</p>
+  </div>
+
+  <div class="garantias-grid">
+
+    <div class="garantia-card reveal reveal-delay-1">
+      <span class="garantia-icon">🔒</span>
+      <h3>Pago 100% seguro</h3>
+      <p>Procesamos todos los pagos a través de Stripe, el estándar mundial en seguridad de pagos online. Tus datos nunca se almacenan.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- STRIPE BADGE -->
+<div class="stripe-section">
+  <div class="stripe-badge">
+    <span style="font-size:2rem;">🔒</span>
+    <div>
+      <div class="stripe-logo">stripe</div>
+    </div>
+    <div class="stripe-text">
+      <strong>Pago 100% seguro con Stripe</strong>
+      <span>Tarjeta, Apple Pay, Google Pay · Sin guardar datos · Encriptación SSL</span>
+    </div>
+  </div>
+</div>
+
+<!-- SOBRE NOSOTROS -->
+<section id="sobre-nosotros">
+  <div class="about-inner">
+    <div class="about-visual reveal">🫧</div>
+    <div class="about-text reveal reveal-delay-2">
+      <span class="section-label">Sobre nosotros</span>
+      <h2 class="section-title">Somos Squishalo</h2>
+      <p style="color: var(--text-light); font-size: 0.95rem; line-height: 1.7; margin-top: 12px;">
+        Nacimos de una obsesión: encontrar los squishys más satisfactorios del mundo y traerlos a España con garantía de calidad real.
+      </p>
+      <ul class="about-list">
+        <li>
+          <span class="check">✓</span>
+          <span>Probamos cada producto antes de venderlo. Si no nos convence, no entra al catálogo.</span>
+        </li>
+        <li>
+          <span class="check">✓</span>
+          <span>Solo vendemos squishys con materiales certificados y seguros para niños y adultos.</span>
+        </li>
+        <li>
+          <span class="check">✓</span>
+          <span>Somos una marca española, no un dropshipping genérico. Aquí hay personas reales detrás.</span>
+        </li>
+        <li>
+          <span class="check">✓</span>
+          <span>Si algo sale mal, lo solucionamos. Esa es nuestra promesa.</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" style="background: var(--off-white); text-align: center;">
+  <div class="section-header">
+    <span class="section-label">Contacto</span>
+    <h2 class="section-title">¿Tienes alguna pregunta?</h2>
+    <p class="section-sub">Estamos aquí para ayudarte. Escríbenos y te respondemos rápido.</p>
+  </div>
+  <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 8px;">
+    <a href="https://instagram.com/squishal0" target="_blank" rel="noopener" class="btn-primary">
+      📸 @squishal0 en Instagram
+    </a>
+    <a href="mailto:hola@squishalo.com" class="btn-secondary">
+      ✉️ hola@squishalo.com
+    </a>
+  </div>
+  <p style="margin-top: 28px; font-size: 0.88rem; color: var(--text-light);">
+    Respondemos en menos de 24h · Lunes a viernes
+  </p>
+</section>
+
+<!-- RASTREAR PEDIDO -->
+<section id="rastrear">
+  <div class="section-header">
+    <span class="section-label">Seguimiento</span>
+    <h2 class="section-title">Rastrea tu pedido</h2>
+    <p class="section-sub">Introduce el número de seguimiento que te enviamos por email y consulta dónde está tu squishy.</p>
+  </div>
+
+  <div class="tracking-box reveal">
+    <div class="tracking-form">
+      <input
+        type="text"
+        id="trackingInput"
+        class="tracking-input"
+        placeholder="Pega aquí tu número de seguimiento"
+        maxlength="60"
+        autocomplete="off"
+      />
+      <button class="btn-track" id="trackBtn">📦 Rastrear</button>
+    </div>
+
+    <div class="tracking-error" id="trackingError">
+      ⚠️ Por favor, introduce un número de seguimiento.
+    </div>
+
+    <p class="tracking-note">
+      Detectamos tu transportista automáticamente · Sin registro ni cuenta<br>
+      ¿No tienes el número? Búscalo en el email de confirmación de tu pedido.<br>
+      ¿Problemas? <a href="mailto:hola@squishalo.com">hola@squishalo.com</a>
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">SQUISHALO</div>
+        <p class="footer-about">
+          Los squishys más virales de España. Calidad real, materiales certificados y envío rápido.
+          Tócalo. Apriétalo. Squíshalo.
+        </p>
+        <div class="social-links" style="margin-top:20px;">
+          <a href="https://instagram.com/squishal0" target="_blank" rel="noopener" class="social-link" title="Instagram">📸</a>
+          <a href="https://www.tiktok.com/@squishal0" target="_blank" rel="noopener" class="social-link" title="TikTok">🎵</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Tienda</h4>
+        <a href="#productos">Todos los productos</a>
+        <a href="#productos">Más vendidos</a>
+        <a href="#productos">Novedades</a>
+        <a href="#productos">Packs ahorro</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Ayuda</h4>
+        <a href="#contacto">Contacto</a>
+        <a href="#garantias">Pago seguro</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#">Aviso legal</a>
+        <a href="#">Política de privacidad</a>
+        <a href="#">Política de cookies</a>
+        <a href="#">Condiciones de venta</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 Squishalo · squishalo.com · Todos los derechos reservados</p>
+      <div class="footer-legal">
+        <a href="#">Aviso legal</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING CTA -->
+<div class="floating-cta" id="floatingCta">
+  <a href="#productos">🛍️ Ver productos</a>
+</div>
+
+<script>
+  // Header scroll
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Floating CTA
+  const floatingCta = document.getElementById('floatingCta');
+  window.addEventListener('scroll', () => {
+    floatingCta.classList.toggle('show', window.scrollY > 400);
+  });
+
+  // Mobile menu
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const mobileClose = document.getElementById('mobileClose');
+
+  hamburgerBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
+  mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  revealEls.forEach(el => observer.observe(el));
+
+  // Tracking — universal via 17track
+  const trackBtn = document.getElementById('trackBtn');
+  const trackingInput = document.getElementById('trackingInput');
+  const trackingError = document.getElementById('trackingError');
+
+  trackBtn.addEventListener('click', () => {
+    const num = trackingInput.value.trim();
+    trackingError.classList.remove('show');
+    if (num.length < 5) { trackingError.classList.add('show'); return; }
+    window.open(`https://t.17track.net/es#nums=${encodeURIComponent(num)}`, '_blank', 'noopener');
+  });
+
+  trackingInput.addEventListener('keydown', e => {
+    if (e.key === 'Enter') trackBtn.click();
+  });
+
+  // Smooth scroll for nav links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
