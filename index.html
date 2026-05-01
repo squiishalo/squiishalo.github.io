@@ -384,6 +384,130 @@
     .floating-cta a { display: flex; align-items: center; gap: 8px; background: linear-gradient(135deg, var(--pink), var(--coral)); color: white; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.88rem; padding: 13px 24px; border-radius: var(--radius-pill); box-shadow: 0 6px 28px rgba(232,64,154,0.35); transition: transform 0.2s; }
     .floating-cta a:hover { transform: translateY(-2px); }
 
+    /* ANNOUNCEMENT BAR */
+    .announcement-bar {
+      background: var(--black);
+      color: white;
+      text-align: center;
+      padding: 10px 24px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      position: relative;
+      z-index: 101;
+    }
+
+    .announcement-bar span { color: var(--pink); }
+    .announcement-bar .countdown { color: var(--yellow); font-weight: 900; }
+
+    /* TOAST — compra reciente */
+    .toast {
+      position: fixed;
+      bottom: 100px;
+      left: 24px;
+      z-index: 90;
+      background: white;
+      border-radius: var(--radius);
+      padding: 14px 18px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.14);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      max-width: 300px;
+      transform: translateX(-400px);
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+      border-left: 4px solid var(--pink);
+    }
+
+    .toast.show { transform: translateX(0); }
+
+    .toast-avatar {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--pink-soft), var(--coral-soft));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .toast-text { font-size: 0.82rem; line-height: 1.4; }
+    .toast-text strong { display: block; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.85rem; }
+    .toast-text span { color: var(--text-light); font-size: 0.75rem; }
+
+    /* STOCK BADGE en product cards */
+    .product-stock {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 0.75rem;
+      color: #E53E3E;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .stock-dot {
+      width: 7px; height: 7px;
+      background: #E53E3E;
+      border-radius: 50%;
+      animation: pulse-red 1.5s infinite;
+    }
+
+    @keyframes pulse-red {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    /* VIEWERS badge */
+    .product-viewers {
+      font-size: 0.75rem;
+      color: var(--text-light);
+      font-weight: 600;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .viewers-dot { width: 6px; height: 6px; background: #22c55e; border-radius: 50%; }
+
+    /* EXIT POPUP */
+    .popup-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .popup-overlay.show { display: flex; }
+
+    .popup {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 40px 36px;
+      max-width: 440px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      animation: popIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    }
+
+    @keyframes popIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+    .popup-close { position: absolute; top: 14px; right: 18px; background: none; border: none; font-size: 1.4rem; cursor: pointer; color: var(--text-light); }
+    .popup-emoji { font-size: 3rem; margin-bottom: 12px; display: block; }
+    .popup h3 { font-family: 'Nunito', sans-serif; font-size: 1.5rem; font-weight: 900; margin-bottom: 8px; }
+    .popup h3 span { background: linear-gradient(135deg, var(--pink), var(--coral)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .popup p { color: var(--text-mid); font-size: 0.9rem; margin-bottom: 24px; line-height: 1.6; }
+    .popup-code { background: var(--pink-soft); border: 2px dashed var(--pink); border-radius: var(--radius-sm); padding: 12px; font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.3rem; color: var(--pink); letter-spacing: 2px; margin-bottom: 20px; cursor: pointer; transition: background 0.2s; }
+    .popup-code:hover { background: #f0c0e0; }
+    .popup-note { font-size: 0.78rem; color: var(--text-light); margin-top: 12px; }
+
     /* RESPONSIVE */
     @media (max-width: 1024px) {
       section { padding: 72px 40px; }
@@ -420,6 +544,11 @@
   </style>
 </head>
 <body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announcement-bar">
+  🔥 Oferta flash — <span>10% de descuento</span> hoy · Usa el código <span>SQUISH10</span> al pagar · Quedan <span class="countdown" id="countdown">02:47:33</span>
+</div>
 
 <!-- HEADER -->
 <header id="header">
@@ -514,6 +643,8 @@
       </div>
       <div class="product-body">
         <div class="product-name">Queso Squishy 🧀</div>
+        <div class="product-stock"><span class="stock-dot"></span>Solo quedan 7 unidades</div>
+        <div class="product-viewers"><span class="viewers-dot"></span>14 personas lo están viendo ahora</div>
         <div class="product-desc">El squishy queso viral de TikTok. Slow rise satisfactorio. Elige tamaño 5cm o 10cm.</div>
         <div class="product-footer">
           <span class="product-price">12,95€</span>
@@ -529,6 +660,8 @@
       </div>
       <div class="product-body">
         <div class="product-name">Mini Mochi Pack 🐾</div>
+        <div class="product-stock"><span class="stock-dot"></span>Solo quedan 12 unidades</div>
+        <div class="product-viewers"><span class="viewers-dot"></span>9 personas lo están viendo ahora</div>
         <div class="product-desc">Pack de mini squishys kawaii sin repetir. Gatitos, conejitos, pandas y más. Elige 5 o 20.</div>
         <div class="product-footer">
           <span class="product-price">9,95€</span>
@@ -544,6 +677,8 @@
       </div>
       <div class="product-body">
         <div class="product-name">Gummy Bear 🐻</div>
+        <div class="product-stock"><span class="stock-dot"></span>Solo quedan 5 unidades</div>
+        <div class="product-viewers"><span class="viewers-dot"></span>21 personas lo están viendo ahora</div>
         <div class="product-desc">Osito gummy gigante en versión squishy. Con caja de regalo incluida. Rosa, amarillo o morado.</div>
         <div class="product-footer">
           <span class="product-price">14,95€</span>
@@ -559,6 +694,8 @@
       </div>
       <div class="product-body">
         <div class="product-name">Pulpo Galaxy ✨</div>
+        <div class="product-stock"><span class="stock-dot"></span>Solo quedan 9 unidades</div>
+        <div class="product-viewers"><span class="viewers-dot"></span>17 personas lo están viendo ahora</div>
         <div class="product-desc">Pulpo transparente con estrellitas holográficas. Textura gelatinosa y suave, imposible soltarlo.</div>
         <div class="product-footer">
           <span class="product-price">12,95€</span>
@@ -743,6 +880,29 @@
   </div>
 </footer>
 
+<!-- TOAST compra reciente -->
+<div class="toast" id="toast">
+  <div class="toast-avatar" id="toastEmoji">🐙</div>
+  <div class="toast-text">
+    <strong id="toastTitle">Laura de Madrid</strong>
+    <span id="toastMsg">acaba de comprar el Pulpo Galaxy</span>
+    <span id="toastTime">hace 3 minutos</span>
+  </div>
+</div>
+
+<!-- EXIT POPUP -->
+<div class="popup-overlay" id="popupOverlay">
+  <div class="popup">
+    <button class="popup-close" id="popupClose">✕</button>
+    <span class="popup-emoji">🎁</span>
+    <h3>¡Espera! Tienes un <span>regalo</span></h3>
+    <p>Antes de irte, te regalamos un <strong>10% de descuento</strong> en tu primer pedido. Solo por hoy.</p>
+    <div class="popup-code" onclick="copyCode()" title="Clic para copiar">SQUISH10</div>
+    <a href="#productos" class="btn-pink" style="display:block;" onclick="document.getElementById('popupOverlay').classList.remove('show')">Usar mi descuento</a>
+    <p class="popup-note">Clic en el código para copiarlo · Válido solo hoy</p>
+  </div>
+</div>
+
 <!-- FLOATING CTA -->
 <div class="floating-cta" id="floatingCta">
   <a href="#productos">Ver productos ✨</a>
@@ -770,6 +930,69 @@
       if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
     });
   });
+
+  // COUNTDOWN
+  let totalSecs = 2 * 3600 + 47 * 60 + 33;
+  const countdownEl = document.getElementById('countdown');
+  setInterval(() => {
+    if (totalSecs <= 0) { totalSecs = 3 * 3600; return; }
+    totalSecs--;
+    const h = String(Math.floor(totalSecs / 3600)).padStart(2,'0');
+    const m = String(Math.floor((totalSecs % 3600) / 60)).padStart(2,'0');
+    const s = String(totalSecs % 60).padStart(2,'0');
+    if (countdownEl) countdownEl.textContent = `${h}:${m}:${s}`;
+  }, 1000);
+
+  // TOAST compras recientes
+  const toasts = [
+    { emoji: '🐙', name: 'Laura de Madrid', msg: 'acaba de comprar el Pulpo Galaxy', time: 'hace 2 minutos' },
+    { emoji: '🐻', name: 'Carlos de Barcelona', msg: 'acaba de comprar el Gummy Bear rosa', time: 'hace 5 minutos' },
+    { emoji: '🐾', name: 'Sofía de Valencia', msg: 'acaba de comprar el Mini Mochi Pack x20', time: 'hace 8 minutos' },
+    { emoji: '🧀', name: 'Ana de Sevilla', msg: 'acaba de comprar el Queso Squishy 10cm', time: 'hace 12 minutos' },
+    { emoji: '🐙', name: 'Marta de Bilbao', msg: 'acaba de comprar el Pulpo Galaxy', time: 'hace 15 minutos' },
+  ];
+
+  let toastIdx = 0;
+  const toastEl = document.getElementById('toast');
+
+  function showToast() {
+    const t = toasts[toastIdx % toasts.length];
+    document.getElementById('toastEmoji').textContent = t.emoji;
+    document.getElementById('toastTitle').textContent = t.name;
+    document.getElementById('toastMsg').textContent = t.msg;
+    document.getElementById('toastTime').textContent = t.time;
+    toastEl.classList.add('show');
+    setTimeout(() => toastEl.classList.remove('show'), 4000);
+    toastIdx++;
+  }
+
+  setTimeout(() => { showToast(); setInterval(showToast, 12000); }, 5000);
+
+  // EXIT POPUP
+  let popupShown = false;
+  document.addEventListener('mouseleave', e => {
+    if (e.clientY < 10 && !popupShown) {
+      popupShown = true;
+      document.getElementById('popupOverlay').classList.add('show');
+    }
+  });
+
+  document.getElementById('popupClose').addEventListener('click', () => {
+    document.getElementById('popupOverlay').classList.remove('show');
+  });
+
+  document.getElementById('popupOverlay').addEventListener('click', e => {
+    if (e.target === document.getElementById('popupOverlay'))
+      document.getElementById('popupOverlay').classList.remove('show');
+  });
+
+  function copyCode() {
+    navigator.clipboard.writeText('SQUISH10').then(() => {
+      const el = document.querySelector('.popup-code');
+      el.textContent = '¡Copiado!';
+      setTimeout(() => el.textContent = 'SQUISH10', 2000);
+    });
+  }
 
   const trackBtn = document.getElementById('trackBtn');
   const trackingInput = document.getElementById('trackingInput');
